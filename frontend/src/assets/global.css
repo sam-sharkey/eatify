@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Georgia:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  @apply leading-[normal] m-0;
+}
+*,
+::before,
+::after {
+  border-width: 0;
+}
+:root {
+  --color-huntergreen: #0e150e;
+  --color-springwood: #f4f3e7;
+  --color-springwood: #f4f3e7;
+  --color-aquadeep: #00473c;
+  --color-razzmatazz: #e6ff55;
+  --color-huntergreen: #0e150e;
+  --color-tasman: #d8e5d6;
+  --color-teal: #337a70;
+  --color-oldlace: #f4f3e7;
+  --color-black: #000;
+  --color-yellowgreen: #cce63b;
+  --color-darkslategray: #33333;
+  --color-bitter: #8c8c82;
+  --color-starkwhite: #e8dcc6;
+}
