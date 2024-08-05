@@ -13,7 +13,7 @@
       </h3>
     </div>
     <div
-      class="w-full flex flex-row flex-wrap items-end justify-start pt-[47.2px] px-10 pb-[42px] box-border gap-6 max-w-[1440px] text-base"
+      class="w-full flex flex-row flex-wrap items-end justify-start pt-[47.2px] px-10 pb-[42px] box-border gap-6 max-text-base"
     >
       <div
         class="flex-1 flex flex-col items-start justify-start gap-4 min-w-[246px] max-w-[251px]"

@@ -1,9 +1,9 @@
 <template>
   <PageHeader />
-  <ArticleHighlightsHighlight />
-  <ArticleMenu />
-  <GenericArticle />
-  <NewsArticle />
+  <HighlightsWidget />
+  <MenuWidget />
+  <PictureWidget />
+  <NewsWidget />
   <!---nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
@@ -16,20 +16,20 @@
 import { defineComponent } from "vue";
 //import { useDark } from "@vueuse/core";
 import PageHeader from "./components/PageHeader.vue";
-import ArticleMenu from "./components/ArticleMenu.vue";
-import ArticleHighlightsHighlight from "./components/ArticleHighlightsHighlight.vue";
+import MenuWidget from "./components/MenuWidget.vue";
+import HighlightsWidget from "./components/HighlightsWidget.vue";
 import PageFooter from "./components/PageFooter.vue";
-import GenericArticle from "./components/GenericArticle.vue";
-import NewsArticle from "./components/NewsArticle.vue";
+import PictureWidget from "./components/PictureWidget.vue";
+import NewsWidget from "./components/NewsWidget.vue";
 
 export default defineComponent({
   components: {
     PageHeader,
-    ArticleMenu,
-    ArticleHighlightsHighlight,
+    MenuWidget,
+    HighlightsWidget,
     PageFooter,
-    GenericArticle,
-    NewsArticle,
+    PictureWidget,
+    NewsWidget,
   },
 });
 </script>
