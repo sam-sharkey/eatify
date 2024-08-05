@@ -12,7 +12,7 @@
           class="menu-item mx-8 my-0 relative tracking-tight leading-12 capitalize font-normal flex items-center justify-center cursor-pointer"
           @mouseover="hoverIndex = index"
           @mouseleave="hoverIndex = null"
-          @click="clickedIndex = index"
+          @click="selectClassification(index)"
           :class="{
             hovered: hoverIndex === index,
             clicked: clickedIndex === index,
@@ -48,6 +48,12 @@ export default defineComponent({
       hoverIndex: null as number | null,
       clickedIndex: null as number | null,
     };
+  },
+  methods: {
+    selectClassification(index: number) {
+      this.clickedIndex = index;
+      this.$emit("selectClassification", this.menuItems[index]);
+    },
   },
 });
 </script>

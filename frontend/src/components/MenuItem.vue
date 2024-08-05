@@ -3,10 +3,10 @@
     class="menu-item-container flex flex-col items-start justify-start gap-2 max-w-full text-left"
   >
     <div
-      class="self-stretch h-[448px] flex flex-col items-start justify-start pt-0 px-0 pb-4 box-border"
+      class="self-stretch max-h-[448px] aspect-square flex flex-col items-start justify-start pt-0 px-0 pb-4 box-border"
     >
       <img
-        class="w-full flex-1 relative rounded-xl max-w-[432px] overflow-hidden max-h-full object-cover mq450:max-w-full"
+        class="w-full aspect-square flex-1 relative rounded-xl max-w-[432px] overflow-hidden max-h-full object-cover mq450:max-w-full"
         loading="lazy"
         alt=""
         :src="imageSrc"
@@ -25,9 +25,7 @@
       class="flex flex-col items-start justify-start pt-0 px-0 pb-2 text-mid-6"
     >
       <div class="relative leading-[24px]">
-        <p class="m-0" v-for="line in descriptionLines" :key="line">
-          {{ line }}
-        </p>
+        <p class="m-0">{{ description }}</p>
       </div>
     </div>
     <GenericButton
@@ -56,14 +54,10 @@ export default defineComponent({
       type: String,
       default: "/picture--sg-web-image-salad-buffalo-chickenpng2@2x.png",
     },
-    descriptionLines: {
-      type: Array as () => string[],
-      default: () => [
-        "Blackened chicken, pickled onions, tomatoes, raw",
-        "carrots, cilantro, blue cheese, za’atar breadcrumbs,",
-        "shredded kale, chopped romaine, sweetgreen hot sauce,",
-        "caesar",
-      ],
+    description: {
+      type: String,
+      default:
+        "Blackened chicken, pickled onions, tomatoes, raw carrots, cilantro, blue cheese, za’atar breadcrumbs, shredded kale, chopped romaine, sweetgreen hot sauce, caesar",
     },
     buttonText: { type: String, default: "Order Now" },
   },
