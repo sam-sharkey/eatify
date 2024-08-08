@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-[1432px] max-w-full overflow-hidden flex flex-col items-start justify-start leading-[normal] tracking-[normal]"
+    class="max-w-full overflow-hidden flex flex-col items-start justify-start leading-[normal] tracking-[normal]"
   >
     <section
       class="self-stretch bg-oldlace overflow-hidden flex flex-row items-start justify-start max-w-full [row-gap:20px] mq1150:flex-wrap"
