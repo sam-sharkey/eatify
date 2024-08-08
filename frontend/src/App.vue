@@ -15,12 +15,12 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 //import { useDark } from "@vueuse/core";
-import PageHeader from "./components/PageHeader.vue";
-import MenuWidget from "./components/MenuWidget.vue";
-import HighlightsWidget from "./components/HighlightsWidget.vue";
-import PageFooter from "./components/PageFooter.vue";
-import PictureWidget from "./components/PictureWidget.vue";
-import NewsWidget from "./components/NewsWidget.vue";
+import PageHeader from "./components/Header/PageHeader.vue";
+import MenuWidget from "./components/Menu/MenuWidget.vue";
+import HighlightsWidget from "./components/Highlights/HighlightsWidget.vue";
+import PageFooter from "./components/Footer/PageFooter.vue";
+import PictureWidget from "./components/Picture/PictureWidget.vue";
+import NewsWidget from "./components/News/NewsWidget.vue";
 
 export default defineComponent({
   components: {
