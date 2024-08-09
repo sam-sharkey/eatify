@@ -1,13 +1,13 @@
 <template>
   <div
     class="max-w-full overflow-hidden flex flex-col items-start justify-start leading-[normal] tracking-[normal] relative"
+    style="height: calc(100vh - 4.5rem)"
   >
     <HighlightItem
       v-if="currentIndex >= 0 && currentIndex < highlights.length"
-      :headerLine1="highlights[currentIndex].headerLine1"
-      :headerLine2="highlights[currentIndex].headerLine2"
+      :headerLine="highlights[currentIndex].header_line"
       :body="highlights[currentIndex].body"
-      :backgroundImage="highlights[currentIndex].backgroundImage"
+      :backgroundImage="highlights[currentIndex].background_image"
     />
     <button
       class="navigation-button right-24 fas fa-chevron-left text-black"
@@ -21,42 +21,30 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import HighlightItem from "./HighlightItem.vue";
+import { fetchHighlights } from "../../services/apiClient";
 
 interface Highlight {
-  headerLine1: string;
-  headerLine2: string;
+  header_line: string;
   body: string;
-  backgroundImage: string;
+  background_image: string;
 }
 
 export default defineComponent({
   name: "HighlightsWidget",
   components: { HighlightItem },
   setup() {
-    const highlights = ref<Highlight[]>([
-      {
-        headerLine1: "Introducing Caramelized",
-        headerLine2: "Garlic Steak at Sweetgreen",
-        body: "Grass-fed, pasture-raised",
-        backgroundImage: "/public/picturecontainer@3x.png",
-      },
-      {
-        headerLine1: "Fresh and Flavorful",
-        headerLine2: "Summer Salads Available Now",
-        body: "Locally sourced ingredients",
-        backgroundImage: "/public/summer-salad.png",
-      },
-      {
-        headerLine1: "New Seasonal Bowl",
-        headerLine2: "Try the Autumn Harvest Bowl",
-        body: "A cozy, nutritious blend",
-        backgroundImage: "/public/autumn-bowl.png",
-      },
-    ]);
-
+    const highlights = ref<Highlight[]>([]);
     const currentIndex = ref(0);
+
+    onMounted(async () => {
+      try {
+        highlights.value = await fetchHighlights();
+      } catch (error) {
+        console.error("Error fetching highlights:", error);
+      }
+    });
 
     const nextHighlight = () => {
       if (currentIndex.value < highlights.value.length - 1) {

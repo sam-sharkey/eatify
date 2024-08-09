@@ -45,9 +45,12 @@ else
     export VIRTUAL_ENV="/Users/samuelsharkey/eatify/env"
 fi
 
+export DJANGO_SETTINGS_MODULE=backend.settings
+
 _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/bin:$PATH"
 export PATH
+export PYTHONPATH=$PYTHONPATH:/Users/samuelsharkey/eatify/backend
 
 # unset PYTHONHOME if set
 # this will fail if PYTHONHOME is set to the empty string (which is bad anyway)

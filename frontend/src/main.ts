@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
-import store from "./store";
+import store from "./services/store";
 import "./assets/global.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 

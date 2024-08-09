@@ -1,7 +1,7 @@
 export interface MenuItem {
   classification: string;
   name: string;
-  imageSrc: string;
+  image_src: string;
   description: string;
 }
 

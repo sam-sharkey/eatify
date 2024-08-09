@@ -9,7 +9,7 @@
         class="w-full aspect-square flex-1 relative rounded-xl max-w-[432px] overflow-hidden max-h-full object-cover mq450:max-w-full"
         loading="lazy"
         alt=""
-        :src="imageSrc"
+        :src="fullImageSrc"
       />
     </div>
     <div
@@ -52,7 +52,7 @@ export default defineComponent({
     header: { type: String, default: "Buffalo Chicken" },
     imageSrc: {
       type: String,
-      default: "/picture--sg-web-image-salad-buffalo-chickenpng2@2x.png",
+      required: true,
     },
     description: {
       type: String,
@@ -60,6 +60,11 @@ export default defineComponent({
         "Blackened chicken, pickled onions, tomatoes, raw carrots, cilantro, blue cheese, za’atar breadcrumbs, shredded kale, chopped romaine, sweetgreen hot sauce, caesar",
     },
     buttonText: { type: String, default: "Order Now" },
+  },
+  computed: {
+    fullImageSrc(): string {
+      return `${process.env.VUE_APP_BACKEND_URL}${this.imageSrc}`;
+    },
   },
 });
 </script>

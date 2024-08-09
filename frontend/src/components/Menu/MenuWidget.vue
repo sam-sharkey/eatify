@@ -1,19 +1,19 @@
 <template>
   <div
-    class="w-[1840px] max-w-full flex flex-col items-center justify-start pt-8 px-16 pb-0 box-border gap-24 leading-[normal] tracking-[normal] article-menu"
+    class="w-[1840px] max-w-full flex flex-col items-center justify-start py-8 px-16 box-border gap-8 leading-[normal] tracking-[normal] article-menu"
   >
     <MenuNav
       :menuItems="menuClassifications"
       @selectClassification="filterItems"
     />
     <section
-      class="w-[1440px] flex flex-row items-start justify-between py-0 px-16 box-border gap-8 max-w-[1440px] shrink-0 text-left menu-section"
+      class="w-[1440px] flex flex-row items-start justify-between px-16 box-border gap-8 max-w-[1440px] shrink-0 text-left menu-section"
     >
       <MenuItem
         v-for="item in displayedItems"
         :key="item.name"
         :header="item.name"
-        :imageSrc="item.imageSrc"
+        :imageSrc="item.image_src"
         :description="item.description"
         buttonText="Order Now"
         class="flex-1"
@@ -24,10 +24,10 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted } from "vue";
-import axios from "axios";
 import MenuNav from "./MenuNav.vue";
 import MenuItem from "./MenuItem.vue";
 import { MenuItem as MenuItemType } from "../types";
+import { fetchMenuItems } from "../../services/apiClient"; // Import the API function
 
 export default defineComponent({
   name: "MenuWidget",
@@ -38,17 +38,14 @@ export default defineComponent({
     const filteredMenuItems = ref<MenuItemType[]>([]);
     const selectedClassification = ref<string | null>(null);
 
-    const fetchMenuItems = async () => {
+    const loadMenuItems = async () => {
       try {
-        const response = await axios.get<MenuItemType[]>(
-          "http://localhost:8000/api/menu-items/"
-        );
-        const data = response.data;
+        const data = await fetchMenuItems();
 
         // Constructing MenuItem objects from the API response
         menuItems.value = data.map((item: MenuItemType) => ({
           name: item.name,
-          imageSrc: item.imageSrc,
+          image_src: item.image_src,
           description: item.description,
           classification: item.classification,
         }));
@@ -64,7 +61,7 @@ export default defineComponent({
           filterItems(selectedClassification.value);
         }
       } catch (error) {
-        console.error("Failed to fetch menu items:", error);
+        console.error("Failed to load menu items:", error);
       }
     };
 
@@ -79,7 +76,7 @@ export default defineComponent({
     // Using a computed property to easily track what items to display
     const displayedItems = computed(() => filteredMenuItems.value);
 
-    onMounted(fetchMenuItems);
+    onMounted(loadMenuItems);
 
     return { menuItems, menuClassifications, displayedItems, filterItems };
   },
