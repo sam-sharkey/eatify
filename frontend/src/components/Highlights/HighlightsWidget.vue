@@ -5,9 +5,9 @@
   >
     <HighlightItem
       v-if="currentIndex >= 0 && currentIndex < highlights.length"
-      :headerLine="highlights[currentIndex].header_line"
-      :body="highlights[currentIndex].body"
-      :backgroundImage="highlights[currentIndex].background_image"
+      :headerLine="highlights[currentIndex].header"
+      :body="highlights[currentIndex].title"
+      :backgroundImage="highlights[currentIndex].image_src"
     />
     <button
       class="navigation-button right-24 fas fa-chevron-left text-black"
@@ -24,12 +24,7 @@
 import { defineComponent, ref, onMounted } from "vue";
 import HighlightItem from "./HighlightItem.vue";
 import { fetchHighlights } from "../../services/apiClient";
-
-interface Highlight {
-  header_line: string;
-  body: string;
-  background_image: string;
-}
+import { Highlight } from "../types";
 
 export default defineComponent({
   name: "HighlightsWidget",
@@ -40,7 +35,10 @@ export default defineComponent({
 
     onMounted(async () => {
       try {
-        highlights.value = await fetchHighlights();
+        const data = await fetchHighlights();
+        highlights.value = data.filter(
+          (highlight: Highlight) => highlight.tag === "Highlight"
+        );
       } catch (error) {
         console.error("Error fetching highlights:", error);
       }

@@ -6,8 +6,7 @@ class MenuItemSerializer(serializers.ModelSerializer):
         model = MenuItem
         fields = ['name', 'image_src', 'description', 'classification']
 
-
 class HighlightSerializer(serializers.ModelSerializer):
     class Meta:
         model = Highlight
-        fields = ['id', 'header_line', 'body', 'background_image']
+        fields = ['title', 'header', 'description1', 'description2', 'image_src', 'tag']

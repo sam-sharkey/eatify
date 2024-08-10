@@ -20,18 +20,23 @@ class MenuItem(models.Model):
         ]
 
 class Highlight(models.Model):
-    header_line = models.CharField(max_length=255)
-    body = models.TextField()
-    background_image = models.ImageField(upload_to='highlights/')
+    title = models.CharField(max_length=255)
+    header = models.CharField(max_length=255)
+    description1 = models.TextField(blank=True)
+    description2 = models.TextField(blank=True)
+    image_src = models.ImageField(upload_to='highlights/')
+    tag = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.header_line
+        return self.title
     
     class Meta:
         constraints = [
             models.UniqueConstraint(
                 fields=[
-                    "header_line",
+                    "title",
+                    "header",
+                    "tag"
                 ],
                 name="unique_highlight",
             )

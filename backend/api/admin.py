@@ -7,8 +7,8 @@ from .models import MenuItem, Highlight
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = ('name', 'image_src', 'description')
-    
+
 
 @admin.register(Highlight)
 class HighlightAdmin(admin.ModelAdmin):
-    list_display = ('header_line', 'body', 'background_image')
+    list_display = ('title', 'header', 'description1', 'description2', 'image_src', 'tag')

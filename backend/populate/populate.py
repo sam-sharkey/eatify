@@ -4,33 +4,7 @@ from django.db import IntegrityError
 # DJANGO
 django.setup()
 
-from api.models import Highlight, MenuItem
-
-highlights = [
-    {
-        'header_line': 'Introducing Caramelized Garlic Steak at Sweetgreen',
-        'body': 'Grass-fed, pasture-raised',
-        'background_image': 'highlights/SteakBowl.png',
-    },
-    {
-        'header_line': 'New Caramelized Garlic Steak',
-        'body': 'Locally sourced ingredients',
-        'background_image': 'highlights/Steak.png',
-    },
-    {
-        'header_line': 'Our Free Loyalty Program',
-        'body': 'Download App Now',
-        'background_image': 'highlights/LoyaltyApp.png',
-    },
-]
-
-for highlight in highlights:
-    try:
-        Highlight.objects.create(**highlight)
-    except IntegrityError:
-        continue
-
-print("Highlights populated successfully!")
+from api.models import MenuItem, Highlight
 
 # Populate MenuItems
 menu_items = [
@@ -95,3 +69,51 @@ for item in menu_items:
         MenuItem.objects.create(**item)
     except IntegrityError:
         continue
+
+print("successfully populated menuitems")
+
+# Populate Highlights
+highlight_data = [{
+        'title': 'SWEETGREEN EXCLUSIVES',
+        'header': 'Dive into the fan favorites',
+        'description1': 'Ordered often and always a hit, these popular picks are true sweetgreen staples.',
+        'description2': 'This collection includes the Harvest Bowl, Kale Caesar, Guacamole Greens, Chicken Pesto Parm, and Hot Honey Chicken plate.',
+        'image_src': 'highlights/SweetGreenExclusives.png',
+        'tag': 'FeaturedMenu'
+    },
+    {
+        'title': 'SWEETGREEN EXCLUSIVES',
+        'header': 'Fuel up with high-protein picks',
+        'description1': 'Let our top protein-rich options power your day',
+        'description2': 'This hearty collection features our Harvest Bowl, Buffalo Chicken Bowl, Chicken Pesto Parm, and Hot Honey Chicken plate.',
+        'image_src': 'highlights/ChickenSweetPotato.png',
+        'tag': 'FeaturedMenu'
+    },
+    {
+        'header': 'Introducing Caramelized Garlic Steak at Sweetgreen',
+        'title': 'Grass-fed, pasture-raised',
+        'image_src': 'highlights/SteakBowl.png',
+        'tag': 'Highlight'
+    },
+    {
+        'header': 'New Caramelized Garlic Steak',
+        'title': 'Locally sourced ingredients',
+        'image_src': 'highlights/Steak.png',
+        'tag': 'Highlight'
+    },
+    {
+        'header': 'Our Free Loyalty Program',
+        'title': 'Download App Now',
+        'image_src': 'highlights/LoyaltyApp.png',
+        'tag': 'Highlight'
+    },
+]
+
+for highlight in highlight_data:
+    try:
+        Highlight.objects.create(**highlight)
+    except IntegrityError:
+        continue
+
+
+print("Highlights populated successfully!")

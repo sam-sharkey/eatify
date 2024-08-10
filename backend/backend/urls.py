@@ -25,6 +25,5 @@ urlpatterns = [
     path('api/menu-items/', MenuItemsView.as_view(), name='menu-items'),
     path('api/highlights/', HighlightListView.as_view(), name='highlight-list'),
 ]
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

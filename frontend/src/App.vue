@@ -2,7 +2,7 @@
   <PageHeader />
   <HighlightsWidget />
   <MenuWidget />
-  <PictureWidget />
+  <FeatureWidget />
   <NewsWidget />
   <!---nav>
     <router-link to="/">Home</router-link> |
@@ -19,7 +19,7 @@ import PageHeader from "./components/Header/PageHeader.vue";
 import MenuWidget from "./components/Menu/MenuWidget.vue";
 import HighlightsWidget from "./components/Highlights/HighlightsWidget.vue";
 import PageFooter from "./components/Footer/PageFooter.vue";
-import PictureWidget from "./components/Picture/PictureWidget.vue";
+import FeatureWidget from "./components/Picture/FeatureWidget.vue";
 import NewsWidget from "./components/News/NewsWidget.vue";
 
 export default defineComponent({
@@ -28,7 +28,7 @@ export default defineComponent({
     MenuWidget,
     HighlightsWidget,
     PageFooter,
-    PictureWidget,
+    FeatureWidget,
     NewsWidget,
   },
 });
