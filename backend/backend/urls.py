@@ -16,14 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from api.views import MenuItemsView, HighlightListView
+from api.views import MenuItemsView, HighlightListView, HeaderConfigView, FooterConfigView, MainPageConfigView, RestaurantListView
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/menu-items/', MenuItemsView.as_view(), name='menu-items'),
-    path('api/highlights/', HighlightListView.as_view(), name='highlight-list'),
+    path('api/highlights/<int:restaurant_id>/', HighlightListView.as_view(), name='highlight-list'),
+    path('api/header-config/<int:restaurant_id>/', HeaderConfigView.as_view(), name='header-config'),
+    path('api/footer-config/<int:restaurant_id>/', FooterConfigView.as_view(), name='footer-config'),
+    path('api/main-page-config/<int:restaurant_id>/', MainPageConfigView.as_view(), name='main-page-config'),
+    path('api/restaurants/', RestaurantListView.as_view(), name='restaurant_list'),
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,9 +1,7 @@
 <template>
-  <div
-    class="max-w-full overflow-hidden flex flex-col items-start justify-start leading-[normal] tracking-[normal]"
-  >
+  <div class="max-w-full flex flex-col items-start justify-start">
     <section
-      class="self-stretch bg-oldlace overflow-hidden flex flex-row items-start justify-start max-w-full [row-gap:20px] mq1150:flex-wrap"
+      class="self-stretch bg-oldlace flex flex-row items-start justify-start max-w-full [row-gap:20px] mq1150:flex-wrap"
     >
       <FooterNewsletter /><FooterAppDownload />
     </section>

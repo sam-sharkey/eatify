@@ -28,6 +28,7 @@ import { defineComponent, ref, computed, onMounted } from "vue";
 import PictureWidget from "./PictureWidget.vue";
 import { fetchHighlights } from "../../services/apiClient";
 import { Highlight } from "../types";
+import { useRestaurantStore } from "../../stores/restaurant"; // Import the store
 
 export default defineComponent({
   name: "FeatureWidget",
@@ -35,6 +36,7 @@ export default defineComponent({
   setup() {
     const highlights = ref<Highlight[]>([]);
     const currentIndex = ref(0);
+    const store = useRestaurantStore(); // Use the Pinia store
 
     const currentHighlight = computed(() => {
       return highlights.value[currentIndex.value];
@@ -42,11 +44,15 @@ export default defineComponent({
 
     const loadHighlights = async () => {
       try {
-        const data = await fetchHighlights();
-        highlights.value = data.filter(
-          (highlight: Highlight) => highlight.tag === "FeaturedMenu"
-        );
-        console.log(highlights.value);
+        const restaurantId = store.getRestaurantId; // Get the restaurant ID from the store
+        if (restaurantId !== null) {
+          const data = await fetchHighlights(restaurantId);
+          highlights.value = data.filter(
+            (highlight: Highlight) => highlight.tag === "FeaturedMenu"
+          );
+        } else {
+          console.error("Restaurant ID is not set.");
+        }
       } catch (error) {
         console.error("Failed to fetch highlights:", error);
       }

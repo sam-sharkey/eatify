@@ -107,6 +107,27 @@ highlight_data = [{
         'image_src': 'highlights/LoyaltyApp.png',
         'tag': 'Highlight'
     },
+    {
+        'title': 'Good Morning America',
+        'header': 'Naomi Osaka joins sweetgreen as youngest investor',
+        'description1': 'Discover what our collab means for the future of fast food…',
+        'image_src': 'highlights/GMA.png',
+        'tag': 'News',
+    },
+    {
+        'title': 'NEW YORK TIMES',
+        'header': 'In a burger world, can sweetgreen scale up?',
+        'description1': 'Learn how we\'re using tech to innovate fast-casual dining…',
+        'image_src': 'highlights/NYT.png',
+        'tag': 'News',
+    },
+    {
+        'title': 'NPR HOW I BUILT THIS',
+        'header': 'sweetgreen: Nicolas Jammet & Jonathan Neman',
+        'description1': 'Dive into a juicy podcast with our visionary founders…',
+        'image_src': 'highlights/NPR.png',
+        'tag': 'News',
+    }
 ]
 
 for highlight in highlight_data:
