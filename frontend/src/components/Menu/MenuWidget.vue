@@ -92,7 +92,7 @@ export default defineComponent({
 
     const defaultStyles = `
       .menu-widget-container {
-        background-color: var(--color-oldlace); /* Default bg-oldlace color */
+        background-color: var(--base-color); /* Default bg-oldlace color */
       }
     `;
 
@@ -119,7 +119,7 @@ export default defineComponent({
 .menu-section {
   font-size: 3rem; /* text-5xl */
   font-family: "Roboto", sans-serif; /* font-roboto-regular-1575 */
-  color: var(--color-huntergreen); /* Replace text-huntergreen */
+  color: var(--dark-text-color); /* Replace text-huntergreen */
   gap: 24px;
 }
 

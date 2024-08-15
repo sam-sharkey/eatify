@@ -33,6 +33,7 @@ import PageFooter from "./components/Footer/PageFooter.vue";
 import FeatureWidget from "./components/Picture/FeatureWidget.vue";
 import NewsWidget from "./components/News/NewsWidget.vue";
 import { useStyleStore } from "./stores/styleStore";
+import { useRestaurantStore } from "./stores/restaurant";
 
 export default defineComponent({
   components: {
@@ -44,7 +45,7 @@ export default defineComponent({
     NewsWidget,
   },
   setup() {
-    const restaurantId = 1; // Replace with the actual restaurant ID
+    const store = useRestaurantStore();
     const styleStore = useStyleStore();
 
     const headerConfig = ref({
@@ -63,38 +64,53 @@ export default defineComponent({
       menuVisible: false,
       featureVisible: false,
       newsVisible: false,
+      cssVariables: {},
     });
 
+    const setCssVariables = (variables: Record<string, string>) => {
+      const root = document.documentElement;
+      for (const [key, value] of Object.entries(variables)) {
+        root.style.setProperty(key, value);
+      }
+    };
+
     const fetchConfig = async () => {
-      try {
-        const headerData = await fetchHeaderConfig(restaurantId);
-        headerConfig.value = {
-          leftHeaderItems: headerData.left_header_items,
-          rightHeaderItems: headerData.right_header_items,
-        };
-        styleStore.setHeaderCss(headerData.custom_css);
+      const restaurantId = store.getRestaurantId; // Get the restaurant ID from the store
+      if (restaurantId !== null) {
+        try {
+          const headerData = await fetchHeaderConfig(restaurantId);
+          headerConfig.value = {
+            leftHeaderItems: headerData.left_header_items,
+            rightHeaderItems: headerData.right_header_items,
+          };
+          styleStore.setHeaderCss(headerData.custom_css);
 
-        const footerData = await fetchFooterConfig(restaurantId);
-        footerConfig.value = {
-          linksVisible: footerData.links_visible,
-          appDownloadVisible: footerData.app_download_visible,
-          newsletterVisible: footerData.newsletter_visible,
-        };
-        styleStore.setFooterCss(footerData.custom_css);
+          const footerData = await fetchFooterConfig(restaurantId);
+          footerConfig.value = {
+            linksVisible: footerData.links_visible,
+            appDownloadVisible: footerData.app_download_visible,
+            newsletterVisible: footerData.newsletter_visible,
+          };
+          styleStore.setFooterCss(footerData.custom_css);
 
-        const mainPageData = await fetchMainPageConfig(restaurantId);
-        mainPageConfig.value = {
-          highlightsVisible: mainPageData.highlights_visible,
-          menuVisible: mainPageData.menu_visible,
-          featureVisible: mainPageData.feature_visible,
-          newsVisible: mainPageData.news_visible,
-        };
-        styleStore.setHighlightsCss(mainPageData.custom_css);
-        styleStore.setMenuCss(mainPageData.custom_css);
-        styleStore.setFeatureCss(mainPageData.custom_css);
-        styleStore.setNewsCss(mainPageData.custom_css);
-      } catch (error) {
-        console.error("Failed to fetch configuration data:", error);
+          const mainPageData = await fetchMainPageConfig(restaurantId);
+          mainPageConfig.value = {
+            highlightsVisible: mainPageData.highlights_visible,
+            menuVisible: mainPageData.menu_visible,
+            featureVisible: mainPageData.feature_visible,
+            newsVisible: mainPageData.news_visible,
+            cssVariables: mainPageData.css_variables,
+          };
+          styleStore.setHighlightsCss(mainPageData.custom_css);
+          styleStore.setMenuCss(mainPageData.custom_css);
+          styleStore.setFeatureCss(mainPageData.custom_css);
+          styleStore.setNewsCss(mainPageData.custom_css);
+          // Apply global CSS variables
+          console.log(mainPageData.css_variables);
+          setCssVariables(mainPageData.css_variables);
+        } catch (error) {
+          console.error("Failed to fetch configuration data:", error);
+        }
       }
     };
 

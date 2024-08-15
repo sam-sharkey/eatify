@@ -306,7 +306,7 @@ export default defineComponent({
 
     const defaultStyles = `
       .footer-links-container {
-        background-color: var(--color-oldlace);
+        background-color: var(--base-color);
       }
     `;
 

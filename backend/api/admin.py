@@ -36,6 +36,6 @@ class FooterConfigAdmin(admin.ModelAdmin):
 
 @admin.register(MainPageConfig)
 class MainPageConfigAdmin(admin.ModelAdmin):
-    list_display = ('restaurant', 'highlights_visible', 'menu_visible', 'feature_visible', 'news_visible', 'custom_css')
+    list_display = ('restaurant', 'highlights_visible', 'menu_visible', 'feature_visible', 'news_visible', 'custom_css', 'css_variables')
     search_fields = ('restaurant__name',)
     list_filter = ('restaurant', 'highlights_visible', 'menu_visible', 'feature_visible', 'news_visible')

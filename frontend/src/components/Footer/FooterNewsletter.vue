@@ -48,7 +48,7 @@ export default defineComponent({
 
     const defaultStyles = `
       .footer-newsletter-container {
-        background-color: var(--color-oldlace);
+        background-color: var(--base-color);
       }
     `;
 

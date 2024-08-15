@@ -55,7 +55,7 @@ export default defineComponent({
 .header-link {
   text-decoration: none;
   text-transform: uppercase;
-  color: var(--color-huntergreen); /* Use CSS variable for color */
+  color: var(--dark-text-color); /* Use CSS variable for color */
   font-size: 1rem; /* Equivalent to text-base */
   font-family: "Roboto", sans-serif; /* Use custom font */
 }

@@ -30,4 +30,4 @@ class FooterConfigSerializer(serializers.ModelSerializer):
 class MainPageConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = MainPageConfig
-        fields = ['highlights_visible', 'menu_visible', 'feature_visible', 'news_visible', 'custom_css']
+        fields = ['highlights_visible', 'menu_visible', 'feature_visible', 'news_visible', 'custom_css', 'css_variables']

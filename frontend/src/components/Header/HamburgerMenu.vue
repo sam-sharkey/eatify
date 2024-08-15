@@ -94,7 +94,7 @@ export default defineComponent({
   left: 0;
   width: 30%;
   height: 100%;
-  background-color: var(--color-springwood);
+  background-color: var(--base-color);
   z-index: 50;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease-in-out;

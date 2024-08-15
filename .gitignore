@@ -26,6 +26,7 @@ env
 /frontend/pnpm-debug.log*
 
 # Editor directories and files
+.env
 .idea
 .vscode
 *.suo

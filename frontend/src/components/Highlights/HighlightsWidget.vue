@@ -78,7 +78,7 @@ export default defineComponent({
     const defaultStyles = `
     .navigation-button {
       background-color: var(
-        --color-razzmatazz
+        --secondary-color
       ); /* Use CSS variable for the background color */
       border-radius: 50%;
       width: 32px;

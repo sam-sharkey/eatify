@@ -11,19 +11,20 @@ body {
 ::after {
   border-width: 0;
 }
+/*
 :root {
-  --color-huntergreen: #0e150e;
-  --color-springwood: #f4f3e7;
-  --color-springwood: #f4f3e7;
+  --color-huntergreen: #0e150e;  dark-text 
+  --color-springwood: #f4f3e7;  base 
   --color-aquadeep: #00473c;
-  --color-razzmatazz: #e6ff55;
+  --color-razzmatazz: #e6ff55;  secondary 
   --color-huntergreen: #0e150e;
-  --color-tasman: #d8e5d6;
+  --primary-color: #d8e5d6;  primary 
   --color-teal: #337a70;
-  --color-oldlace: #f4f3e7;
+  --color-oldlace: #f4f3e7; base 
   --color-black: #000;
   --color-yellowgreen: #cce63b;
   --color-darkslategray: #33333;
   --color-bitter: #8c8c82;
   --color-starkwhite: #e8dcc6;
 }
+*/

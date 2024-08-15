@@ -59,7 +59,7 @@ export default defineComponent({
 
     const defaultStyles = `
       .news-link-container {
-        background-color: var(--color-starkwhite);
+        background-color: var(--base-color-dark);
       }
     `;
 

@@ -61,7 +61,7 @@ export default defineComponent({
 
     const defaultStyles = `
       .header-container {
-        background-color: var(--color-springwood);
+        background-color: var(--base-color);
       }
     `;
 

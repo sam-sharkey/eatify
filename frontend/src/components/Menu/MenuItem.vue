@@ -67,14 +67,14 @@ export default defineComponent({
 <style scoped>
 .menu-item-container {
   font-size: 1.5rem; /* Equivalent to text-5xl */
-  color: var(--color-huntergreen); /* Custom Tailwind color */
+  color: var(--dark-text-color); /* Custom Tailwind color */
   font-family: "Roboto", sans-serif; /* Custom Tailwind font */
 }
 
 .menu-item-header {
   font-size: 1.5rem;
   color: var(
-    --color-huntergreen
+    --dark-text-color
   ); /* Ensure it inherits the color from container */
   font-family: "Roboto", sans-serif; /* Ensure it inherits the font from container */
 }

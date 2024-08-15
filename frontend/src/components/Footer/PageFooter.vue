@@ -23,7 +23,7 @@ export default defineComponent({
   setup() {
     const defaultStyles = `
       .footer-container {
-        background-color: var(--color-oldlace);
+        background-color: var(--base-color);
       }
     `;
     const styleStore = useStyleStore();

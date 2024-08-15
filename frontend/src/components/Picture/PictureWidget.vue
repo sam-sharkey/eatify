@@ -69,7 +69,7 @@ export default defineComponent({
 
     const defaultStyles = `
       .picture-widget-container {
-        background-color: var(--color-tasman); /* Default bg-tasman color */
+        background-color: var(--primary-color); /* Default bg-tasman color */
       }
     `;
 
@@ -91,7 +91,7 @@ export default defineComponent({
 <style scoped>
 .picture-widget-section {
   font-size: 1rem; /* Base text size */
-  color: var(--color-huntergreen);
+  color: var(--dark-text-color);
   font-family: "Roboto", sans-serif;
 }
 

@@ -63,8 +63,8 @@ export default defineComponent({
 
     const defaultStyles = `
       .news-widget-container {
-        background-color: var(--color-springwood);
-        color: var(--color-huntergreen);
+        background-color: var(--base-color);
+        color: var(--dark-text-color);
         font-family: "Roboto", sans-serif;
         font-size: 23.6px;
       }
@@ -82,7 +82,7 @@ export default defineComponent({
 
       .news-widget-section {
         font-size: 16px;
-        color: var(--color-huntergreen);
+        color: var(--dark-text-color);
         font-family: "Roboto", sans-serif;
       }
     `;

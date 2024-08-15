@@ -115,6 +115,7 @@ class MainPageConfig(models.Model):
     feature_visible = models.BooleanField(default=True)
     news_visible = models.BooleanField(default=True)
     custom_css = models.TextField(blank=True, null=True)
+    css_variables = models.JSONField(default=dict)  # Add this field to store CSS variables
 
     def __str__(self):
         return f"MainPageConfig for {self.restaurant}"
