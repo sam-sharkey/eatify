@@ -1,6 +1,8 @@
 <template>
   <div
-    class="rounded-xl bg-starkwhite flex flex-row items-start justify-center py-5 px-4 box-border gap-6 min-h-[220px] max-w-full text-left text-base text-huntergreen font-roboto-regular-155 mq750:flex-wrap"
+    :class="['news-link-container']"
+    :style="computedStyle"
+    class="rounded-xl flex flex-row items-start justify-center py-5 px-4 box-border gap-6 min-h-[220px] max-w-full text-left text-base text-huntergreen font-roboto-regular-155 mq750:flex-wrap"
   >
     <div
       class="w-[235.3px] flex flex-col items-start justify-between min-w-[235.3px] min-h-[180px] mq750:flex-1"
@@ -36,8 +38,10 @@
     />
   </div>
 </template>
+
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useStyleStore } from "../../stores/styleStore";
 
 export default defineComponent({
   name: "NewsLink",
@@ -49,6 +53,27 @@ export default defineComponent({
     },
     description: { type: String },
     image_src: { type: String },
+  },
+  setup() {
+    const styleStore = useStyleStore();
+
+    const defaultStyles = `
+      .news-link-container {
+        background-color: var(--color-starkwhite);
+      }
+    `;
+
+    const computedStyle = computed(() => {
+      const styleElement = document.createElement("style");
+      styleElement.type = "text/css";
+      styleElement.innerHTML = defaultStyles + styleStore.newsCss;
+      document.head.appendChild(styleElement);
+      return "";
+    });
+
+    return {
+      computedStyle,
+    };
   },
 });
 </script>

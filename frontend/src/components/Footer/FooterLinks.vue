@@ -1,5 +1,7 @@
 <template>
   <section
+    :class="['footer-links-container']"
+    :style="computedStyle"
     class="self-stretch bg-tasman flex flex-col items-start justify-start max-w-full text-left text-5xl text-huntergreen font-roboto-regular-1575"
   >
     <div
@@ -294,9 +296,31 @@
   </section>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useStyleStore } from "../../stores/styleStore";
 
 export default defineComponent({
   name: "FooterLinks",
+  setup() {
+    const styleStore = useStyleStore();
+
+    const defaultStyles = `
+      .footer-links-container {
+        background-color: var(--color-oldlace);
+      }
+    `;
+
+    const computedStyle = computed(() => {
+      const styleElement = document.createElement("style");
+      styleElement.type = "text/css";
+      styleElement.innerHTML = defaultStyles + styleStore.footerCss;
+      document.head.appendChild(styleElement);
+      return "";
+    });
+
+    return {
+      computedStyle,
+    };
+  },
 });
 </script>

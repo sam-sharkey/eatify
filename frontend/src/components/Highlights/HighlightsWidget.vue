@@ -1,6 +1,8 @@
 <template>
   <div
-    class="max-w-full overflow-hidden flex flex-col items-start justify-start leading-[normal] tracking-[normal] relative"
+    :class="['highlights-widget-container']"
+    :style="computedStyle"
+    class="max-w-full overflow-hidden flex flex-col items-start justify-start relative"
     style="height: calc(100vh - 4.5rem)"
   >
     <HighlightItem
@@ -10,22 +12,27 @@
       :backgroundImage="highlights[currentIndex].image_src"
     />
     <button
+      :class="['navigation-button']"
+      :style="computedStyle"
       class="navigation-button right-24 fas fa-chevron-left text-black"
       @click="previousHighlight"
     />
     <button
-      class="navigation-button right-12 fas fa-chevron-right text-black"
+      :class="['navigation-button']"
+      :style="computedStyle"
+      class="right-12 fas fa-chevron-right text-black"
       @click="nextHighlight"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, onMounted, computed } from "vue";
 import HighlightItem from "./HighlightItem.vue";
 import { fetchHighlights } from "../../services/apiClient";
 import { Highlight } from "../types";
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the store
+import { useStyleStore } from "../../stores/styleStore";
 
 export default defineComponent({
   name: "HighlightsWidget",
@@ -34,6 +41,7 @@ export default defineComponent({
     const highlights = ref<Highlight[]>([]);
     const currentIndex = ref(0);
     const store = useRestaurantStore(); // Use the Pinia store
+    const styleStore = useStyleStore();
 
     onMounted(async () => {
       try {
@@ -67,36 +75,42 @@ export default defineComponent({
       }
     };
 
+    const defaultStyles = `
+    .navigation-button {
+      background-color: var(
+        --color-razzmatazz
+      ); /* Use CSS variable for the background color */
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 36px;
+      border: none;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .highlights-widget-container {}
+    `;
+
+    const computedStyle = computed(() => {
+      const styleElement = document.createElement("style");
+      styleElement.type = "text/css";
+      styleElement.innerHTML = defaultStyles + styleStore.highlightsCss;
+      document.head.appendChild(styleElement);
+      return "";
+    });
+
     return {
       highlights,
       currentIndex,
       nextHighlight,
       previousHighlight,
+      computedStyle,
     };
   },
 });
 </script>
-
-<style scoped>
-.navigation-button {
-  background-color: var(
-    --color-razzmatazz
-  ); /* Use CSS variable for the background color */
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 36px;
-  border: none;
-  cursor: pointer;
-  z-index: 1;
-}
-
-.navigation-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-</style>

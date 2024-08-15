@@ -9,7 +9,7 @@
         class="w-full aspect-square flex-1 relative rounded-xl max-w-[432px] overflow-hidden max-h-full object-cover mq450:max-w-full"
         loading="lazy"
         alt=""
-        :src="fullImageSrc"
+        :src="imageSrc"
       />
     </div>
     <div
@@ -60,11 +60,6 @@ export default defineComponent({
         "Blackened chicken, pickled onions, tomatoes, raw carrots, cilantro, blue cheese, za’atar breadcrumbs, shredded kale, chopped romaine, sweetgreen hot sauce, caesar",
     },
     buttonText: { type: String, default: "Order Now" },
-  },
-  computed: {
-    fullImageSrc(): string {
-      return `${process.env.VUE_APP_BACKEND_URL}${this.imageSrc}`;
-    },
   },
 });
 </script>

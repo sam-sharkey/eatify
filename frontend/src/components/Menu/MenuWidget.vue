@@ -1,6 +1,8 @@
 <template>
   <div
-    class="w-[1840px] max-w-full flex flex-col items-center justify-start py-8 px-16 box-border gap-8 leading-[normal] tracking-[normal] article-menu"
+    :class="['menu-widget-container']"
+    :style="computedStyle"
+    class="w-[1840px] max-w-full flex flex-col items-center justify-start py-8 px-16 box-border gap-8"
   >
     <MenuNav
       :menuItems="menuClassifications"
@@ -28,6 +30,8 @@ import MenuNav from "./MenuNav.vue";
 import MenuItem from "./MenuItem.vue";
 import { MenuItem as MenuItemType } from "../types";
 import { fetchMenuItems } from "../../services/apiClient"; // Import the API function
+import { useStyleStore } from "../../stores/styleStore"; // Import the style store
+import { useRestaurantStore } from "../../stores/restaurant"; // Import the restaurant store
 
 export default defineComponent({
   name: "MenuWidget",
@@ -37,28 +41,36 @@ export default defineComponent({
     const menuClassifications = ref<string[]>([]);
     const filteredMenuItems = ref<MenuItemType[]>([]);
     const selectedClassification = ref<string | null>(null);
+    const styleStore = useStyleStore(); // Use the style store
+    const restaurantStore = useRestaurantStore(); // Use the restaurant store
 
     const loadMenuItems = async () => {
       try {
-        const data = await fetchMenuItems();
+        const restaurantId = restaurantStore.getRestaurantId; // Get the restaurant ID from the store
 
-        // Constructing MenuItem objects from the API response
-        menuItems.value = data.map((item: MenuItemType) => ({
-          name: item.name,
-          image_src: item.image_src,
-          description: item.description,
-          classification: item.classification,
-        }));
+        if (restaurantId !== null) {
+          const data = await fetchMenuItems(restaurantId);
 
-        // Extracting unique classifications
-        menuClassifications.value = [
-          ...new Set(data.map((item) => item.classification)),
-        ];
+          // Constructing MenuItem objects from the API response
+          menuItems.value = data.map((item: MenuItemType) => ({
+            name: item.name,
+            image_src: item.image_src,
+            description: item.description,
+            classification: item.classification,
+          }));
 
-        // Default to the first category if available
-        if (menuClassifications.value.length > 0) {
-          selectedClassification.value = menuClassifications.value[0];
-          filterItems(selectedClassification.value);
+          // Extracting unique classifications
+          menuClassifications.value = [
+            ...new Set(data.map((item) => item.classification)),
+          ];
+
+          // Default to the first category if available
+          if (menuClassifications.value.length > 0) {
+            selectedClassification.value = menuClassifications.value[0];
+            filterItems(selectedClassification.value);
+          }
+        } else {
+          console.error("Restaurant ID is not set.");
         }
       } catch (error) {
         console.error("Failed to load menu items:", error);
@@ -78,19 +90,32 @@ export default defineComponent({
 
     onMounted(loadMenuItems);
 
-    return { menuItems, menuClassifications, displayedItems, filterItems };
+    const defaultStyles = `
+      .menu-widget-container {
+        background-color: var(--color-oldlace); /* Default bg-oldlace color */
+      }
+    `;
+
+    const computedStyle = computed(() => {
+      const styleElement = document.createElement("style");
+      styleElement.type = "text/css";
+      styleElement.innerHTML = defaultStyles + styleStore.menuCss;
+      document.head.appendChild(styleElement);
+      return "";
+    });
+
+    return {
+      menuItems,
+      menuClassifications,
+      displayedItems,
+      filterItems,
+      computedStyle,
+    };
   },
 });
 </script>
 
 <style scoped>
-.article-menu {
-  background-color: var(--color-oldlace); /* Replacing bg-oldlace */
-  font-size: 3rem; /* text-5xl */
-  font-family: "Roboto", sans-serif; /* font-roboto-regular-1575 */
-  color: var(--color-huntergreen); /* Replace text-huntergreen */
-}
-
 .menu-section {
   font-size: 3rem; /* text-5xl */
   font-family: "Roboto", sans-serif; /* font-roboto-regular-1575 */

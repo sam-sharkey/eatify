@@ -1,6 +1,8 @@
 <template>
   <div
-    class="news-widget-container max-w-full flex flex-col relative items-center justify-start px-5"
+    :class="['news-widget-container']"
+    :style="computedStyle"
+    class="max-w-full flex flex-col relative items-center justify-start px-5"
   >
     <a
       class="news-widget-title absolute left-8 mq450:text-lgi mq450:leading-[23px]"
@@ -26,17 +28,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, onMounted, computed } from "vue";
 import NewsLink from "./NewsLink.vue";
 import { fetchHighlights } from "../../services/apiClient";
 import { Highlight } from "../types";
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the store
+import { useStyleStore } from "../../stores/styleStore"; // Import the style store
 
 export default defineComponent({
   name: "NewsWidget",
   components: { NewsLink },
   setup() {
     const store = useRestaurantStore(); // Use the Pinia store
+    const styleStore = useStyleStore(); // Use the style store
     const newsHighlights = ref<Highlight[]>([]);
 
     const loadNewsHighlights = async () => {
@@ -57,39 +61,44 @@ export default defineComponent({
 
     onMounted(loadNewsHighlights);
 
+    const defaultStyles = `
+      .news-widget-container {
+        background-color: var(--color-springwood);
+        color: var(--color-huntergreen);
+        font-family: "Roboto", sans-serif;
+        font-size: 23.6px;
+      }
+
+      .news-widget-title {
+        font-size: 23.6px;
+        line-height: 29px;
+        text-transform: uppercase;
+      }
+
+      .news-widget-readmore {
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+
+      .news-widget-section {
+        font-size: 16px;
+        color: var(--color-huntergreen);
+        font-family: "Roboto", sans-serif;
+      }
+    `;
+
+    const computedStyle = computed(() => {
+      const styleElement = document.createElement("style");
+      styleElement.type = "text/css";
+      styleElement.innerHTML = defaultStyles + styleStore.newsCss;
+      document.head.appendChild(styleElement);
+      return "";
+    });
+
     return {
       newsHighlights,
+      computedStyle,
     };
   },
 });
 </script>
-
-<style scoped>
-.news-widget-container {
-  background-color: var(
-    --color-springwood
-  ); /* Use a CSS variable or the actual color code */
-  color: var(
-    --color-huntergreen
-  ); /* Use a CSS variable or the actual color code */
-  font-family: "Roboto", sans-serif; /* Tailwind font-roboto-regular-155 */
-  font-size: 23.6px; /* Tailwind text-[23.6px] */
-}
-
-.news-widget-title {
-  font-size: 23.6px;
-  line-height: 29px;
-  text-transform: uppercase;
-}
-
-.news-widget-readmore {
-  font-size: 16px; /* Tailwind text-base */
-  text-transform: uppercase;
-}
-
-.news-widget-section {
-  font-size: 16px; /* Tailwind text-base */
-  color: var(--color-huntergreen);
-  font-family: "Roboto", sans-serif;
-}
-</style>

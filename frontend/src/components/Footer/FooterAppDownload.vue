@@ -1,6 +1,8 @@
 <template>
   <div
-    class="flex-1 bg-oldlace border-huntergreen border-l-[1px] border-solid box-border flex flex-col items-start justify-start pt-9 px-[17px] pb-[81.8px] relative gap-2 min-w-[465px] max-w-full text-left text-base-9 text-huntergreen font-roboto-regular-1575 mq750:min-w-full mq1150:flex-1"
+    :class="['footer-appdownload-container']"
+    :style="computedStyle"
+    class="flex-1 border-huntergreen border-l-[1px] border-solid box-border flex flex-col items-start justify-start pt-9 px-[17px] pb-[81.8px] relative gap-2 min-w-[465px] max-w-full text-left text-base-9 text-huntergreen font-roboto-regular-1575 mq750:min-w-full mq1150:flex-1"
   >
     <div
       class="self-stretch flex flex-row items-start justify-start py-0 pl-0 pr-px box-border max-w-full shrink-0"
@@ -51,11 +53,33 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import GenericButton from "../Common/GenericButton.vue";
+import { useStyleStore } from "../../stores/styleStore";
 
 export default defineComponent({
   name: "FooterAppDownload",
   components: { GenericButton },
+  setup() {
+    const styleStore = useStyleStore();
+
+    const defaultStyles = `
+      .footer-appdownload-container {
+        background-color: var(--color-oldlace);
+      }
+    `;
+
+    const computedStyle = computed(() => {
+      const styleElement = document.createElement("style");
+      styleElement.type = "text/css";
+      styleElement.innerHTML = defaultStyles + styleStore.footerCss;
+      document.head.appendChild(styleElement);
+      return "";
+    });
+
+    return {
+      computedStyle,
+    };
+  },
 });
 </script>

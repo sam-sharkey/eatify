@@ -1,5 +1,9 @@
 <template>
-  <div class="bg-tasman max-w-full flex flex-col p-8 relative">
+  <div
+    :class="['picture-widget-container']"
+    :style="computedStyle"
+    class="max-w-full flex flex-col p-8 relative"
+  >
     <div class="uppercase mb-2 text-huntergreen absolute top-8 left-8">
       {{ title }}
     </div>
@@ -31,8 +35,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import GenericButton from "../Common/GenericButton.vue";
+import { useStyleStore } from "../../stores/styleStore"; // Import the style store
 
 export default defineComponent({
   name: "PictureWidget",
@@ -59,6 +64,27 @@ export default defineComponent({
       required: true,
     },
   },
+  setup() {
+    const styleStore = useStyleStore(); // Use the style store
+
+    const defaultStyles = `
+      .picture-widget-container {
+        background-color: var(--color-tasman); /* Default bg-tasman color */
+      }
+    `;
+
+    const computedStyle = computed(() => {
+      const styleElement = document.createElement("style");
+      styleElement.type = "text/css";
+      styleElement.innerHTML = defaultStyles + styleStore.featureCss;
+      document.head.appendChild(styleElement);
+      return "";
+    });
+
+    return {
+      computedStyle,
+    };
+  },
 });
 </script>
 
@@ -74,6 +100,6 @@ export default defineComponent({
 }
 
 .text-body {
-  font-size: 1.5rem; /* Slightly smaller text for paragraphs */
+  font-size: 1.5rem; /* S */
 }
 </style>

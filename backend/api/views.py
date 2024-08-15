@@ -15,11 +15,14 @@ class RestaurantListView(generics.ListAPIView):
             return Restaurant.objects.filter(name=name)
         return Restaurant.objects.all()
 
-class MenuItemsView(APIView):
-    def get(self, request):
-        menu_items = MenuItem.objects.all()
-        serializer = MenuItemSerializer(menu_items, many=True)
-        return Response(serializer.data)
+    
+class MenuItemsView(generics.ListAPIView):
+    serializer_class = MenuItemSerializer
+
+    def get_queryset(self):
+        restaurant_id = self.kwargs['restaurant_id']
+        # Filter highlights by restaurant_id
+        return MenuItem.objects.filter(restaurant_id=restaurant_id)
     
 
 class HighlightListView(generics.ListAPIView):

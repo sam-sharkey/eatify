@@ -1,6 +1,8 @@
 <template>
   <div
-    class="flex-[0.9809] bg-oldlace overflow-hidden flex flex-col items-start justify-start pt-9 px-6 pb-[55.1px] box-border gap-4 min-w-[465px] max-w-full text-left text-base text-huntergreen font-roboto-regular-1575 mq750:min-w-full mq1150:flex-1"
+    :class="['footer-newsletter-container']"
+    :style="computedStyle"
+    class="flex-[0.9809] overflow-hidden flex flex-col items-start justify-start pt-9 px-6 pb-[55.1px] box-border gap-4 min-w-[465px] max-w-full text-left text-base text-huntergreen font-roboto-regular-1575 mq750:min-w-full mq1150:flex-1"
   >
     <div class="self-stretch relative leading-[16px] uppercase shrink-0">
       Join Our Newsletter
@@ -34,10 +36,33 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useStyleStore } from "../../stores/styleStore";
 
 export default defineComponent({
   name: "FooterNewsletter",
+  setup() {
+    const styleStore = useStyleStore();
+
+    const defaultStyles = `
+      .footer-newsletter-container {
+        background-color: var(--color-oldlace);
+      }
+    `;
+
+    const computedStyle = computed(() => {
+      const styleElement = document.createElement("style");
+      styleElement.type = "text/css";
+      styleElement.innerHTML = defaultStyles + styleStore.footerCss;
+      document.head.appendChild(styleElement);
+      return "";
+    });
+
+    return {
+      computedStyle,
+    };
+  },
 });
 </script>

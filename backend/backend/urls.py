@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/menu-items/', MenuItemsView.as_view(), name='menu-items'),
+    path('api/menu-items/<int:restaurant_id>/', MenuItemsView.as_view(), name='menu-items'),
     path('api/highlights/<int:restaurant_id>/', HighlightListView.as_view(), name='highlight-list'),
     path('api/header-config/<int:restaurant_id>/', HeaderConfigView.as_view(), name='header-config'),
     path('api/footer-config/<int:restaurant_id>/', FooterConfigView.as_view(), name='footer-config'),

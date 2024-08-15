@@ -28,6 +28,7 @@ import {
 } from "vue";
 import HeaderLeft from "./HeaderLeft.vue";
 import HeaderRight from "./HeaderRight.vue";
+import { useStyleStore } from "../../stores/styleStore";
 
 export default defineComponent({
   name: "PageHeader",
@@ -41,13 +42,10 @@ export default defineComponent({
       type: Array as PropType<string[]>,
       default: () => ["Outpost", "Our Mission", "Catering"],
     },
-    customCss: {
-      type: String,
-      default: "",
-    },
   },
   setup(props) {
     const smallScreen = ref(window.innerWidth < 1280);
+    const styleStore = useStyleStore();
 
     const updateScreenSize = () => {
       smallScreen.value = window.innerWidth < 1280;
@@ -69,8 +67,7 @@ export default defineComponent({
 
     const computedStyle = computed(() => {
       const styleElement = document.createElement("style");
-      styleElement.innerHTML = defaultStyles + props.customCss;
-      console.log(defaultStyles + props.customCss);
+      styleElement.innerHTML = defaultStyles + styleStore.headerCss;
       document.head.appendChild(styleElement);
       return "";
     });

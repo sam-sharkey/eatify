@@ -1,5 +1,9 @@
 <template>
-  <div class="bg-tasman max-w-full flex flex-col p-8 relative">
+  <div
+    :class="['feature-widget-container']"
+    :style="computedStyle"
+    class="max-w-full flex flex-col p-8 relative"
+  >
     <PictureWidget
       v-if="currentHighlight"
       :title="currentHighlight.title"
@@ -29,6 +33,7 @@ import PictureWidget from "./PictureWidget.vue";
 import { fetchHighlights } from "../../services/apiClient";
 import { Highlight } from "../types";
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the store
+import { useStyleStore } from "../../stores/styleStore"; // Import the style store
 
 export default defineComponent({
   name: "FeatureWidget",
@@ -37,6 +42,7 @@ export default defineComponent({
     const highlights = ref<Highlight[]>([]);
     const currentIndex = ref(0);
     const store = useRestaurantStore(); // Use the Pinia store
+    const styleStore = useStyleStore(); // Use the style store
 
     const currentHighlight = computed(() => {
       return highlights.value[currentIndex.value];
@@ -70,17 +76,26 @@ export default defineComponent({
 
     onMounted(loadHighlights);
 
+    const defaultStyles = `
+        .feature-widget-container {
+          background-color: #d8e5d6; /* Default bg-tasman color */
+        }
+      `;
+
+    const computedStyle = computed(() => {
+      const styleElement = document.createElement("style");
+      styleElement.type = "text/css";
+      styleElement.innerHTML = defaultStyles + styleStore.featureCss;
+      document.head.appendChild(styleElement);
+      return "";
+    });
+
     return {
       currentHighlight,
       nextHighlight,
       previousHighlight,
+      computedStyle,
     };
   },
 });
 </script>
-
-<style scoped>
-.bg-tasman {
-  background-color: #d0e8e8; /* Example color, adjust as needed */
-}
-</style>

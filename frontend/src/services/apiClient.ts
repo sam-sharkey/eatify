@@ -28,9 +28,13 @@ export const getRestaurantIdByName = async (
   }
 };
 
-export const fetchMenuItems = async (): Promise<MenuItemType[]> => {
+export const fetchMenuItems = async (
+  restaurantId: number
+): Promise<MenuItemType[]> => {
   try {
-    const response = await apiClient.get<MenuItemType[]>("/api/menu-items/");
+    const response = await apiClient.get<MenuItemType[]>(
+      `/api/menu-items/${restaurantId}/`
+    );
     return response.data;
   } catch (error) {
     console.error("Failed to fetch menu items:", error);
