@@ -13,7 +13,7 @@ load_dotenv()  # Load environment variables from .env file
 
 # example to generate app python manage.py populate_configs "A cozy bakery that specializes in artisan bread and pastries."
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=os.getenv("OPENAI_KEY"))
 
 def extract_json_from_response(response: str) -> dict:
     # Find the start of the JSON block
