@@ -27,6 +27,10 @@ class MenuItem(models.Model):
     image_src = models.ImageField(upload_to='menu_items/')
     description = models.TextField()
     classification = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    calories = models.IntegerField()
+    allergens = models.CharField(max_length=255, blank=True)
+    tag = models.CharField(max_length=50, blank=True)  # e.g., "Online Only", "High Protein"
 
     def __str__(self):
         return self.name

@@ -57,6 +57,9 @@ export default defineComponent({
             image_src: item.image_src,
             description: item.description,
             classification: item.classification,
+            tag: item.tag,
+            calories: item.calories,
+            price: item.price,
           }));
 
           // Extracting unique classifications

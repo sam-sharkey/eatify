@@ -147,7 +147,7 @@
     <main
       class="w-full flex flex-col items-start justify-start pt-[4rem] pb-[0rem] pl-[1.75rem] pr-[1rem] box-border gap-[4rem] max-w-[95rem] mq450:gap-[1rem] mq800:gap-[2rem] mq1350:pt-[1.25rem] mq1350:box-border"
     >
-      <FrameComponent /><FrameComponent1 /><FrameComponent2 /><GardenCobbContent /><CustomSaladsParent /><FrameComponent3 /><BeverageContainer />
+      <FrameComponent /><FrameComponent1 /><FrameComponent2 /><MenuListComponent /><CustomSaladsParent /><FrameComponent3 /><BeverageContainer />
     </main>
     <FooterWidget />
   </div>
@@ -159,7 +159,7 @@ import RestaurantInfo from "./RestaurantInfo.vue";
 import FrameComponent from "./FrameComponent.vue";
 import FrameComponent1 from "./FrameComponent1.vue";
 import FrameComponent2 from "./FrameComponent2.vue";
-import GardenCobbContent from "./GardenCobbContent.vue";
+import MenuListComponent from "./MenuListComponent.vue";
 import CustomSaladsParent from "./CustomSaladsParent.vue";
 import FrameComponent3 from "./FrameComponent3.vue";
 import BeverageContainer from "./BeverageContainer.vue";
@@ -173,7 +173,7 @@ export default defineComponent({
     FrameComponent,
     FrameComponent1,
     FrameComponent2,
-    GardenCobbContent,
+    MenuListComponent,
     CustomSaladsParent,
     FrameComponent3,
     BeverageContainer,

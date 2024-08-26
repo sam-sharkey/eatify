@@ -17,6 +17,78 @@ class Command(BaseCommand):
 
         menu_items = [
             {
+                'name': 'Kale Caesar',
+                'description': 'Chopped romaine, shredded kale, tomatoes, parmesan crisps, roasted chicken, shaved parmesan, caesar, lime squeeze',
+                'price': 13.45,
+                'calories': 510,
+                'image_src': 'menu_items/KaleCaesar.png',
+                'allergens': 'Dairy, Eggs',
+                'tag': 'High Protein',
+                'classification': 'Salads',
+            },
+            {
+                'name': 'Guacamole Greens',
+                'description': 'Chopped romaine, spring mix, shredded cabbage, tomatoes, tortilla chips, pickled onions, avocado, roasted chicken, lime squeeze, lime cilantro jalapeno vinaigrette',
+                'price': 14.25,
+                'calories': 575,
+                'image_src': 'menu_items/GuacamoleGreens.png',
+                'allergens': 'None',
+                'tag': '',
+                'classification': 'Salads',
+            },
+            {
+                'name': 'Hummus Crunch',
+                'description': 'Chopped romaine, shredded kale, basil, cucumbers, shredded cabbage, tomatoes, za\'atar breadcrumbs, chickpeas, pickled onions, hummus, pesto vinaigrette',
+                'price': 13.25,
+                'calories': 405,
+                'image_src': 'menu_items/HummusCrunch.png',
+                'allergens': 'Gluten',
+                'tag': '',
+                'classification': 'Salads',
+            },
+            {
+                'name': 'Buffalo Chicken',
+                'description': 'Chopped romaine, shredded kale, cilantro, tomatoes, za\'atar breadcrumbs, raw carrots, pickled onions, blue cheese, blackened chicken, caesar, sweetgreen hot sauce',
+                'price': 14.95,
+                'calories': 555,
+                'image_src': 'menu_items/BuffaloChicken.png',
+                'allergens': 'Dairy',
+                'tag': 'High Protein',
+                'classification': 'Salads',
+            },
+            {
+                'name': 'Super Green Goddess',
+                'description': 'Shredded kale, baby spinach, roasted sweet potatoes, shredded cabbage, spicy broccoli, roasted almonds, chickpeas, raw carrots, green goddess ranch',
+                'price': 10.75,
+                'calories': 455,
+                'image_src': 'menu_items/SuperGreenGoddess.png',
+                'allergens': 'Tree Nuts',
+                'tag': 'Online Only',
+                'classification': 'Salads',
+            },
+            {
+                'name': 'Garden Cobb',
+                'description': 'Chopped romaine, spring mix, roasted sweet potatoes, roasted almonds, tomatoes, avocado, hard boiled egg, blue cheese, balsamic vinaigrette',
+                'price': 14.45,
+                'calories': 745,
+                'image_src': 'menu_items/GardenCobb.png',
+                'allergens': 'Eggs, Dairy, Tree Nuts',
+                'tag': 'Online Only',
+                'classification': 'Salads',
+            },
+            {
+                'name': 'BBQ Chicken Salad',
+                'description': 'Chopped romaine, shredded kale, shredded cabbage, tomatoes, tortilla chips, apples, pickled onions, blackened chicken, green goddess ranch, honey bbq sauce',
+                'price': 13.95,
+                'calories': 520,
+                'image_src': 'menu_items/BBQChickenSalad.png',
+                'allergens': 'None',
+                'tag': '',
+                'classification': 'Salads',
+            }
+        ]
+        menu_items += [
+            {
                 'name': 'Rosemary Focaccia',
                 'image_src': 'menu_items/RosemaryFocaccia.png',
                 'description': 'Locally-made rosemary focaccia, Check out our regional bakery partners here!',
@@ -51,24 +123,6 @@ class Command(BaseCommand):
                 'image_src': 'menu_items/Shroomami.png',
                 'description': 'Roasted tofu, warm portobello mix, cucumbers, basil, shredded cabbage, roasted almonds, wild rice, shredded kale, miso sesame ginger dressing',
                 'classification': 'Warm Bowls',
-            },
-            {
-                'name': 'Buffalo Chicken',
-                'image_src': 'menu_items/BuffaloChicken.png',
-                'description': 'Blackened chicken, pickled onions, tomatoes, raw carrots, cilantro, blue cheese, za’atar breadcrumbs, shredded kale, chopped romaine, sweetgreen hot sauce, caesar',
-                'classification': 'Salads',
-            },
-            {
-                'name': 'Guacamole Greens',
-                'image_src': 'menu_items/GuacamoleGreens.png',
-                'description': 'Roasted chicken, avocado, tomatoes, pickled onions, shredded cabbage, tortilla chips, spring mix, chopped romaine, lime squeeze, lime cilantro jalapeño vinaigrette',
-                'classification': 'Salads',
-            },
-            {
-                'name': 'Kale Caesar',
-                'image_src': 'menu_items/KaleCaeser.png',
-                'description': 'Roasted chicken, tomatoes, parmesan crisps, shaved parmesan, shredded kale, chopped romaine, lime squeeze, caesar',
-                'classification': 'Salads',
             },
         ]
 

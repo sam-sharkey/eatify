@@ -19,6 +19,22 @@ module.exports = {
         },
         bitter: "#8c8c82",
         starkwhite: "#e8dcc6",
+        gainsboro: "#d6e9e9",
+        gray: {
+          100: "#0e150e",
+          200: "rgba(14, 21, 14, 0.64)",
+          300: "rgba(14, 21, 14, 0.4)",
+          400: "rgba(0, 0, 0, 0.3)",
+        },
+        antiquewhite: "#e8dcc6",
+        darkslategray: {
+          100: "#484d48",
+          200: "#00473c",
+        },
+        white: "#fff",
+        yellow: "#e6ff55",
+        honeydew: "#d8e5d6",
+        black: "#000",
       },
       spacing: {},
       fontFamily: {

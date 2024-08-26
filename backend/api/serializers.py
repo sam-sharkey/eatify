@@ -5,7 +5,7 @@ from .models import MenuItem, Highlight, Restaurant, HeaderConfig, FooterConfig,
 class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
-        fields = ['name', 'image_src', 'description', 'classification']
+        fields = ['name', 'description', 'classification', 'price', 'calories', 'image_src', 'allergens', 'tag']
 
 class HighlightSerializer(serializers.ModelSerializer):
     class Meta:

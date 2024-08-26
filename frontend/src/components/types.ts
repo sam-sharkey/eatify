@@ -3,6 +3,9 @@ export interface MenuItem {
   name: string;
   image_src: string;
   description: string;
+  tag: string;
+  price: number;
+  calories: number;
 }
 
 export interface HamburgerMenuItem {
