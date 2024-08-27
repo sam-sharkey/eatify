@@ -1,11 +1,11 @@
 <template>
   <section
-    class="w-[86.5rem] flex flex-col items-start justify-start px-[0.75rem] box-border max-w-full text-[1.769rem] text-gray-100 font-inter"
+    class="flex flex-col items-start justify-start px-[0.75rem] box-border max-w-full text-[1.769rem] text-gray-100 font-inter"
   >
     <div
       class="tracking-[1px] leading-[2.25rem] mq450:text-[1.438rem] mq450:leading-[1.813rem]"
     >
-      Salads
+      {{ menuItemClassification }}
     </div>
     <div
       class="flex flex-wrap justify-center gap-[1.5rem] text-center text-[0.594rem]"
@@ -24,7 +24,7 @@
         <img
           :src="item.image_src"
           :alt="item.name"
-          class="w-full h-[15.625rem] object-cover rounded-lg"
+          class="w-full h-full object-cover rounded-lg"
         />
         <div class="w-full text-left text-[1.125rem]">
           <h3 class="leading-[1.5rem]">{{ item.name }}</h3>
@@ -50,8 +50,14 @@ import { fetchMenuItems } from "../../services/apiClient"; // Import the API fun
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the restaurant store
 
 export default defineComponent({
-  name: "GardenCobbContent",
-  setup() {
+  name: "MenuListComponent",
+  props: {
+    menuItemClassification: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
     const menuItems = ref<MenuItemType[]>([]);
     const menuClassifications = ref<string[]>([]);
     const filteredMenuItems = ref<MenuItemType[]>([]);
@@ -86,7 +92,7 @@ export default defineComponent({
           if (menuClassifications.value.length > 0) {
             selectedClassification.value = menuClassifications.value[0];
             filteredMenuItems.value = menuItems.value.filter(
-              (item) => item.classification === "Salads"
+              (item) => item.classification === props.menuItemClassification
             );
           }
         } else {
