@@ -1,6 +1,6 @@
 <template>
   <section
-    class="flex flex-col items-start justify-start px-[0.75rem] box-border max-w-full text-[1.769rem] text-gray-100 font-inter"
+    class="self-stretch flex flex-col items-start justify-start py-[0rem] pl-[0rem] pr-[0.75rem] box-border gap-[1rem] max-w-full text-left text-[1.775rem] text-gray-100 font-inter"
   >
     <div
       class="tracking-[1px] leading-[2.25rem] mq450:text-[1.438rem] mq450:leading-[1.813rem]"
@@ -8,12 +8,12 @@
       {{ menuItemClassification }}
     </div>
     <div
-      class="flex flex-wrap justify-center gap-[1.5rem] text-center text-[0.594rem]"
+      class="grid gap-[1.5rem] text-center text-[0.594rem] grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
       <div
         v-for="item in filteredMenuItems"
         :key="item.name"
-        class="w-[20.875rem] p-[1.625rem] rounded-lg bg-antiquewhite flex flex-col items-start gap-[1rem]"
+        class="p-[1.625rem] rounded-lg bg-antiquewhite flex flex-col items-start gap-[1rem]"
       >
         <div
           v-if="item.tag"
@@ -46,7 +46,6 @@
 import { defineComponent, ref, onMounted } from "vue";
 import { MenuItem as MenuItemType } from "../types";
 import { fetchMenuItems } from "../../services/apiClient"; // Import the API function
-//import { useStyleStore } from "../../stores/styleStore"; // Import the style store
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the restaurant store
 
 export default defineComponent({
@@ -62,7 +61,6 @@ export default defineComponent({
     const menuClassifications = ref<string[]>([]);
     const filteredMenuItems = ref<MenuItemType[]>([]);
     const selectedClassification = ref<string | null>(null);
-    //const styleStore = useStyleStore(); // Use the style store
     const restaurantStore = useRestaurantStore(); // Use the restaurant store
 
     const loadMenuItems = async () => {

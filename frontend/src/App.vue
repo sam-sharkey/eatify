@@ -1,10 +1,11 @@
 <template>
-  <PageHeader
-    :leftHeaderItems="headerConfig.leftHeaderItems"
-    :rightHeaderItems="headerConfig.rightHeaderItems"
-  />
+  <div class="sticky top-0 z-50 bg-white">
+    <PageHeader
+      :leftHeaderItems="headerConfig.leftHeaderItems"
+      :rightHeaderItems="headerConfig.rightHeaderItems"
+    />
+  </div>
   <router-view />
-  <!-- This will render the component based on the current route -->
   <PageFooter
     v-if="
       footerConfig.linksVisible ||
