@@ -1,7 +1,5 @@
 <template>
-  <section
-    class="self-stretch flex flex-row items-start justify-start py-[0rem] pl-[0.75rem] pr-[0rem] box-border max-w-full text-left text-[3.75rem] text-white font-inter"
-  >
+  <section class="w-full text-left text-[3.75rem] text-white font-inter">
     <div class="flex-1 flex flex-col items-start justify-start max-w-full">
       <div
         class="self-stretch flex flex-row items-start justify-start flex-wrap content-start py-[0rem] px-[0.75rem] box-border max-w-full"
@@ -90,5 +88,11 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "CustomSaladsParent",
+  props: {
+    menuItemClassification: {
+      type: String,
+      required: false,
+    },
+  },
 });
 </script>

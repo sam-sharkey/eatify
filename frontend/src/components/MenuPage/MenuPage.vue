@@ -17,9 +17,14 @@
         v-for="category in menuCategories"
         :key="category"
         :data-category="category"
-        class="menu-section"
+        class="menu-section w-full"
       >
-        <MenuListComponent :menuItemClassification="category" />
+        <component
+          :is="
+            category === 'Custom' ? 'CustomSaladsParent' : 'MenuListComponent'
+          "
+          :menuItemClassification="category"
+        />
       </div>
     </main>
   </div>
@@ -29,7 +34,7 @@
 import { defineComponent, ref, onMounted } from "vue";
 import RestaurantInfo from "./RestaurantInfo.vue";
 import MenuListComponent from "./MenuListComponent.vue";
-//import CustomSaladsParent from "./CustomSaladsParent.vue";
+import CustomSaladsParent from "./CustomSaladsParent.vue";
 import MenuCategoriesHeader from "./MenuCategoriesHeader.vue";
 
 export default defineComponent({
@@ -37,7 +42,7 @@ export default defineComponent({
   components: {
     RestaurantInfo,
     MenuListComponent,
-    //  CustomSaladsParent,
+    CustomSaladsParent,
     MenuCategoriesHeader,
   },
   setup() {
@@ -58,16 +63,14 @@ export default defineComponent({
     const handleScroll = () => {
       const sections = document.querySelectorAll(".menu-section");
 
-      let lastSectionInView = menuCategories.value[0];
       for (const section of sections) {
         const rect = section.getBoundingClientRect();
         if (rect.top <= 100 && rect.bottom >= 100) {
-          lastSectionInView =
-            section.getAttribute("data-category") || lastSectionInView;
+          activeCategory.value =
+            section.getAttribute("data-category") || activeCategory.value;
           break;
         }
       }
-      activeCategory.value = lastSectionInView;
     };
 
     onMounted(() => {

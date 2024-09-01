@@ -13,11 +13,11 @@
       <div
         v-for="item in filteredMenuItems"
         :key="item.name"
-        class="p-[1.625rem] rounded-lg bg-antiquewhite flex flex-col items-start gap-[1rem]"
+        class="relative p-[1.625rem] rounded-lg bg-antiquewhite flex flex-col items-start gap-[1rem]"
       >
         <div
           v-if="item.tag"
-          class="absolute top-2 left-2 bg-yellow py-[0.218rem] px-[0.437rem] rounded text-[1rem] uppercase tracking-[1px]"
+          class="absolute top-2 left-2 bg-yellow m-2 py-1 px-2 rounded text-4 uppercase tracking-[1px]"
         >
           {{ item.tag }}
         </div>
