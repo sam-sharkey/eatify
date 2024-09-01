@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import MenuItem, Highlight, Restaurant, HeaderConfig, FooterConfig, MainPageConfig
+from .models import MenuItem, Highlight, Restaurant, HeaderConfig, FooterConfig, MainPageConfig, Location
 
 
 class MenuItemSerializer(serializers.ModelSerializer):
@@ -16,6 +16,11 @@ class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
         fields = ['id', 'name']
+
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Location
+        fields = ['name', 'address', 'phone_number', 'opening_hours', 'image_url']
 
 class HeaderConfigSerializer(serializers.ModelSerializer):
     class Meta:

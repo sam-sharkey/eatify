@@ -8,6 +8,7 @@ from api.models import Restaurant, HeaderConfig, FooterConfig, MainPageConfig
 import json
 from dotenv import load_dotenv
 import os
+import requests
 
 load_dotenv()  # Load environment variables from .env file
 
@@ -35,13 +36,26 @@ def extract_json_from_response(response: str) -> dict:
 def generate_restaurant_data(description):
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": f"Generate a creative restaurant name and three hex color codes for a restaurant that {description}. Please provide the name and colors in a JSON format with 'name', '--primary-color', '--secondary-color', and '--base-color'."},
+        {"role": "user", "content": f"Generate a creative restaurant name and three hex color codes for a "
+         f"restaurant that {description}. The colors should go with the theme of the restaurant and look good together. "
+         f"Please provide the name and colors in a JSON format with 'name', '--primary-color', '--secondary-color', and '--base-color'."},
     ]
     response = client.chat.completions.create(model="gpt-4o-mini",  messages=messages, stop=None, temperature=0.7)
 
     response_text = response.choices[0].message.content
     result = extract_json_from_response(response_text)
     return result
+
+def generate_image(description):
+        response = client.images.generate(
+            model="dall-e-2",
+            prompt=description,
+            n=1,
+            size="1024x1024",
+            quality="standard",
+        )
+
+        return response.data[0].url  # This returns the URL of the generated image
 
 class Command(BaseCommand):
     help = 'Populate example configuration data for widgets'
@@ -61,7 +75,7 @@ class Command(BaseCommand):
         # Generate restaurant data using OpenAI
         restaurant_data = generate_restaurant_data(description)
 
-        restaurant_name = restaurant_data.get('name', 'Default Restaurant Name')
+        restaurant_name = "The Rustic Loaf" #restaurant_data.get('name', 'Default Restaurant Name')
         primary_color = restaurant_data.get('--primary-color', '#d8e5d6')
         secondary_color = restaurant_data.get('--secondary-color', '#e6ff55')
         base_color = restaurant_data.get('--base-color', '#f4f3e7')
@@ -76,11 +90,28 @@ class Command(BaseCommand):
 
         # Create a sample restaurant
         try:
-            restaurant = Restaurant.objects.create(name=restaurant_name)
+            # Generate an image using DALL-E or a similar model
+            image_url = generate_image(f"Generate a simple logo for a restaurant called {restaurant_name}. It should have a clear background.")
+
+            # Download the image
+            image_response = requests.get(image_url)
+            breakpoint()
+            if image_response.status_code == 200:
+                image_filename = f"{restaurant_name.replace(' ', '_')}.png"
+                try:
+                    os.mkdir(f"media/{restaurant_name}")
+                except OSError as error:
+                    pass
+                image_path = f"{restaurant_name}/{image_filename}"
+
+                with open(f"media/{image_path}", 'wb') as img_file:
+                    img_file.write(image_response.content)
+
+            restaurant = Restaurant.objects.create(name=restaurant_name, logo_src=image_path)
             restaurant.users.add(user)
             self.stdout.write(self.style.SUCCESS(f'Restaurant "{restaurant_name}" created successfully.'))
         except IntegrityError:
-            restaurant = Restaurant.objects.get(name=restaurant_name)
+            #restaurant = Restaurant.objects.get(name=restaurant_name)
             self.stdout.write(self.style.WARNING(f'Restaurant "{restaurant_name}" already exists, skipping creation.'))
 
         # Create HeaderConfig

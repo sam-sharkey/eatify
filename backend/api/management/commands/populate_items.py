@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.db import IntegrityError
-from api.models import MenuItem, Highlight, Restaurant
+from api.models import MenuItem, Highlight, Restaurant, Location
 
 class Command(BaseCommand):
     help = 'Populate MenuItems and Highlights with predefined data'
@@ -8,6 +8,16 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.populate_menu_items()
         self.populate_highlights()
+    
+    def populate_locations():
+        restaurant = Restaurant.objects.first()
+        Location.objects.create(restaurant=restaurant,
+            name="Meatpacking",
+            address="32 Gansevoort St, New York, NY 10014",
+            phone_number="646-891-5100",
+            opening_hours="Mon - Sun 10:30am - 10:00pm",
+            image_url="/restaurants/images/location_image.png"  # Adjust the path as necessary
+        )
 
     def populate_menu_items(self):
         restaurant = Restaurant.objects.first()

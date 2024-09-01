@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import MenuItem, Highlight, HeaderConfig, FooterConfig, MainPageConfig, Restaurant
-from .serializers import MenuItemSerializer, RestaurantSerializer, HighlightSerializer, HeaderConfigSerializer, FooterConfigSerializer, MainPageConfigSerializer
+from .models import MenuItem, Highlight, HeaderConfig, FooterConfig, MainPageConfig, Restaurant, Location
+from .serializers import MenuItemSerializer, RestaurantSerializer, HighlightSerializer, HeaderConfigSerializer, FooterConfigSerializer, MainPageConfigSerializer, LocationSerializer
 
 
 class RestaurantListView(generics.ListAPIView):
@@ -15,6 +15,14 @@ class RestaurantListView(generics.ListAPIView):
             return Restaurant.objects.filter(name=name)
         return Restaurant.objects.all()
 
+class LocationView(generics.ListAPIView):
+    serializer_class = LocationSerializer
+
+    def get_queryset(self):
+        restaurant_id = self.kwargs['restaurant_id']
+        name = self.kwargs['name']
+        # Filter highlights by restaurant_id
+        return Location.objects.filter(restaurant_id=restaurant_id, name=name)
     
 class MenuItemsView(generics.ListAPIView):
     serializer_class = MenuItemSerializer

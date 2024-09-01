@@ -5,6 +5,10 @@ from django.contrib.auth.models import User
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
     users = models.ManyToManyField(User, related_name='restaurants')
+    def upload_photo_to(self, filename):
+        return f'{self.name}/{filename}'
+    
+    logo_src = models.ImageField(upload_to=upload_photo_to, blank=True)
 
     def __str__(self):
         return self.name
@@ -19,12 +23,42 @@ class Restaurant(models.Model):
             )
         ]
 
+class Location(models.Model):
+    name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=20)
+    opening_hours = models.CharField(max_length=255)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='locations')
+
+    def upload_photo_to(self, filename):
+        return f'{self.restaurant.name}/locations/{filename}'
+    
+    image_src = models.ImageField(upload_to=upload_photo_to)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=[
+                    "name",
+                    "restaurant",
+                ],
+                name="unique_locations",
+            )
+        ]
+
 ## ITEMS ON UI
 
 class MenuItem(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='menuitems')
     name = models.CharField(max_length=100)
-    image_src = models.ImageField(upload_to='menu_items/')
+
+    def upload_photo_to(self, filename):
+        return f'{self.restaurant.name}/menu_items/{filename}'
+    
+    image_src = models.ImageField(upload_to=upload_photo_to)
     description = models.TextField()
     classification = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=6, decimal_places=2)
@@ -52,7 +86,11 @@ class Highlight(models.Model):
     header = models.CharField(max_length=255)
     description1 = models.TextField(blank=True)
     description2 = models.TextField(blank=True)
-    image_src = models.ImageField(upload_to='highlights/')
+
+    def upload_photo_to(self, filename):
+        return f'{self.restaurant.name}/highlights/{filename}'
+    image_src = models.ImageField(upload_to=upload_photo_to)
+
     tag = models.CharField(max_length=50)
 
     def __str__(self):
