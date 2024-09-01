@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full relative bg-oldlace flex flex-col items-start justify-start leading-[normal] tracking-[normal] text-left text-[0.994rem] text-gray-200 font-inter"
+    class="w-full relative bg-oldlace text-left text-[0.994rem] text-gray-200 font-inter"
   >
     <RestaurantInfo />
 
@@ -10,14 +10,14 @@
     />
 
     <main
-      class="w-full flex flex-col items-start justify-start pt-[4rem] pb-[0rem] pl-[1.75rem] pr-[1rem] box-border gap-[4rem] mq450:gap-[1rem] mq800:gap-[2rem] mq1350:pt-[1.25rem] mq1350:box-border"
+      class="pt-4 pb-8 px-4 gap-[4rem] mq450:gap-[1rem]"
       @scroll="handleScroll"
     >
       <div
         v-for="category in menuCategories"
         :key="category"
         :data-category="category"
-        class="menu-section w-full"
+        class="menu-section p-6"
       >
         <component
           :is="
@@ -36,6 +36,9 @@ import RestaurantInfo from "./RestaurantInfo.vue";
 import MenuListComponent from "./MenuListComponent.vue";
 import CustomSaladsParent from "./CustomSaladsParent.vue";
 import MenuCategoriesHeader from "./MenuCategoriesHeader.vue";
+import { MenuItem as MenuItemType } from "../types";
+import { fetchMenuItems } from "../../services/apiClient"; // Import the API function
+import { useRestaurantStore } from "../../stores/restaurant"; // Import the restaurant store
 
 export default defineComponent({
   name: "OrderMenuPage",
@@ -46,19 +49,10 @@ export default defineComponent({
     MenuCategoriesHeader,
   },
   setup() {
-    const menuCategories = ref([
-      "Featured",
-      "High Protein",
-      "Bowls",
-      "Salads",
-      "Custom",
-      "Kid's Meals",
-      "Sides",
-      "Desserts",
-      "Beverage",
-    ]);
+    const menuCategories = ref<string[]>([]);
+    const menuItems = ref<MenuItemType[]>([]);
 
-    const activeCategory = ref(menuCategories.value[0]);
+    const activeCategory = ref("");
 
     const handleScroll = () => {
       const sections = document.querySelectorAll(".menu-section");
@@ -73,7 +67,46 @@ export default defineComponent({
       }
     };
 
-    onMounted(() => {
+    const customCreationEnabled = true;
+
+    const restaurantStore = useRestaurantStore(); // Use the restaurant store
+
+    const loadMenuItems = async () => {
+      try {
+        const restaurantId = restaurantStore.getRestaurantId; // Get the restaurant ID from the store
+
+        if (restaurantId !== null) {
+          const data = await fetchMenuItems(restaurantId);
+
+          // Constructing MenuItem objects from the API response
+          menuItems.value = data.map((item: MenuItemType) => ({
+            name: item.name,
+            image_src: item.image_src,
+            description: item.description,
+            classification: item.classification,
+            tag: item.tag,
+            calories: item.calories,
+            price: item.price,
+          }));
+
+          // Extracting unique classifications
+          menuCategories.value = [
+            ...new Set(data.map((item) => item.classification)),
+          ];
+          if (customCreationEnabled) {
+            menuCategories.value.push("Custom");
+          }
+        } else {
+          console.error("Restaurant ID is not set.");
+        }
+      } catch (error) {
+        console.error("Failed to load menu items:", error);
+      }
+    };
+
+    onMounted(async () => {
+      await loadMenuItems();
+      activeCategory.value = menuCategories.value[0];
       document.addEventListener("scroll", handleScroll);
     });
 

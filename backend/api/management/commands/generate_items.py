@@ -34,27 +34,26 @@ class Command(BaseCommand):
             return
 
         # Generate MenuItems using OpenAI
-        #menu_items = self.generate_menu_items(description, num_categories, items_per_category)
-
-        # Process and create MenuItems
-        #self.create_menu_items(restaurant, menu_items)
+        menu_items = self.generate_menu_items(description, num_categories, items_per_category)
+        self.create_menu_items(restaurant, menu_items)
 
         # Generate highlight data using OpenAI
         highlight_data = self.generate_highlights(description)
-
-        # Process and create Highlight objects
         self.create_highlights(restaurant, highlight_data)
 
     def generate_menu_items(self, description, num_categories, items_per_category):
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": (
-                f"Generate {num_categories*items_per_category} menu items. Among them there should be {num_categories} unique menu categories, each with {items_per_category} menu items per category, "
-                f"for a restaurant that {description}. "
-                f"For each menu item, follow this exact format:\n"
+                f"Generate menu items for a restaurant that {description}."
+                f" There should be {num_categories} unique categories, each with between {items_per_category} and {items_per_category*2} menu items per category, "
+                f" For each menu item, follow this exact format:\n"
                 f"Category: [Category Name]\n"
                 f"Name: [Item Name]\n"
                 f"Description: [Item Description]\n"
+                f"Price: [Item Price]\n"
+                f"Calories: [Item Calories]\n"
+                f"Allergens: [Item Allergens]\n"
                 f"Image Description: [Image Description]\n"
                 f"Use '---' to separate each menu item clearly. Always include the Category name before each item, even if it’s the same as the previous one."
             )},
@@ -85,12 +84,18 @@ class Command(BaseCommand):
             # Parse the individual menu item
             name_match = re.search(r"Name:\s*(.+)", section)
             description_match = re.search(r"Description:\s*(.+)", section)
+            price_match = re.search(r"Price:\s*(.+)", section)
+            calories_match = re.search(r"Calories:\s*(.+)", section)
+            allergens_match = re.search(r"Allergens:\s*(.+)", section)
             image_description_match = re.search(r"Image Description:\s*(.+)", section)
             
             if current_category and name_match and description_match and image_description_match:
                 menu_items.append({
                     'name': name_match.group(1).strip(),
                     'description': description_match.group(1).strip(),
+                    'price': re.sub('[^0-9.]','',price_match.group(1).strip()),
+                    'calories': re.sub('[^0-9.]','', calories_match.group(1).strip()),
+                    'allergens': allergens_match.group(1).strip(),
                     'classification': current_category,
                     'image_description': image_description_match.group(1).strip()
                 })
@@ -108,7 +113,11 @@ class Command(BaseCommand):
                 image_response = requests.get(image_url)
                 if image_response.status_code == 200:
                     image_filename = f"{item['name'].replace(' ', '_')}.png"
-                    image_path = f"menu_items/{image_filename}"
+                    try:
+                        os.mkdir(f"media/{restaurant.name}/menu_items")
+                    except OSError as error:
+                        pass
+                    image_path = f"{restaurant.name}/menu_items/{image_filename}"
 
                     with open(f"media/{image_path}", 'wb') as img_file:
                         img_file.write(image_response.content)
@@ -119,6 +128,9 @@ class Command(BaseCommand):
                         name=item['name'],
                         description=item['description'],
                         classification=item['classification'],
+                        calories=item['calories'],
+                        allergens=item['allergens'],
+                        price=item['price'],
                         image_src=image_path,
                     )
                     self.stdout.write(self.style.SUCCESS(f"MenuItem '{item['name']}' created successfully."))
@@ -224,7 +236,11 @@ class Command(BaseCommand):
                 image_response = requests.get(image_url)
                 if image_response.status_code == 200:
                     image_filename = f"{highlight['title'].replace(' ', '_')}.png"
-                    image_path = f"highlights/{image_filename}"
+                    try:
+                        os.mkdir(f"media/{restaurant.name}/highlights")
+                    except OSError as error:
+                        pass
+                    image_path = f"{restaurant.name}/highlights/{image_filename}"
 
                     with open(f"media/{image_path}", 'wb') as img_file:
                         img_file.write(image_response.content)

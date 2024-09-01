@@ -2,7 +2,7 @@
   <section class="w-full text-left text-[3.75rem] text-white font-inter">
     <div class="flex-1 flex flex-col items-start justify-start max-w-full">
       <div
-        class="self-stretch flex flex-row items-start justify-start flex-wrap content-start py-[0rem] px-[0.75rem] box-border max-w-full"
+        class="self-stretch flex flex-row items-start justify-start flex-wrap content-start box-border max-w-full"
       >
         <div
           class="h-[27rem] flex-1 rounded-2xl bg-darkslategray-200 overflow-hidden flex flex-row items-start justify-start relative min-h-[27rem] max-w-full"

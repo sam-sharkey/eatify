@@ -2,7 +2,7 @@
   <div
     :class="['footer-newsletter-container']"
     :style="computedStyle"
-    class="flex-[0.9809] overflow-hidden flex flex-col items-start justify-start pt-9 px-6 pb-[55.1px] box-border gap-4 min-w-[465px] max-w-full text-left text-base text-huntergreen font-roboto-regular-1575 mq750:min-w-full mq1150:flex-1"
+    class="flex-[0.9809] overflow-hidden flex flex-col pt-9 px-6 box-border gap-4 max-w-full text-left text-base text-huntergreen font-roboto-regular-1575 mq750:min-w-full mq1150:flex-1"
   >
     <div class="self-stretch relative leading-[16px] uppercase shrink-0">
       Join Our Newsletter
@@ -11,7 +11,7 @@
       class="self-stretch flex flex-row items-start justify-start max-w-full text-lgi-2"
     >
       <div
-        class="flex-1 rounded-3xs border-huntergreen border-[1px] border-solid box-border flex flex-row items-start justify-between pt-2.5 px-4 pb-1.5 max-w-full gap-5"
+        class="flex-1 rounded-3xs border-huntergreen border-[1px] border-solid box-border flex flex-row items-start justify-between pt-2.5 px-4 pb-1.5 max-w-full"
       >
         <div class="relative inline-block min-w-[123px]">Email Address</div>
         <div

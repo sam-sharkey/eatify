@@ -43,6 +43,7 @@ def generate_restaurant_data(description):
     response = client.chat.completions.create(model="gpt-4o-mini",  messages=messages, stop=None, temperature=0.7)
 
     response_text = response.choices[0].message.content
+    breakpoint()
     result = extract_json_from_response(response_text)
     return result
 
@@ -75,7 +76,7 @@ class Command(BaseCommand):
         # Generate restaurant data using OpenAI
         restaurant_data = generate_restaurant_data(description)
 
-        restaurant_name = "The Rustic Loaf" #restaurant_data.get('name', 'Default Restaurant Name')
+        restaurant_name = restaurant_data.get('name', 'Default Restaurant Name')
         primary_color = restaurant_data.get('--primary-color', '#d8e5d6')
         secondary_color = restaurant_data.get('--secondary-color', '#e6ff55')
         base_color = restaurant_data.get('--base-color', '#f4f3e7')
@@ -95,7 +96,6 @@ class Command(BaseCommand):
 
             # Download the image
             image_response = requests.get(image_url)
-            breakpoint()
             if image_response.status_code == 200:
                 image_filename = f"{restaurant_name.replace(' ', '_')}.png"
                 try:
@@ -111,7 +111,7 @@ class Command(BaseCommand):
             restaurant.users.add(user)
             self.stdout.write(self.style.SUCCESS(f'Restaurant "{restaurant_name}" created successfully.'))
         except IntegrityError:
-            #restaurant = Restaurant.objects.get(name=restaurant_name)
+            restaurant = Restaurant.objects.get(name=restaurant_name)
             self.stdout.write(self.style.WARNING(f'Restaurant "{restaurant_name}" already exists, skipping creation.'))
 
         # Create HeaderConfig

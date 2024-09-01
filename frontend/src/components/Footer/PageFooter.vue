@@ -1,7 +1,7 @@
 <template>
   <div :class="['footer-container']" :style="computedStyle">
     <section
-      class="self-stretch flex flex-row items-start justify-start max-w-full [row-gap:20px] mq1150:flex-wrap"
+      class="self-stretch flex flex-row items-start justify-start max-w-full mq1150:flex-wrap"
     >
       <FooterNewsletter />
       <FooterAppDownload />
