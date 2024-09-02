@@ -28,7 +28,8 @@ urlpatterns = [
     path('api/footer-config/<int:restaurant_id>/', FooterConfigView.as_view(), name='footer-config'),
     path('api/main-page-config/<int:restaurant_id>/', MainPageConfigView.as_view(), name='main-page-config'),
     path('api/restaurants/', RestaurantListView.as_view(), name='restaurant_list'),
-    path('api/location/<int:restaurant_id>/<str:name>', LocationView.as_view(), name='location'),
+    #path('api/locations/', LocationView.as_view(), name='locations'),
+    path('api/locations/<int:restaurant_id>/', LocationView.as_view(), name='locations'),
 ]
 
 if settings.DEBUG:

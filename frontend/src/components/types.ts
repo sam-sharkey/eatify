@@ -13,6 +13,12 @@ export interface HamburgerMenuItem {
   path: string;
 }
 
+export interface Restaurant {
+  id: number;
+  name: string;
+  logo_src: string;
+}
+
 export interface Highlight {
   title: string;
   header: string;

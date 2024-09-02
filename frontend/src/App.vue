@@ -47,7 +47,7 @@ export default defineComponent({
     });
 
     const fetchConfig = async () => {
-      const restaurantId = store.getRestaurantId; // Get the restaurant ID from the store
+      const restaurantId = store.getRestaurant.id; // Get the restaurant ID from the store
       if (restaurantId !== null) {
         try {
           const headerData = await fetchHeaderConfig(restaurantId);

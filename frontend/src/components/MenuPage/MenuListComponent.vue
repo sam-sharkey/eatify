@@ -65,7 +65,7 @@ export default defineComponent({
 
     const loadMenuItems = async () => {
       try {
-        const restaurantId = restaurantStore.getRestaurantId; // Get the restaurant ID from the store
+        const restaurantId = restaurantStore.getRestaurant.id; // Get the restaurant ID from the store
 
         if (restaurantId !== null) {
           const data = await fetchMenuItems(restaurantId);

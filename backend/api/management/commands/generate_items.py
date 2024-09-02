@@ -46,7 +46,8 @@ class Command(BaseCommand):
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": (
                 f"Generate menu items for a restaurant that {description}."
-                f" There should be {num_categories} unique categories, each with between {items_per_category} and {items_per_category*2} menu items per category, "
+                f" There should be {num_categories} unique categories, each with between "
+                f"{items_per_category} and {items_per_category*2} menu items per category, "
                 f" For each menu item, follow this exact format:\n"
                 f"Category: [Category Name]\n"
                 f"Name: [Item Name]\n"
@@ -55,7 +56,8 @@ class Command(BaseCommand):
                 f"Calories: [Item Calories]\n"
                 f"Allergens: [Item Allergens]\n"
                 f"Image Description: [Image Description]\n"
-                f"Use '---' to separate each menu item clearly. Always include the Category name before each item, even if it’s the same as the previous one."
+                f"Use '---' to separate each menu item clearly. Always include the Category "
+                f"name before each item, even if it’s the same as the previous one."
             )},
         ]
         response = client.chat.completions.create(model="gpt-4o-mini",  messages=messages, stop=None, temperature=0.7)

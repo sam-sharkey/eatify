@@ -17,7 +17,7 @@
           <div
             class="relative [text-decoration:underline] tracking-[-2px] leading-[3rem] mq450:text-[1.688rem] mq450:leading-[1.813rem] mq800:text-[2.313rem] mq800:leading-[2.375rem]"
           >
-            Meatpacking
+            {{ location.name }}
           </div>
         </div>
       </div>
@@ -51,13 +51,13 @@
         >
           <div class="self-stretch flex flex-col items-start justify-start">
             <div class="self-stretch relative leading-[1.375rem]">
-              32 Gansevoort St, New York, NY 10014
+              {{ location.address }}
             </div>
           </div>
         </div>
         <div class="self-stretch flex flex-col items-start justify-start">
           <div class="self-stretch relative leading-[1.375rem]">
-            646-891-5100
+            {{ location.phone_number }}
           </div>
         </div>
         <div
@@ -67,7 +67,7 @@
             <div
               class="self-stretch relative leading-[1.375rem] whitespace-nowrap"
             >
-              Mon - Sun 10:30am - 10:00pm
+              {{ location.opening_hours }}
             </div>
           </div>
         </div>
@@ -79,16 +79,40 @@
       <img
         class="w-[15rem] h-[15rem] relative overflow-hidden shrink-0 object-cover"
         loading="lazy"
-        alt=""
-        src="/container@2x.png"
+        :alt="location.name"
+        :src="location.image_src"
       />
     </div>
   </div>
 </template>
+
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
+import { useRestaurantStore } from "../../stores/restaurant";
+import { fetchLocations } from "../../services/apiClient";
 
 export default defineComponent({
   name: "RestaurantInfo",
+  setup() {
+    const restaurantStore = useRestaurantStore();
+    const location = ref({
+      name: "",
+      address: "",
+      phone_number: "",
+      opening_hours: "",
+      image_src: "",
+    });
+
+    onMounted(async () => {
+      const locations = await fetchLocations(restaurantStore.restaurant.id);
+      location.value = locations[0];
+      location.value.image_src =
+        `${process.env.VUE_APP_BACKEND_URL}` + location.value.image_src;
+    });
+
+    return {
+      location,
+    };
+  },
 });
 </script>

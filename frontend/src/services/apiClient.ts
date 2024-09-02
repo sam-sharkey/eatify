@@ -1,6 +1,10 @@
 // apiClient.ts
 import axios from "axios";
-import { MenuItem as MenuItemType, Highlight } from "../components/types";
+import {
+  MenuItem as MenuItemType,
+  Highlight,
+  Restaurant,
+} from "../components/types";
 
 const apiClient = axios.create({
   baseURL: `${process.env.VUE_APP_BACKEND_URL}`, // Update this to your Django server URL
@@ -10,15 +14,19 @@ const apiClient = axios.create({
 });
 
 // Function to get restaurant ID by name
-export const getRestaurantIdByName = async (
+export const getRestaurantByName = async (
   restaurantName: string
-): Promise<number> => {
+): Promise<Restaurant> => {
   try {
     const response = await apiClient.get(
       `/api/restaurants/?name=${encodeURIComponent(restaurantName)}`
     );
     if (response.data && response.data.length > 0) {
-      return response.data[0].id; // Assuming the response contains the restaurant ID
+      return {
+        id: response.data[0].id,
+        logo_src: response.data[0].logo_src,
+        name: response.data[0].name,
+      }; // Assuming the response contains the restaurant ID
     } else {
       throw new Error("Restaurant not found");
     }
@@ -71,5 +79,11 @@ export const fetchMainPageConfig = async (restaurantId: number) => {
   const response = await apiClient.get(
     `/api/main-page-config/${restaurantId}/`
   );
+  return response.data;
+};
+
+// Function to fetch location data
+export const fetchLocations = async (restaurantId: number) => {
+  const response = await apiClient.get(`/api/locations/${restaurantId}/`);
   return response.data;
 };

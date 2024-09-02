@@ -16,13 +16,13 @@ class RestaurantListView(generics.ListAPIView):
         return Restaurant.objects.all()
 
 class LocationView(generics.ListAPIView):
-    serializer_class = LocationSerializer
-
-    def get_queryset(self):
-        restaurant_id = self.kwargs['restaurant_id']
-        name = self.kwargs['name']
-        # Filter highlights by restaurant_id
-        return Location.objects.filter(restaurant_id=restaurant_id, name=name)
+    def get(self, request, restaurant_id):
+        try:
+            locations = Location.objects.filter(restaurant_id=restaurant_id)
+            serializer = LocationSerializer(locations, many=True)
+            return Response(serializer.data)
+        except Location.DoesNotExist:
+            return Response({"error": "Locations not found for the given restaurant"}, status=404)
     
 class MenuItemsView(generics.ListAPIView):
     serializer_class = MenuItemSerializer

@@ -13,12 +13,16 @@
       :imageSrc="currentHighlight.image_src"
     />
     <button
+      :class="['navigation-button']"
+      :style="computedStyle"
       class="h-8 w-8 absolute top-8 right-12 rounded-full bg-razzmatazz flex items-center justify-center z-[1]"
       @click="nextHighlight"
     >
       <i class="fas fa-arrow-right text-black"></i>
     </button>
     <button
+      :class="['navigation-button']"
+      :style="computedStyle"
       class="h-8 w-8 absolute top-8 right-24 rounded-full bg-razzmatazz flex items-center justify-center z-[1]"
       @click="previousHighlight"
     >
@@ -50,7 +54,7 @@ export default defineComponent({
 
     const loadHighlights = async () => {
       try {
-        const restaurantId = store.getRestaurantId; // Get the restaurant ID from the store
+        const restaurantId = store.getRestaurant.id; // Get the restaurant ID from the store
         if (restaurantId !== null) {
           const data = await fetchHighlights(restaurantId);
           highlights.value = data.filter(
@@ -78,8 +82,12 @@ export default defineComponent({
 
     const defaultStyles = `
         .feature-widget-container {
-          background-color: #d8e5d6; /* Default bg-tasman color */
+            background-color: var( --primary-color ); /* Default bg-tasman color */
         }
+
+        .navigation-button {
+           background-color: var(--secondary-color)
+          }
       `;
 
     const computedStyle = computed(() => {

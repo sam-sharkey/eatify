@@ -2,7 +2,7 @@
   <div
     :class="['news-widget-container']"
     :style="computedStyle"
-    class="max-w-full flex flex-col relative items-center justify-start px-5"
+    class="max-w-full flex flex-col relative items-center justify-start p-5"
   >
     <a
       class="news-widget-title absolute left-8 mq450:text-lgi mq450:leading-[23px]"
@@ -45,7 +45,7 @@ export default defineComponent({
 
     const loadNewsHighlights = async () => {
       try {
-        const restaurantId = store.getRestaurantId; // Get the restaurant ID from the store
+        const restaurantId = store.getRestaurant.id; // Get the restaurant ID from the store
         if (restaurantId !== null) {
           const data = await fetchHighlights(restaurantId);
           newsHighlights.value = data.filter(

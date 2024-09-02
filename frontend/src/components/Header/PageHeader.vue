@@ -9,7 +9,10 @@
       :leftHeaderItems="formattedLeftHeaderItems"
       :rightHeaderItems="formattedRightHeaderItems"
     />
-    <img class="h-6" loading="lazy" alt="Logo" src="/logo.svg" />
+    <a href="/" class="header-link">
+      {{ restaurantName }}
+    </a>
+    <!--img class="h-6" loading="lazy" alt="Logo" :src="restaurantLogo" /-->
     <HeaderRight
       :smallScreen="smallScreen"
       :rightHeaderItems="formattedRightHeaderItems"
@@ -29,6 +32,7 @@ import {
 import HeaderLeft from "./HeaderLeft.vue";
 import HeaderRight from "./HeaderRight.vue";
 import { useStyleStore } from "../../stores/styleStore";
+import { useRestaurantStore } from "../../stores/restaurant";
 
 export default defineComponent({
   name: "PageHeader",
@@ -46,6 +50,9 @@ export default defineComponent({
   setup(props) {
     const smallScreen = ref(window.innerWidth < 1280);
     const styleStore = useStyleStore();
+    const restaurantStore = useRestaurantStore();
+    const restaurantLogo = restaurantStore.getRestaurant.logo_src;
+    const restaurantName = restaurantStore.getRestaurant.name;
 
     const updateScreenSize = () => {
       smallScreen.value = window.innerWidth < 1280;
@@ -97,7 +104,19 @@ export default defineComponent({
       computedStyle,
       formattedLeftHeaderItems,
       formattedRightHeaderItems,
+      restaurantLogo,
+      restaurantName,
     };
   },
 });
 </script>
+
+<style scoped>
+.header-link {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--dark-text-color); /* Use CSS variable for color */
+  font-size: 1.5rem; /* Equivalent to text-base */
+  font-family: "Roboto", sans-serif; /* Use custom font */
+}
+</style>
