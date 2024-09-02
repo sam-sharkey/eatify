@@ -2,7 +2,13 @@
   <div
     class="w-full relative bg-oldlace text-left text-[0.994rem] text-gray-200 font-inter"
   >
-    <RestaurantInfo />
+    <RestaurantInfo
+      v-if="location"
+      RestaurantInfo
+      :key="location.name"
+      :location="location"
+      class="pt-10 pb-4"
+    />
 
     <MenuCategoriesHeader
       :categories="menuCategories"
@@ -36,8 +42,8 @@ import RestaurantInfo from "./RestaurantInfo.vue";
 import MenuListComponent from "./MenuListComponent.vue";
 import CustomSaladsParent from "./CustomSaladsParent.vue";
 import MenuCategoriesHeader from "./MenuCategoriesHeader.vue";
-import { MenuItem as MenuItemType } from "../types";
-import { fetchMenuItems } from "../../services/apiClient"; // Import the API function
+import { MenuItem as MenuItemType, Location } from "../types";
+import { fetchMenuItems, fetchLocations } from "../../services/apiClient"; // Import the API function
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the restaurant store
 
 export default defineComponent({
@@ -51,6 +57,7 @@ export default defineComponent({
   setup() {
     const menuCategories = ref<string[]>([]);
     const menuItems = ref<MenuItemType[]>([]);
+    const location = ref<Location>();
 
     const activeCategory = ref("");
 
@@ -104,8 +111,24 @@ export default defineComponent({
       }
     };
 
+    const loadLocations = async () => {
+      try {
+        const data = await fetchLocations(restaurantStore.restaurant.id); // Fetch locations from API
+
+        // Constructing Location objects from the API response
+        location.value = data[0];
+        if (location.value) {
+          location.value.image_src =
+            `${process.env.VUE_APP_BACKEND_URL}` + location.value.image_src;
+        }
+      } catch (error) {
+        console.error("Failed to load locations:", error);
+      }
+    };
+
     onMounted(async () => {
       await loadMenuItems();
+      await loadLocations();
       activeCategory.value = menuCategories.value[0];
       document.addEventListener("scroll", handleScroll);
     });
@@ -114,6 +137,7 @@ export default defineComponent({
       menuCategories,
       activeCategory,
       handleScroll,
+      location,
     };
   },
 });

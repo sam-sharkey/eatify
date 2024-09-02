@@ -19,6 +19,14 @@ export interface Restaurant {
   logo_src: string;
 }
 
+export interface Location {
+  name: string;
+  address: string;
+  phone_number: string;
+  opening_hours: string;
+  image_src: string;
+}
+
 export interface Highlight {
   title: string;
   header: string;

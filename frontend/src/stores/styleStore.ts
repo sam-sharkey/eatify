@@ -9,6 +9,7 @@ export const useStyleStore = defineStore("style", {
     featureCss: "",
     newsCss: "",
     footerCss: "",
+    globalCss: "",
   }),
   actions: {
     setHeaderCss(css: string) {
@@ -28,6 +29,9 @@ export const useStyleStore = defineStore("style", {
     },
     setFooterCss(css: string) {
       this.footerCss = css;
+    },
+    setGlobalCss(css: string) {
+      this.globalCss = css;
     },
   },
 });

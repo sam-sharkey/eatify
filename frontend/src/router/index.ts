@@ -2,6 +2,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomePage from "../components/HomePage/HomePage.vue";
 import MenuPage from "../components/MenuPage/MenuPage.vue";
+import LocationsPage from "../components/LocationsPage/LocationsPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -14,16 +15,16 @@ const routes: Array<RouteRecordRaw> = [
     name: "Menu",
     component: MenuPage,
   },
-  /*{
+  {
     path: "/locations",
     name: "Locations",
     component: LocationsPage,
-  },
+  } /*
   {
     path: "/reservations",
     name: "Reserve",
     component: ReservePage,
-  },*/
+  },*/,
 ];
 
 const router = createRouter({

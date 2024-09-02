@@ -12,7 +12,6 @@ import MenuWidget from "../Menu/MenuWidget.vue";
 import HighlightsWidget from "../Highlights/HighlightsWidget.vue";
 import FeatureWidget from "../Picture/FeatureWidget.vue";
 import NewsWidget from "../News/NewsWidget.vue";
-import { useStyleStore } from "../../stores/styleStore";
 import { useRestaurantStore } from "../../stores/restaurant";
 
 export default defineComponent({
@@ -24,7 +23,6 @@ export default defineComponent({
   },
   setup() {
     const store = useRestaurantStore();
-    const styleStore = useStyleStore();
 
     const mainPageConfig = ref({
       highlightsVisible: false,
@@ -33,13 +31,6 @@ export default defineComponent({
       newsVisible: false,
       cssVariables: {},
     });
-
-    const setCssVariables = (variables: Record<string, string>) => {
-      const root = document.documentElement;
-      for (const [key, value] of Object.entries(variables)) {
-        root.style.setProperty(key, value);
-      }
-    };
 
     const fetchConfig = async () => {
       const restaurantId = store.getRestaurant.id; // Get the restaurant ID from the store
@@ -53,13 +44,6 @@ export default defineComponent({
             newsVisible: mainPageData.news_visible,
             cssVariables: mainPageData.css_variables,
           };
-          styleStore.setHighlightsCss(mainPageData.custom_css);
-          styleStore.setMenuCss(mainPageData.custom_css);
-          styleStore.setFeatureCss(mainPageData.custom_css);
-          styleStore.setNewsCss(mainPageData.custom_css);
-          // Apply global CSS variables
-          console.log(mainPageData.css_variables);
-          setCssVariables(mainPageData.css_variables);
         } catch (error) {
           console.error("Failed to fetch configuration data:", error);
         }
