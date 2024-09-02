@@ -4,9 +4,6 @@
     :style="computedStyle"
     class="self-stretch flex flex-col items-start justify-start pr-[0.75rem] box-border gap-[1rem] max-w-full text-left text-[1.775rem] text-gray-100 font-inter"
   >
-    <div class="p-4">
-      {{ restaurantName }}
-    </div>
     <div class="w-full grid gap-6 text-center py-6">
       <RestaurantInfo
         v-for="location in locations"
@@ -33,7 +30,6 @@ export default defineComponent({
   setup() {
     const locations = ref<Location[]>([]);
     const restaurantStore = useRestaurantStore();
-    const restaurantName = ref<string>(restaurantStore.restaurant.name);
     const styleStore = useStyleStore();
 
     const defaultStyles = `
@@ -70,7 +66,6 @@ export default defineComponent({
 
     return {
       locations,
-      restaurantName,
       computedStyle,
     };
   },

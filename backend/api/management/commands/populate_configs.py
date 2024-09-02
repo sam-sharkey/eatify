@@ -4,7 +4,7 @@ from openai import OpenAI
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from api.models import Restaurant, HeaderConfig, FooterConfig, MainPageConfig
+from api.models import Restaurant, HeaderConfig, FooterConfig, MainPageConfig, Location
 import json
 from dotenv import load_dotenv
 import os
@@ -17,21 +17,32 @@ load_dotenv()  # Load environment variables from .env file
 client = OpenAI(api_key=os.getenv("OPENAI_KEY"))
 
 def extract_json_from_response(response: str) -> dict:
-    # Find the start of the JSON block
-    json_start = response.find('{')
-    # Find the end of the JSON block
-    json_end = response.rfind('}')
-    
-    # Extract the JSON string
-    json_str = response[json_start:json_end+1]
-
     try:
-        # Parse the JSON string into a Python dictionary
-        json_data = json.loads(json_str)
-        return json_data
+        # Try to directly load the response assuming it's valid JSON
+        return json.loads(response)
     except json.JSONDecodeError as e:
-        print(f"Failed to decode JSON: {e}")
-        return {}
+        print(f"Initial JSON decode failed: {e}. Attempting to fix the JSON format.")
+
+        # If it fails, attempt to manually wrap the JSON objects in a list
+        try:
+            json_start = response.find('{')
+            json_end = response.rfind('}')
+            
+            # Extract the JSON string
+            json_str = response[json_start:json_end+1]
+
+            # Split by '},' to find individual objects
+            json_objects = json_str.split('},')
+
+            # Reattach missing closing braces and wrap in a list
+            json_objects = [obj.strip() + ('}' if not obj.endswith('}') else '') for obj in json_objects]
+            json_str_fixed = '[' + ','.join(json_objects) + ']'
+
+            # Attempt to load the fixed JSON string
+            return json.loads(json_str_fixed)
+        except Exception as ex:
+            print(f"Failed to fix and decode JSON: {ex}")
+            return {}
     
 def generate_restaurant_data(description):
     messages=[
@@ -43,9 +54,54 @@ def generate_restaurant_data(description):
     response = client.chat.completions.create(model="gpt-4o-mini",  messages=messages, stop=None, temperature=0.7)
 
     response_text = response.choices[0].message.content
-    breakpoint()
     result = extract_json_from_response(response_text)
     return result
+
+
+def generate_location_data(restaurant_name: str, num_locations: int = 5) -> list:
+    messages = [
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": f"Generate {num_locations} locations for a restaurant called "
+         f"'{restaurant_name}'. For each location, provide the name, address, phone number, opening hours, "
+         f"and an image description for what the outside of the restaurant looks like. "
+         f"Please return the information in a JSON format with fields: 'name', 'address', 'phone_number', 'opening_hours', and 'image_description'."}
+    ]
+    response = client.chat.completions.create(model="gpt-4o-mini", messages=messages, stop=None, temperature=0.7)
+    response_text = response.choices[0].message.content
+    location_data = extract_json_from_response(response_text)
+    if isinstance(location_data, list):
+        return location_data
+    else:
+        return []
+
+def generate_locations_for_restaurant(restaurant, num_locations=3):
+    locations_data = generate_location_data(restaurant.name, num_locations)
+
+    for loc_data in locations_data:
+        image_src = None
+        if 'image_description' in loc_data and loc_data['image_description']:
+            image_url = generate_image(loc_data['image_description'])
+            image_response = requests.get(image_url)
+            if image_response.status_code == 200:
+                image_filename = f"{loc_data['name'].replace(' ', '_')}.png"
+                try:
+                    os.mkdir(f"media/{restaurant.name}/locations/")
+                except OSError as error:
+                    pass
+                image_path = f"{restaurant.name}/locations/{image_filename}"
+                with open(f"media/{image_path}", 'wb') as img_file:
+                    img_file.write(image_response.content)
+                image_src = image_path
+
+        Location.objects.create(
+            restaurant=restaurant,
+            name=loc_data["name"],
+            address=loc_data["address"],
+            phone_number=loc_data["phone_number"],
+            opening_hours=loc_data["opening_hours"],
+            image_src=image_src or "default_location.png",
+        )
+
 
 def generate_image(description):
         response = client.images.generate(
@@ -110,6 +166,11 @@ class Command(BaseCommand):
             restaurant = Restaurant.objects.create(name=restaurant_name, logo_src=image_path)
             restaurant.users.add(user)
             self.stdout.write(self.style.SUCCESS(f'Restaurant "{restaurant_name}" created successfully.'))
+
+            # Generate locations for the restaurant
+            restaurant = Restaurant.objects.last()
+            generate_locations_for_restaurant(restaurant, num_locations=5)
+            self.stdout.write(self.style.SUCCESS(f'Locations for "{restaurant_name}" created successfully.'))
         except IntegrityError:
             restaurant = Restaurant.objects.get(name=restaurant_name)
             self.stdout.write(self.style.WARNING(f'Restaurant "{restaurant_name}" already exists, skipping creation.'))

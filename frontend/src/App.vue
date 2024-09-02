@@ -179,8 +179,6 @@ export default defineComponent({
         for (let i = 100; i <= 900; i += 100) {
           const factor = ((500 - i) / 1000) * 1.5;
           const intermediateColor = pSBC(factor, value); // Adjusting factor range
-          console.log(`${key}-${i}`);
-          console.log(intermediateColor);
           root.style.setProperty(`${key}-${i}`, intermediateColor);
         }
       }
