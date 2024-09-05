@@ -5,7 +5,7 @@
     <div
       class="self-stretch flex flex-row items-end justify-start flex-wrap content-end gap-[8.1px]"
     >
-      <ListItem1
+      <ListItem2
         background="/background.svg"
         springMix="Spring Mix"
         container="/container1@2x.png"
@@ -101,7 +101,7 @@
     <div
       class="self-stretch grid flex-row items-start justify-start pt-0 px-0 pb-1 gap-[0.1px] grid-cols-[repeat(3,_minmax(115px,_1fr))] mq450:justify-center mq450:grid-cols-[minmax(115px,_1fr)]"
     >
-      <ListItem1
+      <ListItem2
         springMixRemoveWidth="unset"
         background="/background.svg"
         springMix="Blue Cheese"
@@ -116,7 +116,7 @@
         vegSlaw="Hard Boiled Egg"
         propMinWidth="98px"
         container="/container-61@2x.png"
-      /><ListItem1
+      /><ListItem2
         springMixRemoveWidth="unset"
         background="/background.svg"
         springMix="Parmesan Crisps"
@@ -137,20 +137,18 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import ListItem1 from "./ListItem1.vue";
+import ListItem2 from "./ListItem2.vue";
 import ContainerComponent from "./ContainerComponent.vue";
 import ContainerComponent1 from "./ContainerComponent1.vue";
-import ListItem2 from "./ListItem2.vue";
 import ContainerComponent2 from "./ContainerComponent2.vue";
 import ContainerComponent3 from "./ContainerComponent3.vue";
 
 export default defineComponent({
   name: "SelectedIngredients",
   components: {
-    ListItem1,
+    ListItem2,
     ContainerComponent,
     ContainerComponent1,
-    ListItem2,
     ContainerComponent2,
     ContainerComponent3,
   },

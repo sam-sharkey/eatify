@@ -104,70 +104,11 @@
         </div>
       </div>
     </div>
+
     <section
-      class="w-[841px] bg-oldlace flex flex-col items-start justify-start pt-0 px-[45px] pb-4 box-border max-w-[calc(100%_-_525px)] shrink-0 text-left text-[22.1px] text-gray-100 font-inter mq1050:pl-[22px] mq1050:pr-[22px] mq1050:box-border mq1050:max-w-full"
+      class="w-[841px] bg-oldlace flex flex-col items-start justify-start pt-0 px-[45px] pb-4 box-border shrink-0 text-left text-[22.1px] text-gray-100 font-inter mq1050:pl-[22px] mq1050:pr-[22px] mq1050:box-border mq1050:max-w-full"
     >
-      <header
-        class="ml-[-82.5px] w-[915px] border-gray-300 border-b-[1px] border-solid box-border flex flex-row items-start justify-start py-0 px-10 top-[0] z-[99] sticky max-w-[122%] shrink-0 text-left text-base-8 text-gray-200 font-inter"
-      >
-        <div
-          class="w-[385px] flex flex-row items-start justify-start relative max-w-full"
-        >
-          <div
-            class="flex flex-row items-start justify-start text-base-9 text-darkslategray-200"
-          >
-            <div class="flex flex-col items-start justify-start py-3 px-0">
-              <div class="flex flex-col items-start justify-start">
-                <a
-                  class="[text-decoration:none] relative leading-[22px] text-[inherit] inline-block min-w-[46px] whitespace-nowrap"
-                  >Bases</a
-                >
-              </div>
-            </div>
-          </div>
-          <div
-            class="flex-1 flex flex-row items-start justify-end py-0 pl-10 pr-0"
-          >
-            <div class="flex flex-col items-start justify-start py-3 px-0">
-              <div class="flex flex-col items-start justify-start">
-                <a
-                  class="[text-decoration:none] relative leading-[22px] text-[inherit] inline-block min-w-[69px]"
-                  >Toppings</a
-                >
-              </div>
-            </div>
-          </div>
-          <div
-            class="flex-1 flex flex-row items-start justify-start py-0 pl-[39px] pr-0 text-base-2"
-          >
-            <div class="flex flex-col items-start justify-start py-3 px-0">
-              <div class="flex flex-col items-start justify-start">
-                <a
-                  class="[text-decoration:none] relative leading-[22px] text-[inherit] inline-block min-w-[77px] whitespace-nowrap"
-                  >Premiums</a
-                >
-              </div>
-            </div>
-          </div>
-          <div
-            class="flex-1 flex flex-row items-start justify-start py-0 pl-[39px] pr-0"
-          >
-            <div class="flex flex-col items-start justify-start py-3 px-0">
-              <div class="flex flex-col items-start justify-start">
-                <a
-                  class="[text-decoration:none] relative leading-[22px] text-[inherit] inline-block min-w-[75px]"
-                  >Dressings</a
-                >
-              </div>
-            </div>
-          </div>
-          <div
-            class="w-[85.5px] !m-[0] absolute bottom-[0px] left-[-40px] flex flex-row items-start justify-end z-[1]"
-          >
-            <div class="h-px w-[45px] relative bg-darkslategray-200" />
-          </div>
-        </div>
-      </header>
+      <MenuCategoriesHeader :categories="categories" activeCategory="Bases" />
       <div
         class="w-full flex flex-col items-start justify-start max-w-[750px] mq750:max-w-full"
       >
@@ -565,7 +506,7 @@
             <div
               class="flex-1 flex flex-col items-start justify-start gap-4 min-w-[150px] max-w-[153px] text-[13.9px]"
             >
-              <ListItem4
+              <ListItem3
                 background="/background-10.svg"
                 vegSlaw="Veg Slaw"
                 container="/container-341@2x.png"
@@ -702,12 +643,6 @@
                 </div>
               </div>
               <ListItem3
-                propFlex="unset"
-                propMinWidth="unset"
-                propAlignSelf="stretch"
-                propHeight="171px"
-                propHeight1="unset"
-                propFlex1="1"
                 background="/background-10.svg"
                 springMix="Parmesan Crisps"
                 propMinWidth1="105px"
@@ -867,7 +802,7 @@
                 springMix="Blue Cheese"
                 propMinWidth1="78px"
                 container="/container-431@2x.png"
-              /><ListItem4
+              /><ListItem3
                 background="/background-10.svg"
                 propWidth="unset"
                 propPadding="0px 1px"
@@ -1515,11 +1450,11 @@ import SelectedIngredients from "./SelectedIngredients.vue";
 import ListItem3 from "./ListItem3.vue";
 import ContainerComponent from "./ContainerComponent.vue";
 import IngredientsSection from "./IngredientsSection.vue";
-import ListItem4 from "./ListItem4.vue";
 import ContainerComponent2 from "./ContainerComponent2.vue";
 import ContainerComponent4 from "./ContainerComponent4.vue";
 import ContainerComponent5 from "./ContainerComponent5.vue";
 import ContainerComponent3 from "./ContainerComponent3.vue";
+import MenuCategoriesHeader from "../MenuPage/MenuCategoriesHeader.vue";
 
 export default defineComponent({
   name: "CustomOrder",
@@ -1528,11 +1463,15 @@ export default defineComponent({
     ListItem3,
     ContainerComponent,
     IngredientsSection,
-    ListItem4,
     ContainerComponent2,
     ContainerComponent4,
     ContainerComponent5,
     ContainerComponent3,
+    MenuCategoriesHeader,
+  },
+  setup() {
+    const categories = ["Bases", "Toppings", "Premiums", "Dressings"];
+    return { categories };
   },
 });
 </script>
