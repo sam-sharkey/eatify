@@ -153,7 +153,7 @@ class Command(BaseCommand):
             # Download the image
             image_response = requests.get(image_url)
             if image_response.status_code == 200:
-                image_filename = f"{restaurant_name.replace(' ', '_')}.png"
+                image_filename = f"{restaurant_name.replace(' ', '_').replace('\'', '')}.png"
                 try:
                     os.mkdir(f"media/{restaurant_name}")
                 except OSError as error:

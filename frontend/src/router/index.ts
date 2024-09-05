@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomePage from "../components/HomePage/HomePage.vue";
 import MenuPage from "../components/MenuPage/MenuPage.vue";
 import LocationsPage from "../components/LocationsPage/LocationsPage.vue";
+import OrderPage from "../components/OrderPage/OrderPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -19,12 +20,12 @@ const routes: Array<RouteRecordRaw> = [
     path: "/locations",
     name: "Locations",
     component: LocationsPage,
-  } /*
+  },
   {
-    path: "/reservations",
-    name: "Reserve",
-    component: ReservePage,
-  },*/,
+    path: "/order",
+    name: "Order",
+    component: OrderPage,
+  },
 ];
 
 const router = createRouter({
