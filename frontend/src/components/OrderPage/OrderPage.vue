@@ -112,263 +112,67 @@
       <div
         class="w-full flex flex-col items-start justify-start max-w-[750px] mq750:max-w-full"
       >
-        <div
-          class="self-stretch border-gainsboro-200 border-b-[1px] border-solid box-border flex flex-col items-start justify-start pt-10 pb-[39px] px-0 gap-4 max-w-full mq750:pt-[26px] mq750:pb-[25px] mq750:box-border"
-        >
-          <div
-            class="self-stretch relative tracking-[1px] leading-[28px] mq450:text-lg mq450:leading-[22px]"
-          >
-            Bases
+        <div class="w-full max-w-2xl flex flex-col gap-4">
+          <!-- Section Header -->
+          <div class="border-b border-gainsboro-200 pb-6">
+            <h2 class="text-xl font-semibold tracking-wide">Bases</h2>
           </div>
-          <div
-            class="self-stretch flex flex-col items-start justify-start gap-4 max-w-full text-center text-sm-1"
-          >
-            <div
-              class="self-stretch flex flex-row items-start justify-center [row-gap:20px] mq750:flex-wrap"
-            >
-              <div
-                class="flex-1 flex flex-col items-start justify-start py-0 pl-0 pr-2 box-border min-w-[142px] max-w-[145px] text-sm-8"
-              >
-                <div
-                  class="self-stretch flex flex-row items-start justify-start relative"
-                >
-                  <img
-                    class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="flex-1 rounded-2xl bg-antiquewhite flex flex-col items-start justify-start pt-3 px-3 pb-5 z-[1]"
-                  >
-                    <div
-                      class="w-full overflow-hidden flex flex-col items-start justify-start py-0 pl-7 pr-6 box-border max-w-[113.2px]"
-                    >
-                      <a
-                        class="[text-decoration:none] self-stretch relative leading-[16px] text-[inherit] inline-block min-w-[60.1px]"
-                        >Chopped
-                      </a>
-                      <div
-                        class="flex flex-row items-start justify-start py-0 pl-px pr-1.5 text-sm-2"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[54px]"
-                        >
-                          Romaine
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex flex-row items-start justify-start py-0 pl-[11px] pr-3"
-                    >
-                      <img
-                        class="h-[107px] flex-1 relative max-w-[113.2px] overflow-hidden object-cover"
-                        alt=""
-                        src="/container-91@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="flex-[0.9449] flex flex-col items-start justify-center py-0 px-2 box-border min-w-[150px] max-w-[153px] mq450:flex-1"
-              >
-                <div
-                  class="self-stretch h-[171px] flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="w-[91px] flex flex-col items-start justify-center py-2 px-5 box-border"
-                    >
-                      <div
-                        class="w-full overflow-hidden flex flex-col items-center justify-start max-w-[51.51px]"
-                      >
-                        <a
-                          class="[text-decoration:none] relative leading-[16px] text-[inherit] inline-block min-w-[49px]"
-                          >Arugula</a
-                        >
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-101@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="flex-[0.9449] flex flex-col items-start justify-center py-0 px-2 box-border min-w-[150px] max-w-[153px] mq450:flex-1"
-              >
-                <div
-                  class="self-stretch h-[171px] flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="self-stretch flex flex-col items-start justify-center py-2 px-3"
-                    >
-                      <div
-                        class="w-full overflow-hidden flex flex-col items-center justify-start py-0 px-px box-border max-w-[88.77px]"
-                      >
-                        <a
-                          class="[text-decoration:none] relative leading-[16px] text-[inherit] inline-block min-w-[85px]"
-                          >Baby Spinach</a
-                        >
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-111@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <ListItem3
-                background="/background-10.svg"
-                springMix="Spring Mix"
-                container="/container1@2x.png"
-              />
-              <div
-                class="flex-[0.9449] flex flex-col items-start justify-center py-0 px-2 box-border min-w-[150px] max-w-[153px] text-smi-9 mq450:flex-1"
-              >
-                <div
-                  class="self-stretch h-[171px] flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="flex flex-col items-start justify-center py-2 px-[9px]"
-                    >
-                      <div
-                        class="overflow-hidden flex flex-col items-center justify-start py-0 px-px box-border max-w-[93.41px]"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[90px]"
-                        >
-                          Shredded Kale
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-131@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="w-[451.6px] grid flex-row items-start justify-start gap-2 max-w-full grid-cols-[repeat(3,_minmax(115px,_1fr))] text-smi-8 mq450:justify-center mq450:grid-cols-[minmax(115px,_1fr)]"
-            >
-              <div
-                class="flex flex-col items-start justify-start py-0 pl-0 pr-[7px]"
-              >
-                <ContainerComponent
-                  propFlex="unset"
-                  propMinWidth="unset"
-                  propAlignSelf="stretch"
-                  background="/background-10.svg"
-                  propPadding="unset"
-                />
-              </div>
-              <div
-                class="h-[171px] flex flex-row items-start justify-start relative"
-              >
-                <img
-                  class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                  alt=""
-                  src="/background-10.svg"
-                />
-                <div
-                  class="self-stretch rounded-2xl bg-antiquewhite flex flex-row items-start justify-start p-5 z-[1]"
-                >
-                  <div
-                    class="overflow-hidden flex flex-row items-start justify-start py-0 px-px box-border max-w-[95.7px]"
-                  >
-                    <div
-                      class="relative leading-[16px] inline-block min-w-[92px]"
-                    >
-                      Herbed Quinoa
-                    </div>
-                  </div>
-                  <div class="h-[115px] flex-1 relative hidden" />
-                </div>
-              </div>
-              <div
-                class="h-[171px] flex flex-col items-start justify-center py-0 px-2 box-border text-sm-1"
-              >
-                <div
-                  class="self-stretch flex-1 flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="self-stretch flex flex-col items-start justify-center py-2 px-[21px]"
-                    >
-                      <div
-                        class="w-full overflow-hidden flex flex-col items-center justify-start py-0 pl-px pr-0 box-border max-w-[69.94px]"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[67px]"
-                        >
-                          White Rice
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-141@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+          <!-- Items List -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Product Cards -->
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Chopped Romaine"
+              containerImage="/container-91@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Arugula"
+              containerImage="/container-101@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Baby Spinach"
+              containerImage="/container-111@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Spring Mix"
+              containerImage="/container1@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Shredded Kale"
+              containerImage="/container-131@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Herbed Quinoa"
+              containerImage="/container-141@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="White Rice"
+              containerImage="/container-141@2x.png"
+            />
           </div>
         </div>
+
+        <ListItem3
+          background="/background-10.svg"
+          springMix="Spring Mix"
+          container="/container1@2x.png"
+        />
+
+        <ContainerComponent
+          propFlex="unset"
+          propMinWidth="unset"
+          propAlignSelf="stretch"
+          background="/background-10.svg"
+          propPadding="unset"
+        />
+
         <IngredientsSection />
         <div
           class="self-stretch border-gainsboro-200 border-b-[1px] border-solid box-border flex flex-col items-start justify-start pt-10 px-0 pb-[39px] gap-4 max-w-full text-2xl-8 mq750:pt-[26px] mq750:pb-[25px] mq750:box-border"
