@@ -119,7 +119,9 @@
           </div>
 
           <!-- Items List -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8"
+          >
             <!-- Product Cards -->
             <ProductCard
               backgroundImage="/background-10.svg"
@@ -156,1092 +158,267 @@
               itemName="White Rice"
               containerImage="/container-141@2x.png"
             />
-          </div>
-        </div>
-
-        <ListItem3
-          background="/background-10.svg"
-          springMix="Spring Mix"
-          container="/container1@2x.png"
-        />
-
-        <ContainerComponent
-          propFlex="unset"
-          propMinWidth="unset"
-          propAlignSelf="stretch"
-          background="/background-10.svg"
-          propPadding="unset"
-        />
-
-        <IngredientsSection />
-        <div
-          class="self-stretch border-gainsboro-200 border-b-[1px] border-solid box-border flex flex-col items-start justify-start pt-10 px-0 pb-[39px] gap-4 max-w-full text-2xl-8 mq750:pt-[26px] mq750:pb-[25px] mq750:box-border"
-        >
-          <div
-            class="self-stretch relative tracking-[1px] leading-[28px] mq450:text-mid mq450:leading-[22px]"
-          >
-            Premiums
-          </div>
-          <div
-            class="ml-[-8px] w-[766px] flex flex-row items-start justify-center flex-wrap content-start max-w-[103%] shrink-0 text-center text-sm-2"
-          >
-            <div
-              class="flex-1 flex flex-col items-start justify-start gap-4 min-w-[150px] max-w-[153px] text-sm-5"
-            >
-              <div
-                class="self-stretch flex flex-row items-start justify-start py-0 px-2"
-              >
-                <div
-                  class="flex-1 flex flex-row items-start justify-start relative"
-                >
-                  <img
-                    class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="flex-1 rounded-2xl bg-antiquewhite flex flex-col items-start justify-start pt-3 px-3 pb-5 z-[1]"
-                  >
-                    <div
-                      class="overflow-hidden flex flex-col items-start justify-start py-0 pl-[18px] pr-3.5 box-border max-w-[113.2px]"
-                    >
-                      <div
-                        class="relative leading-[16px] inline-block min-w-[80px]"
-                      >
-                        Caramelized
-                      </div>
-                      <div
-                        class="relative text-sm-1 leading-[16px] inline-block min-w-[75px]"
-                      >
-                        Garlic Steak
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex flex-row items-start justify-start py-0 pl-[11px] pr-3"
-                    >
-                      <img
-                        class="h-[107px] flex-1 relative max-w-[113.2px] overflow-hidden object-cover"
-                        alt=""
-                        src="/container-311@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="self-stretch h-[171px] flex flex-col items-start justify-center py-0 px-2 box-border text-smi"
-              >
-                <div
-                  class="self-stretch flex-1 flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="flex flex-col items-start justify-center py-2 px-3.5"
-                    >
-                      <div
-                        class="overflow-hidden flex flex-col items-center justify-start py-0 px-0.5 box-border max-w-[84.19px]"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[80px]"
-                        >
-                          Goat Cheese
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-321@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="self-stretch h-[171px] flex flex-col items-start justify-center py-0 px-2 box-border text-smi-8"
-              >
-                <div
-                  class="self-stretch flex-1 flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="w-24 flex flex-col items-start justify-center py-2 px-5 box-border"
-                    >
-                      <div
-                        class="w-full overflow-hidden flex flex-col items-center justify-start py-0 px-px box-border max-w-[56.38px]"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[53px]"
-                        >
-                          Avocado
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-331@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="flex-1 flex flex-col items-start justify-start gap-4 min-w-[150px] max-w-[153px] text-[13.9px]"
-            >
-              <ListItem3
-                background="/background-10.svg"
-                vegSlaw="Veg Slaw"
-                container="/container-341@2x.png"
-              />
-              <div
-                class="self-stretch flex flex-row items-start justify-start py-0 px-2"
-              >
-                <div
-                  class="flex-1 flex flex-row items-start justify-start relative"
-                >
-                  <img
-                    class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="flex-1 rounded-2xl bg-antiquewhite flex flex-col items-end justify-start pt-3 px-3 pb-5 z-[1]"
-                  >
-                    <div
-                      class="w-full overflow-hidden flex flex-col items-end justify-start py-0 px-[25px] box-border max-w-[113.2px]"
-                    >
-                      <div
-                        class="self-stretch flex flex-row items-start justify-end py-0 pl-[9px] pr-[5px]"
-                      >
-                        <div
-                          class="flex-1 relative leading-[16px] inline-block min-w-[49.2px]"
-                        >
-                          Shaved
-                        </div>
-                      </div>
-                      <div
-                        class="relative text-smi leading-[16px] inline-block min-w-[62px]"
-                      >
-                        Parmesan
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex flex-row items-start justify-end py-0 pl-3 pr-[11px]"
-                    >
-                      <img
-                        class="h-[107px] flex-1 relative max-w-[113.2px] overflow-hidden object-cover"
-                        alt=""
-                        src="/container-351@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="self-stretch h-[171px] flex flex-col items-start justify-center py-0 px-2 box-border z-[1] text-smi"
-              >
-                <div
-                  class="self-stretch flex-1 flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="flex flex-col items-start justify-center py-2 px-[13px]"
-                    >
-                      <div
-                        class="overflow-hidden flex flex-col items-center justify-start py-0 pl-px pr-0.5 box-border max-w-[85.89px]"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[82px]"
-                        >
-                          Roasted Tofu
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-361@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="flex-1 flex flex-col items-start justify-start gap-4 min-w-[150px] max-w-[153px]"
-            >
-              <div
-                class="self-stretch flex flex-row items-start justify-start py-0 px-2"
-              >
-                <div
-                  class="flex-1 flex flex-row items-start justify-start relative"
-                >
-                  <img
-                    class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="flex-1 rounded-2xl bg-antiquewhite flex flex-col items-start justify-start pt-3 px-3 pb-5 z-[1]"
-                  >
-                    <div
-                      class="overflow-hidden flex flex-col items-start justify-start py-0 pl-[19px] pr-[15px] box-border max-w-[113.2px]"
-                    >
-                      <div
-                        class="relative leading-[16px] inline-block min-w-[78px]"
-                      >
-                        Miso Glazed
-                      </div>
-                      <div
-                        class="flex flex-row items-start justify-start py-0 pl-[13px] pr-5 text-sm-3"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[47px]"
-                        >
-                          Salmon
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex flex-row items-start justify-start py-0 pl-[11px] pr-3"
-                    >
-                      <img
-                        class="h-[107px] flex-1 relative max-w-[113.2px] overflow-hidden object-cover"
-                        alt=""
-                        src="/container-371@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <ListItem3
-                background="/background-10.svg"
-                springMix="Parmesan Crisps"
-                propMinWidth1="105px"
-                container="/container-381@2x.png"
-              />
-              <div
-                class="self-stretch flex flex-row items-start justify-start py-0 px-2 text-sm-3"
-              >
-                <div
-                  class="flex-1 flex flex-row items-start justify-start relative"
-                >
-                  <img
-                    class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="flex-1 rounded-2xl bg-antiquewhite flex flex-col items-start justify-start pt-3 px-3 pb-5 z-[1]"
-                  >
-                    <div
-                      class="w-full overflow-hidden flex flex-col items-start justify-start py-0 pl-[5px] pr-0.5 box-border max-w-[113.2px]"
-                    >
-                      <div
-                        class="self-stretch relative leading-[16px] inline-block min-w-[105.3px]"
-                      >
-                        Warm Portobello
-                      </div>
-                      <div
-                        class="flex flex-row items-start justify-start py-0 pl-10 pr-11 text-smi-9"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[22px]"
-                        >
-                          Mix
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex flex-row items-start justify-start py-0 pl-[11px] pr-3"
-                    >
-                      <img
-                        class="h-[107px] flex-1 relative max-w-[113.2px] overflow-hidden object-cover"
-                        alt=""
-                        src="/container-391@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="flex-1 flex flex-col items-start justify-start gap-4 min-w-[150px] max-w-[153px]"
-            >
-              <div
-                class="self-stretch h-[171px] flex flex-col items-start justify-center py-0 px-2 box-border"
-              >
-                <div
-                  class="self-stretch flex-1 flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="flex flex-col items-start justify-center py-2 px-5"
-                    >
-                      <div
-                        class="overflow-hidden flex flex-col items-center justify-start py-0 px-px box-border max-w-[59.01px]"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[56px]"
-                        >
-                          Hummus
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-401@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="self-stretch flex flex-row items-start justify-start py-0 px-2 text-sm-5"
-              >
-                <div
-                  class="flex-1 flex flex-row items-start justify-start relative"
-                >
-                  <img
-                    class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="flex-1 rounded-2xl bg-antiquewhite flex flex-col items-start justify-start pt-3 px-3 pb-5 z-[1]"
-                  >
-                    <div
-                      class="w-full overflow-hidden flex flex-col items-end justify-start py-0 px-[7px] box-border max-w-[113.2px]"
-                    >
-                      <div
-                        class="relative leading-[16px] inline-block min-w-[93px]"
-                      >
-                        Warm Roasted
-                      </div>
-                      <div
-                        class="self-stretch relative text-smi leading-[16px] inline-block min-w-[97.8px]"
-                      >
-                        Sweet Potatoes
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex flex-row items-start justify-start py-0 pl-[11px] pr-3"
-                    >
-                      <img
-                        class="h-[107px] flex-1 relative max-w-[113.2px] overflow-hidden object-cover"
-                        alt=""
-                        src="/container-411@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="self-stretch h-[171px] flex flex-row items-start justify-start py-0 px-2 box-border"
-              >
-                <ContainerComponent2
-                  propMinWidth="unset"
-                  propAlignSelf="stretch"
-                  background="/background-10.svg"
-                  propHeight="unset"
-                  propAlignSelf1="stretch"
-                  container="/container-421@2x.png"
-                />
-              </div>
-            </div>
-            <div
-              class="flex-1 flex flex-col items-start justify-start gap-4 min-w-[150px] max-w-[153px] text-smi"
-            >
-              <ListItem3
-                propFlex="unset"
-                propMinWidth="unset"
-                propAlignSelf="stretch"
-                propHeight="171px"
-                propHeight1="unset"
-                propFlex1="1"
-                background="/background-10.svg"
-                springMix="Blue Cheese"
-                propMinWidth1="78px"
-                container="/container-431@2x.png"
-              /><ListItem3
-                background="/background-10.svg"
-                propWidth="unset"
-                propPadding="0px 1px"
-                vegSlaw="Hard Boiled Egg"
-                propMinWidth="98px"
-                container="/container-441@2x.png"
-              />
-              <div
-                class="self-stretch h-[171px] flex flex-col items-start justify-center py-0 px-2 box-border"
-              >
-                <div
-                  class="self-stretch flex-1 flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="flex flex-col items-start justify-center py-2 px-0.5"
-                    >
-                      <div
-                        class="overflow-hidden flex flex-col items-center justify-start py-0 px-px box-border max-w-[107.71px]"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[104px]"
-                        >
-                          Roasted Chicken
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-45@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Wild Rice"
+              containerImage="/container-141@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Spring Mix"
+              containerImage="/container1@2x.png"
+            />
           </div>
         </div>
         <div
-          class="self-stretch border-gainsboro-200 border-b-[1px] border-solid box-border flex flex-col items-start justify-start pt-10 px-0 pb-[39px] gap-4 max-w-full text-2xl mq750:pt-[26px] mq750:pb-[25px] mq750:box-border"
+          class="w-full border-b border-gainsboro-200 py-10 lg:py-6 px-0 gap-4 text-xl font-medium text-gray-700"
         >
-          <h2
-            class="m-0 self-stretch relative text-inherit tracking-[1px] leading-[28px] font-normal font-[inherit] mq450:text-mid mq450:leading-[22px]"
-          >
-            Dressings
-          </h2>
+          <!-- Section Header -->
+          <h2 class="tracking-wide">Premiums</h2>
           <div
-            class="ml-[-8px] w-[766px] flex flex-row items-start justify-center gap-2 max-w-[103%] shrink-0 text-center text-smi-9 mq750:flex-wrap"
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8"
           >
-            <div
-              class="flex-1 flex flex-col items-start justify-start gap-4 min-w-[99px]"
-            >
-              <div
-                class="self-stretch flex flex-row items-start justify-start py-0 px-2 text-sm-7"
-              >
-                <div
-                  class="flex-1 flex flex-row items-start justify-start relative"
-                >
-                  <img
-                    class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="flex-1 rounded-2xl bg-antiquewhite flex flex-col items-start justify-start pt-3 px-3 pb-5 z-[1]"
-                  >
-                    <div
-                      class="w-full overflow-hidden flex flex-col items-end justify-start py-0 px-[22px] box-border max-w-[113.2px]"
-                    >
-                      <div
-                        class="flex flex-row items-start justify-end py-0 pl-1.5 pr-px"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[62px]"
-                        >
-                          Red Wine
-                        </div>
-                      </div>
-                      <div
-                        class="self-stretch relative text-sm-2 leading-[16px] inline-block min-w-[68.4px]"
-                      >
-                        Vinaigrette
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex flex-row items-start justify-start py-0 pl-[11px] pr-3"
-                    >
-                      <img
-                        class="h-[107px] flex-1 relative max-w-[113.2px] overflow-hidden object-cover"
-                        alt=""
-                        src="/container-46@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="self-stretch h-[171px] flex flex-col items-start justify-center py-0 px-2 box-border text-smi"
-              >
-                <div
-                  class="self-stretch flex-1 flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="w-[87px] flex flex-col items-start justify-center py-2 px-5 box-border"
-                    >
-                      <div
-                        class="w-full overflow-hidden flex flex-col items-center justify-start py-0 px-px box-border max-w-[47.34px]"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[44px]"
-                        >
-                          Caesar
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-47@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="self-stretch h-[171px] flex flex-col items-start justify-center py-0 px-2 box-border"
-              >
-                <div
-                  class="self-stretch flex-1 flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="flex flex-col items-start justify-center py-2 px-[11px]"
-                    >
-                      <div
-                        class="overflow-hidden flex flex-col items-center justify-start py-0 px-px box-border max-w-[90.54px]"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[87px]"
-                        >
-                          Spicy Cashew
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-48@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="self-stretch h-[171px] flex flex-col items-start justify-center py-0 px-2 box-border"
-              >
-                <div
-                  class="self-stretch flex-1 flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="flex flex-col items-start justify-center py-2 px-[5px]"
-                    >
-                      <div
-                        class="overflow-hidden flex flex-col items-center justify-start py-0 px-px box-border max-w-[102.38px]"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[99px]"
-                        >
-                          Lemon Squeeze
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-49@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="flex-[0.9449] flex flex-col items-start justify-start py-0 pl-0 pr-2 box-border gap-4 min-w-[94px] text-sm-7 mq450:flex-1"
-            >
-              <div
-                class="self-stretch flex flex-row items-start justify-start relative"
-              >
-                <img
-                  class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                  alt=""
-                  src="/background-10.svg"
-                />
-                <div
-                  class="flex-1 rounded-2xl bg-antiquewhite flex flex-col items-end justify-start pt-3 px-3 pb-5 z-[1]"
-                >
-                  <div
-                    class="overflow-hidden flex flex-col items-start justify-start py-0 pl-[21px] pr-4 box-border max-w-[113.2px]"
-                  >
-                    <div
-                      class="relative leading-[16px] inline-block min-w-[75px]"
-                    >
-                      Honey BBQ
-                    </div>
-                    <div
-                      class="flex flex-row items-start justify-start py-0 pl-4 pr-[21px] text-sm-2"
-                    >
-                      <div
-                        class="relative leading-[16px] inline-block min-w-[39px]"
-                      >
-                        Sauce
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="self-stretch flex flex-row items-start justify-end py-0 pl-3 pr-[11px]"
-                  >
-                    <img
-                      class="h-[107px] flex-1 relative max-w-[113.2px] overflow-hidden object-cover"
-                      alt=""
-                      src="/container-50@2x.png"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                class="self-stretch flex flex-row items-start justify-start relative text-sm-3"
-              >
-                <img
-                  class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                  alt=""
-                  src="/background-10.svg"
-                />
-                <div
-                  class="flex-1 rounded-2xl bg-antiquewhite flex flex-col items-end justify-start pt-3 px-3 pb-5 z-[1]"
-                >
-                  <div
-                    class="w-full overflow-hidden flex flex-col items-start justify-start py-0 pl-1 pr-0 box-border max-w-[113.2px]"
-                  >
-                    <div
-                      class="self-stretch relative leading-[16px] inline-block min-w-[108.1px]"
-                    >
-                      Extra Virgin Olive
-                    </div>
-                    <div
-                      class="flex flex-row items-start justify-start py-0 pl-11 pr-12 text-sm-5"
-                    >
-                      <div
-                        class="relative leading-[16px] inline-block min-w-[17px]"
-                      >
-                        Oil
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="self-stretch flex flex-row items-start justify-end py-0 pl-3 pr-[11px]"
-                  >
-                    <img
-                      class="h-[107px] flex-1 relative max-w-[113.2px] overflow-hidden object-cover"
-                      alt=""
-                      src="/container-511@2x.png"
-                    />
-                  </div>
-                </div>
-              </div>
-              <ContainerComponent4
-                background="/background-10.svg"
-                sweetgreenHot="Sweetgreen Hot "
-                sauce="Sauce"
-                container="/container-52@2x.png"
-              /><ContainerComponent5
-                noriSesame="Crushed Red "
-                seasoning="Pepper"
-                container="/container-53@2x.png"
-                propTextDecoration="unset"
-                propMinWidth="45px"
-              />
-            </div>
-            <div
-              class="flex-[0.9449] flex flex-col items-start justify-start py-0 pl-0 pr-2 box-border gap-4 min-w-[94px] text-sm-8 mq450:flex-1"
-            >
-              <ContainerComponent4
-                background="/background-10.svg"
-                sweetgreenHot="Green Goddess "
-                propMinWidth="98.4px"
-                propAlignSelf="stretch"
-                sauce="Ranch"
-                propFlex="1"
-                container="/container-54@2x.png"
-              />
-              <div
-                class="self-stretch flex flex-row items-start justify-start relative"
-              >
-                <img
-                  class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                  alt=""
-                  src="/background-10.svg"
-                />
-                <div
-                  class="flex-1 rounded-2xl bg-antiquewhite flex flex-col items-start justify-start pt-3 px-3 pb-5 z-[1]"
-                >
-                  <div
-                    class="w-full h-8 overflow-hidden shrink-0 flex flex-col items-end justify-start py-0 px-[11px] box-border max-w-[113.2px]"
-                  >
-                    <div
-                      class="relative leading-[16px] inline-block min-w-[86px] shrink-0"
-                    >
-                      Lime Cilantro
-                    </div>
-                    <div
-                      class="flex flex-row items-start justify-end py-0 px-[5px] text-xs"
-                    >
-                      <div
-                        class="relative leading-[16px] inline-block min-w-[66px] shrink-0"
-                      >
-                        Jalapeno …
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch h-4 flex flex-row items-start justify-end py-0 pl-3 pr-2.5 box-border shrink-0 text-sm-2"
-                    >
-                      <div
-                        class="self-stretch flex-1 relative leading-[16px] flex items-center justify-center shrink-0"
-                      >
-                        Vinaigrette
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="self-stretch flex flex-row items-start justify-start py-0 pl-[11px] pr-3"
-                  >
-                    <img
-                      class="h-[107px] flex-1 relative max-w-[113.2px] overflow-hidden object-cover"
-                      alt=""
-                      src="/container-55@2x.png"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                class="self-stretch flex flex-row items-start justify-start relative text-sm-5"
-              >
-                <img
-                  class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                  alt=""
-                  src="/background-10.svg"
-                />
-                <div
-                  class="flex-1 rounded-2xl bg-antiquewhite flex flex-col items-start justify-start pt-3 px-3 pb-5 z-[1]"
-                >
-                  <div
-                    class="overflow-hidden flex flex-col items-end justify-start py-0 px-[9px] box-border max-w-[113.2px]"
-                  >
-                    <div
-                      class="flex flex-row items-start justify-end py-0 pl-4 pr-[11px]"
-                    >
-                      <div
-                        class="relative leading-[16px] inline-block min-w-[68px]"
-                      >
-                        Hot Honey
-                      </div>
-                    </div>
-                    <div
-                      class="relative text-smi leading-[16px] inline-block min-w-[93px]"
-                    >
-                      Mustard Sauce
-                    </div>
-                  </div>
-                  <div
-                    class="self-stretch flex flex-row items-start justify-start py-0 pl-[11px] pr-3"
-                  >
-                    <img
-                      class="h-[107px] flex-1 relative max-w-[113.2px] overflow-hidden object-cover"
-                      alt=""
-                      src="/container-56@2x.png"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="w-[137.2px] flex flex-col items-start justify-start gap-4 text-sm-5"
-            >
-              <ContainerComponent3
-                propFlex="unset"
-                propAlignSelf="stretch"
-                background="/background-10.svg"
-                container="/container-81@2x.png"
-                propWidth="calc(100% - 23.2px)"
-              />
-              <div
-                class="self-stretch flex flex-row items-start justify-start relative"
-              >
-                <img
-                  class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                  alt=""
-                  src="/background-10.svg"
-                />
-                <div
-                  class="flex-1 rounded-2xl bg-antiquewhite flex flex-col items-start justify-start pt-3 px-3 pb-5 z-[1]"
-                >
-                  <div
-                    class="w-full overflow-hidden flex flex-col items-start justify-start py-0 pl-[15px] pr-[11px] box-border max-w-[113.2px]"
-                  >
-                    <div
-                      class="relative leading-[16px] inline-block min-w-[86px]"
-                    >
-                      Miso Sesame
-                    </div>
-                    <div
-                      class="self-stretch flex flex-row items-start justify-start py-0 pl-5 pr-[26px] text-smi"
-                    >
-                      <div
-                        class="flex-1 relative leading-[16px] inline-block min-w-[41.4px]"
-                      >
-                        Ginger
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="self-stretch flex flex-row items-start justify-start py-0 pl-[11px] pr-3"
-                  >
-                    <img
-                      class="h-[107px] flex-1 relative max-w-[113.2px] overflow-hidden object-cover"
-                      alt=""
-                      src="/container-58@2x.png"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                class="self-stretch flex flex-row items-start justify-start relative text-sm"
-              >
-                <img
-                  class="h-full w-full absolute !m-[0] right-[0px] bottom-[-3px] left-[0px] rounded-xl max-w-full overflow-hidden"
-                  alt=""
-                  src="/background-10.svg"
-                />
-                <div
-                  class="flex-1 rounded-2xl bg-antiquewhite flex flex-col items-start justify-start pt-3 px-3 pb-5 z-[1]"
-                >
-                  <div
-                    class="overflow-hidden flex flex-col items-end justify-start py-0 px-[23px] box-border max-w-[113.2px]"
-                  >
-                    <div
-                      class="flex flex-row items-start justify-end py-0 pl-[13px] pr-[7px]"
-                    >
-                      <div
-                        class="relative leading-[16px] inline-block min-w-[47px]"
-                      >
-                        Umami
-                      </div>
-                    </div>
-                    <div
-                      class="relative text-sm-1 leading-[16px] inline-block min-w-[65px]"
-                    >
-                      Seasoning
-                    </div>
-                  </div>
-                  <div
-                    class="self-stretch flex flex-row items-start justify-start py-0 pl-[11px] pr-3"
-                  >
-                    <img
-                      class="h-[107px] flex-1 relative max-w-[113.2px] overflow-hidden object-cover"
-                      alt=""
-                      src="/container-59@2x.png"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="flex-1 flex flex-col items-start justify-start gap-4 min-w-[99px] text-smi"
-            >
-              <div
-                class="self-stretch h-[171px] flex flex-col items-start justify-center py-0 px-2 box-border"
-              >
-                <div
-                  class="self-stretch flex-1 flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="flex flex-col items-start justify-center py-2 px-px"
-                    >
-                      <div
-                        class="overflow-hidden flex flex-col items-center justify-start py-0 px-px box-border max-w-[110.09px]"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[107px]"
-                        >
-                          Balsamic Vinegar
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-60@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="self-stretch h-[171px] flex flex-col items-start justify-center py-0 px-2 box-border text-sm-1"
-              >
-                <div
-                  class="self-stretch flex-1 flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="self-stretch flex flex-col items-start justify-center py-2 px-px"
-                    >
-                      <div
-                        class="w-full overflow-hidden flex flex-col items-center justify-start py-0 px-px box-border max-w-[110.8px]"
-                      >
-                        <div
-                          class="self-stretch relative leading-[16px] inline-block min-w-[107px]"
-                        >
-                          Pesto Vinaigrette
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-611@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="self-stretch h-[171px] flex flex-col items-start justify-center py-0 px-2 box-border"
-              >
-                <div
-                  class="self-stretch flex-1 flex flex-col items-start justify-start relative"
-                >
-                  <img
-                    class="w-full h-full absolute !m-[0] top-[1.75%] right-[0px] bottom-[-1.75%] left-[0px] rounded-xl max-w-full overflow-hidden max-h-full"
-                    alt=""
-                    src="/background-10.svg"
-                  />
-                  <div
-                    class="self-stretch flex-1 rounded-2xl bg-antiquewhite flex flex-col items-center justify-start p-3 z-[1]"
-                  >
-                    <div
-                      class="flex flex-col items-start justify-center py-2 px-[11px]"
-                    >
-                      <div
-                        class="overflow-hidden flex flex-col items-center justify-start py-0 px-px box-border max-w-[90.63px]"
-                      >
-                        <div
-                          class="relative leading-[16px] inline-block min-w-[87px]"
-                        >
-                          Lime Squeeze
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="self-stretch flex-1 flex flex-col items-center justify-center pt-0 px-[11px] pb-2"
-                    >
-                      <img
-                        class="w-full flex-1 relative max-w-[113.2px] overflow-hidden max-h-full object-cover"
-                        alt=""
-                        src="/container-62@2x.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Crispy Onions"
+              containerImage="/container-151@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Pickled Onions"
+              containerImage="/container-171@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Basil"
+              containerImage="/container-191@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Raw Carrots"
+              containerImage="/container-201@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Chickpeas"
+              containerImage="/container-211@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Cilantro"
+              containerImage="/container-221@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Cucumbers"
+              containerImage="/container-231@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Roasted Sweet Potatoes"
+              containerImage="/container-241@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Shredded Cabbage"
+              containerImage="/container-251@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Spicy Broccoli"
+              containerImage="/container-261@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Tomatoes"
+              containerImage="/container-271@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Crispy Rice"
+              containerImage="/container-281@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Roasted Almonds"
+              containerImage="/container-291@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Tortilla Chips"
+              containerImage="/container-301@2x.png"
+            />
+          </div>
+        </div>
+        <div
+          class="w-full border-b border-gainsboro-200 py-10 lg:py-6 px-0 gap-4 text-xl font-medium text-gray-700"
+        >
+          <!-- Section Header -->
+          <h2 class="tracking-wide">Premiums</h2>
+
+          <!-- Product Grid -->
+          <div
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 w-full max-w-4xl mx-auto"
+          >
+            <!-- Premium Items -->
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Caramelized Garlic Steak"
+              containerImage="/container-311@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Goat Cheese"
+              containerImage="/container-321@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Avocado"
+              containerImage="/container-331@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Veg Slaw"
+              containerImage="/container-341@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Shaved Parmesan"
+              containerImage="/container-351@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Roasted Tofu"
+              containerImage="/container-361@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Miso Glazed Salmon"
+              containerImage="/container-371@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Parmesan Crisps"
+              containerImage="/container-381@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Warm Portobello Mix"
+              containerImage="/container-391@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Hummus"
+              containerImage="/container-401@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Warm Roasted Sweet Potatoes"
+              containerImage="/container-411@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Roasted Chicken"
+              containerImage="/container-45@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Hard Boiled Egg"
+              containerImage="/container-441@2x.png"
+            />
+          </div>
+        </div>
+        <div
+          class="w-full border-b border-gainsboro-200 py-10 lg:py-6 px-0 gap-4 text-xl font-normal text-gray-700"
+        >
+          <!-- Section Header -->
+          <h2 class="tracking-wide">Dressings</h2>
+
+          <!-- Product Grid -->
+          <div
+            class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-4xl mx-auto"
+          >
+            <!-- Dressing Items -->
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Red Wine Vinaigrette"
+              containerImage="/container-46@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Caesar"
+              containerImage="/container-47@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Spicy Cashew"
+              containerImage="/container-48@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Lemon Squeeze"
+              containerImage="/container-49@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Honey BBQ Sauce"
+              containerImage="/container-50@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Extra Virgin Olive Oil"
+              containerImage="/container-511@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Sweetgreen Hot Sauce"
+              containerImage="/container-52@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Crushed Red Pepper"
+              containerImage="/container-53@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Green Goddess Ranch"
+              containerImage="/container-54@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Lime Cilantro Jalapeno Vinaigrette"
+              containerImage="/container-55@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Hot Honey Mustard Sauce"
+              containerImage="/container-56@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Miso Sesame Ginger"
+              containerImage="/container-58@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Umami Seasoning"
+              containerImage="/container-59@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Balsamic Vinegar"
+              containerImage="/container-60@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Pesto Vinaigrette"
+              containerImage="/container-611@2x.png"
+            />
+            <ProductCard
+              backgroundImage="/background-10.svg"
+              itemName="Lime Squeeze"
+              containerImage="/container-62@2x.png"
+            />
           </div>
         </div>
       </div>
@@ -1251,27 +428,15 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import SelectedIngredients from "./SelectedIngredients.vue";
-import ListItem3 from "./ListItem3.vue";
-import ContainerComponent from "./ContainerComponent.vue";
-import IngredientsSection from "./IngredientsSection.vue";
-import ContainerComponent2 from "./ContainerComponent2.vue";
-import ContainerComponent4 from "./ContainerComponent4.vue";
-import ContainerComponent5 from "./ContainerComponent5.vue";
-import ContainerComponent3 from "./ContainerComponent3.vue";
+import ProductCard from "./ProductCard.vue";
 import MenuCategoriesHeader from "../MenuPage/MenuCategoriesHeader.vue";
 
 export default defineComponent({
   name: "CustomOrder",
   components: {
     SelectedIngredients,
-    ListItem3,
-    ContainerComponent,
-    IngredientsSection,
-    ContainerComponent2,
-    ContainerComponent4,
-    ContainerComponent5,
-    ContainerComponent3,
     MenuCategoriesHeader,
+    ProductCard,
   },
   setup() {
     const categories = ["Bases", "Toppings", "Premiums", "Dressings"];

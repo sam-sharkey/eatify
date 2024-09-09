@@ -8,6 +8,15 @@ export interface MenuItem {
   calories: number;
 }
 
+export interface ItemOption {
+  classification: string;
+  name: string;
+  image_src: string;
+  cost: number;
+  calories: number;
+  is_in_stock: boolean;
+}
+
 export interface HamburgerMenuItem {
   name: string;
   path: string;

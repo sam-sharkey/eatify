@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import MenuItem, Highlight, Location
+from .models import MenuItem, Highlight, Location, ItemOption
 from .models import Restaurant, HeaderConfig, FooterConfig, MainPageConfig
 
 
@@ -9,6 +9,9 @@ from .models import Restaurant, HeaderConfig, FooterConfig, MainPageConfig
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = ('name', 'image_src', 'description')
 
+@admin.register(ItemOption)
+class ItemOptionAdmin(admin.ModelAdmin):
+    list_display = ('name', 'image_src', 'calories')
 
 @admin.register(Highlight)
 class HighlightAdmin(admin.ModelAdmin):

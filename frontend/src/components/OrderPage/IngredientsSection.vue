@@ -6,7 +6,9 @@
     <div class="w-full text-left tracking-wider leading-7">Toppings</div>
 
     <!-- Toppings Grid -->
-    <div class="w-full flex flex-wrap justify-center gap-8">
+    <div
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8"
+    >
       <ProductCard
         backgroundImage="/background-10.svg"
         itemName="Crispy Onions"

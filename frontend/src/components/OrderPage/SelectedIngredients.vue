@@ -5,17 +5,17 @@
     <!-- First Row of Items -->
     <div class="w-full grid grid-cols-3 gap-2 justify-center pb-4">
       <ProductCard
-        initialQuantity="1"
+        :initialQuantity="initialQuantity"
         itemName="Spring Mix"
         containerImage="/container1@2x.png"
       />
       <ProductCard
-        initialQuantity="1"
+        :initialQuantity="initialQuantity"
         itemName="Wild Rice"
         containerImage="/container-110@2x.png"
       />
       <ProductCard
-        initialQuantity="1"
+        :initialQuantity="initialQuantity"
         itemName="Apples"
         containerImage="/container-110@2x.png"
       />
@@ -24,17 +24,17 @@
     <!-- Second Row of Items -->
     <div class="w-full grid grid-cols-3 gap-2 justify-center pb-4">
       <ProductCard
-        initialQuantity="1"
+        :initialQuantity="initialQuantity"
         itemName="Za'atar Breadcrumbs"
         containerImage="/container-25@2x.png"
       />
       <ProductCard
-        initialQuantity="1"
+        :initialQuantity="initialQuantity"
         itemName="Veg Slaw"
         containerImage="/container-310@2x.png"
       />
       <ProductCard
-        initialQuantity="1"
+        :initialQuantity="initialQuantity"
         itemName="Blackened Chicken"
         containerImage="/container-44@2x.png"
       />
@@ -43,17 +43,17 @@
     <!-- Third Row of Items (Grid) -->
     <div class="w-full grid grid-cols-3 gap-2 justify-center pb-4">
       <ProductCard
-        initialQuantity="1"
+        :initialQuantity="initialQuantity"
         itemName="Blue Cheese"
         containerImage="/container-51@2x.png"
       />
       <ProductCard
-        initialQuantity="1"
+        :initialQuantity="initialQuantity"
         itemName="Hard Boiled Egg"
         containerImage="/container-61@2x.png"
       />
       <ProductCard
-        initialQuantity="1"
+        :initialQuantity="initialQuantity"
         itemName="Parmesan Crisps"
         containerImage="/container-71@2x.png"
       />
@@ -62,7 +62,7 @@
     <!-- Last Item Row -->
     <div class="w-[153.3px] flex items-start justify-start pb-2">
       <ProductCard
-        initialQuantity="1"
+        :initialQuantity="initialQuantity"
         itemName="Balsamic Vinaigrette"
         containerImage="/container-81@2x.png"
       />
@@ -78,6 +78,10 @@ export default defineComponent({
   name: "SelectedIngredients",
   components: {
     ProductCard,
+  },
+  setup() {
+    const initialQuantity = 1;
+    return { initialQuantity };
   },
 });
 </script>

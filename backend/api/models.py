@@ -80,6 +80,33 @@ class MenuItem(models.Model):
             )
         ]
 
+class ItemOption(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='itemoptions')
+    name = models.CharField(max_length=100)
+    calories = models.DecimalField(max_digits=5, decimal_places=2)
+    cost = models.DecimalField(max_digits=5, decimal_places=2)
+    classification = models.CharField(max_length=50)  # e.g. "Base", "Premium", "Dressing", "Sweetener"
+    is_in_stock = models.BooleanField(default=True)
+    option_for_items = models.ManyToManyField(MenuItem, related_name='option')
+    def upload_photo_to(self, filename):
+        return f'{self.restaurant.name}/option/{filename}'
+    
+    image_src = models.ImageField(upload_to=upload_photo_to, blank=True)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=[
+                    "name",
+                    "restaurant",
+                ],
+                name="unique_itemoption",
+            )
+        ]
+
 class Highlight(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='highlights')
     title = models.CharField(max_length=255)

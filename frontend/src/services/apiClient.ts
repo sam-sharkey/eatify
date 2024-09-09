@@ -4,6 +4,7 @@ import {
   MenuItem as MenuItemType,
   Highlight,
   Restaurant,
+  ItemOption,
 } from "../components/types";
 
 const apiClient = axios.create({
@@ -42,6 +43,20 @@ export const fetchMenuItems = async (
   try {
     const response = await apiClient.get<MenuItemType[]>(
       `/api/menu-items/${restaurantId}/`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch menu items:", error);
+    throw error;
+  }
+};
+
+export const fetchItemOptions = async (
+  restaurantId: number
+): Promise<ItemOption[]> => {
+  try {
+    const response = await apiClient.get<ItemOption[]>(
+      `/api/item-options/${restaurantId}/`
     );
     return response.data;
   } catch (error) {

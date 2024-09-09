@@ -62,7 +62,7 @@ export default defineComponent({
     initialQuantity: { type: Number, default: 0 }, // Container image URL
   },
   setup(props) {
-    const quantity = ref(props.initialQuantity);
+    const quantity = ref<number>(props.initialQuantity);
 
     const addItem = () => {
       quantity.value = quantity.value + 1;
