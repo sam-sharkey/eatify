@@ -1,59 +1,27 @@
 <template>
   <section
-    class="bg-oldlace flex flex-col items-start justify-start pt-0 px-8 pb-4 text-gray-100"
+    class="w-full h-full bg-oldlace flex flex-col items-start justify-start pt-0 pb-4 text-gray-100"
   >
-    <div class="w-full max-w-4xl mx-auto">
-      <!-- Section Header -->
-      <h2 class="text-xl font-semibold mb-4">Menu</h2>
+    <MenuCategoriesHeader
+      :categories="menuCategories"
+      :activeCategory="activeCategory"
+      class="w-full sticky top-0 z-10"
+    />
+    <div class="w-full z-0 px-12 max-w-4xl mx-2">
       <div v-if="ingredientsByCategory" class="space-y-8">
         <!-- Bases Section -->
-        <div v-if="ingredientsByCategory['Base']">
-          <h3 class="text-lg font-medium mb-4">Bases</h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div
+          v-for="category in menuCategories"
+          :key="category"
+          class="option-section"
+          :data-category="category"
+        >
+          <h3 class="text-lg font-medium mb-4">{{ category }}</h3>
+          <div
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
+          >
             <ProductCard
-              v-for="ingredient in ingredientsByCategory['Base']"
-              :key="ingredient.id"
-              :containerImage="ingredient.image_src"
-              :itemName="ingredient.name"
-              :in-stock="ingredient.is_in_stock"
-            />
-          </div>
-        </div>
-
-        <!-- Topping Section -->
-        <div v-if="ingredientsByCategory['Topping']">
-          <h3 class="text-lg font-medium mb-4">Topping</h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <ProductCard
-              v-for="ingredient in ingredientsByCategory['Topping']"
-              :key="ingredient.id"
-              :containerImage="ingredient.image_src"
-              :itemName="ingredient.name"
-              :in-stock="ingredient.is_in_stock"
-            />
-          </div>
-        </div>
-
-        <!-- Premiums Section -->
-        <div v-if="ingredientsByCategory['Premium']">
-          <h3 class="text-lg font-medium mb-4">Premiums</h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <ProductCard
-              v-for="ingredient in ingredientsByCategory['Premium']"
-              :key="ingredient.id"
-              :containerImage="ingredient.image_src"
-              :itemName="ingredient.name"
-              :in-stock="ingredient.is_in_stock"
-            />
-          </div>
-        </div>
-
-        <!-- Dressings Section -->
-        <div v-if="ingredientsByCategory['Dressing']">
-          <h3 class="text-lg font-medium mb-4">Dressings</h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <ProductCard
-              v-for="ingredient in ingredientsByCategory['Dressing']"
+              v-for="ingredient in ingredientsByCategory[category]"
               :key="ingredient.id"
               :containerImage="ingredient.image_src"
               :itemName="ingredient.name"
@@ -72,16 +40,34 @@ import { ItemOption } from "../types";
 import { fetchItemOptions } from "../../services/apiClient"; // Import the API function
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the restaurant store
 import ProductCard from "./ProductCard.vue"; // Assume this component is created
+import MenuCategoriesHeader from "../MenuPage/MenuCategoriesHeader.vue";
 
 export default defineComponent({
   name: "OptionsMenu",
   components: {
     ProductCard,
+    MenuCategoriesHeader,
   },
   setup() {
     const restaurantStore = useRestaurantStore(); // Use the restaurant store
     const itemOptions = ref<ItemOption[]>([]);
     const menuCategories = ref<string[]>([]);
+
+    const activeCategory = ref("");
+
+    const handleScroll = () => {
+      const sections = document.querySelectorAll(".option-section");
+      console.log(sections);
+
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          activeCategory.value =
+            section.getAttribute("data-category") || activeCategory.value;
+          break;
+        }
+      }
+    };
 
     const ingredientsByCategory = computed(() => {
       const categories: { [key: string]: ItemOption[] } = {
@@ -127,9 +113,12 @@ export default defineComponent({
       }
     };
 
-    onMounted(loadItemOptions);
+    onMounted(async () => {
+      loadItemOptions();
+      document.addEventListener("scroll", handleScroll);
+    });
 
-    return { ingredientsByCategory };
+    return { ingredientsByCategory, menuCategories, activeCategory };
   },
 });
 </script>

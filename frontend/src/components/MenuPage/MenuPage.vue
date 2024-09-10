@@ -13,6 +13,7 @@
     <MenuCategoriesHeader
       :categories="menuCategories"
       :activeCategory="activeCategory"
+      class="top-20"
     />
 
     <main

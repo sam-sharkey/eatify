@@ -1,6 +1,6 @@
 <template>
   <div
-    class="sticky z-10 top-20 w-full bg-oldlace border-b-[1px] border-gray-300 border-solid box-border flex flex-row items-start justify-center py-[0rem] px-[1.25rem] max-w-full"
+    class="sticky z-10 w-full bg-oldlace border-b-[1px] border-gray-300 border-solid box-border flex flex-row items-start justify-center py-[0rem] px-[1.25rem] max-w-full"
   >
     <div
       class="flex flex-row items-start justify-center max-w-full [row-gap:20px] mq1150:flex-wrap"
