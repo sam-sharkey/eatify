@@ -14,7 +14,7 @@ class Command(BaseCommand):
             # Bases
             {
                 'name': 'Chopped Romaine',
-                'image_src': '/container-91@2x.png',
+                'image_src': '/SweetGreen/option/container-91@2x.png',
                 'calories': 15,
                 'cost': 1.50,
                 'classification': 'Base',
@@ -23,7 +23,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Spring Mix',
-                'image_src': '/container1@2x.png',
+                'image_src': '/SweetGreen/option/container1@2x.png',
                 'calories': 10,
                 'cost': 1.50,
                 'classification': 'Base',
@@ -32,7 +32,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Shredded Kale',
-                'image_src': '/container-131@2x.png',
+                'image_src': '/SweetGreen/option/container-131@2x.png',
                 'calories': 35,
                 'cost': 1.50,
                 'classification': 'Base',
@@ -41,7 +41,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Baby Spinach',
-                'image_src': '/container-111@2x.png',
+                'image_src': '/SweetGreen/option/container-111@2x.png',
                 'calories': 23,
                 'cost': 1.75,
                 'classification': 'Base',
@@ -50,7 +50,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Wild Rice',
-                'image_src': '/container-141@2x.png',
+                'image_src': '/SweetGreen/option/container-141@2x.png',
                 'calories': 180,
                 'cost': 2.00,
                 'classification': 'Base',
@@ -59,7 +59,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Herbed Quinoa',
-                'image_src': '/container-141@2x.png',
+                'image_src': '/SweetGreen/option/container-141@2x.png',
                 'calories': 120,
                 'cost': 2.00,
                 'classification': 'Base',
@@ -68,7 +68,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'White Rice',
-                'image_src': '/container-141@2x.png',
+                'image_src': '/SweetGreen/option/container-141@2x.png',
                 'calories': 200,
                 'cost': 1.75,
                 'classification': 'Base',
@@ -79,7 +79,7 @@ class Command(BaseCommand):
             # Topping
             {
                 'name': 'Crispy Onions',
-                'image_src': '/container-151@2x.png',
+                'image_src': '/SweetGreen/option/container-151@2x.png',
                 'calories': 40,
                 'cost': 0.50,
                 'classification': 'Topping',
@@ -88,7 +88,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Pickled Onions',
-                'image_src': '/container-171@2x.png',
+                'image_src': '/SweetGreen/option/container-171@2x.png',
                 'calories': 10,
                 'cost': 0.75,
                 'classification': 'Topping',
@@ -97,7 +97,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Basil',
-                'image_src': '/container-191@2x.png',
+                'image_src': '/SweetGreen/option/container-191@2x.png',
                 'calories': 5,
                 'cost': 0.75,
                 'classification': 'Topping',
@@ -106,7 +106,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Raw Carrots',
-                'image_src': '/container-201@2x.png',
+                'image_src': '/SweetGreen/option/container-201@2x.png',
                 'calories': 25,
                 'cost': 0.50,
                 'classification': 'Topping',
@@ -115,7 +115,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Chickpeas',
-                'image_src': '/container-211@2x.png',
+                'image_src': '/SweetGreen/option/container-211@2x.png',
                 'calories': 150,
                 'cost': 1.00,
                 'classification': 'Topping',
@@ -124,7 +124,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Cilantro',
-                'image_src': '/container-221@2x.png',
+                'image_src': '/SweetGreen/option/container-221@2x.png',
                 'calories': 5,
                 'cost': 0.50,
                 'classification': 'Topping',
@@ -133,7 +133,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Cucumbers',
-                'image_src': '/container-231@2x.png',
+                'image_src': '/SweetGreen/option/container-231@2x.png',
                 'calories': 8,
                 'cost': 0.75,
                 'classification': 'Topping',
@@ -142,7 +142,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Roasted Sweet Potatoes',
-                'image_src': '/container-241@2x.png',
+                'image_src': '/SweetGreen/option/container-241@2x.png',
                 'calories': 100,
                 'cost': 2.00,
                 'classification': 'Topping',
@@ -151,7 +151,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Shredded Cabbage',
-                'image_src': '/container-251@2x.png',
+                'image_src': '/SweetGreen/option/container-251@2x.png',
                 'calories': 15,
                 'cost': 0.50,
                 'classification': 'Topping',
@@ -160,7 +160,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Spicy Broccoli',
-                'image_src': '/container-261@2x.png',
+                'image_src': '/SweetGreen/option/container-261@2x.png',
                 'calories': 40,
                 'cost': 1.50,
                 'classification': 'Topping',
@@ -169,7 +169,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Tomatoes',
-                'image_src': '/container-271@2x.png',
+                'image_src': '/SweetGreen/option/container-271@2x.png',
                 'calories': 20,
                 'cost': 0.50,
                 'classification': 'Topping',
@@ -178,7 +178,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Crispy Rice',
-                'image_src': '/container-281@2x.png',
+                'image_src': '/SweetGreen/option/container-281@2x.png',
                 'calories': 70,
                 'cost': 1.00,
                 'classification': 'Topping',
@@ -187,7 +187,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Roasted Almonds',
-                'image_src': '/container-291@2x.png',
+                'image_src': '/SweetGreen/option/container-291@2x.png',
                 'calories': 120,
                 'cost': 2.00,
                 'classification': 'Topping',
@@ -196,7 +196,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Tortilla Chips',
-                'image_src': '/container-301@2x.png',
+                'image_src': '/SweetGreen/option/container-301@2x.png',
                 'calories': 150,
                 'cost': 1.00,
                 'classification': 'Topping',
@@ -207,7 +207,7 @@ class Command(BaseCommand):
             # More Premiums
             {
                 'name': 'Caramelized Garlic Steak',
-                'image_src': '/container-311@2x.png',
+                'image_src': '/SweetGreen/option/container-311@2x.png',
                 'calories': 320,
                 'cost': 6.00,
                 'classification': 'Premium',
@@ -216,7 +216,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Goat Cheese',
-                'image_src': '/container-321@2x.png',
+                'image_src': '/SweetGreen/option/container-321@2x.png',
                 'calories': 90,
                 'cost': 2.00,
                 'classification': 'Premium',
@@ -225,7 +225,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Avocado',
-                'image_src': '/container-331@2x.png',
+                'image_src': '/SweetGreen/option/container-331@2x.png',
                 'calories': 160,
                 'cost': 2.00,
                 'classification': 'Premium',
@@ -234,7 +234,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Veg Slaw',
-                'image_src': '/container-341@2x.png',
+                'image_src': '/SweetGreen/option/container-341@2x.png',
                 'calories': 50,
                 'cost': 1.00,
                 'classification': 'Premium',
@@ -243,7 +243,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Shaved Parmesan',
-                'image_src': '/container-351@2x.png',
+                'image_src': '/SweetGreen/option/container-351@2x.png',
                 'calories': 90,
                 'cost': 1.50,
                 'classification': 'Premium',
@@ -252,7 +252,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Roasted Tofu',
-                'image_src': '/container-361@2x.png',
+                'image_src': '/SweetGreen/option/container-361@2x.png',
                 'calories': 140,
                 'cost': 2.00,
                 'classification': 'Premium',
@@ -261,7 +261,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Miso Glazed Salmon',
-                'image_src': '/container-371@2x.png',
+                'image_src': '/SweetGreen/option/container-371@2x.png',
                 'calories': 280,
                 'cost': 6.50,
                 'classification': 'Premium',
@@ -270,7 +270,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Parmesan Crisps',
-                'image_src': '/container-381@2x.png',
+                'image_src': '/SweetGreen/option/container-381@2x.png',
                 'calories': 100,
                 'cost': 1.50,
                 'classification': 'Premium',
@@ -279,7 +279,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Warm Portobello Mix',
-                'image_src': '/container-391@2x.png',
+                'image_src': '/SweetGreen/option/container-391@2x.png',
                 'calories': 70,
                 'cost': 2.00,
                 'classification': 'Premium',
@@ -288,7 +288,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Hummus',
-                'image_src': '/container-401@2x.png',
+                'image_src': '/SweetGreen/option/container-401@2x.png',
                 'calories': 80,
                 'cost': 1.50,
                 'classification': 'Premium',
@@ -297,7 +297,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Hard Boiled Egg',
-                'image_src': '/container-441@2x.png',
+                'image_src': '/SweetGreen/option/container-441@2x.png',
                 'calories': 70,
                 'cost': 1.00,
                 'classification': 'Premium',
@@ -308,7 +308,7 @@ class Command(BaseCommand):
             # Dressings
             {
                 'name': 'Red Wine Vinaigrette',
-                'image_src': '/container-46@2x.png',
+                'image_src': '/SweetGreen/option/container-46@2x.png',
                 'calories': 90,
                 'cost': 1.00,
                 'classification': 'Dressing',
@@ -317,7 +317,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Caesar',
-                'image_src': '/container-47@2x.png',
+                'image_src': '/SweetGreen/option/container-47@2x.png',
                 'calories': 100,
                 'cost': 1.00,
                 'classification': 'Dressing',
@@ -326,7 +326,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Spicy Cashew',
-                'image_src': '/container-48@2x.png',
+                'image_src': '/SweetGreen/option/container-48@2x.png',
                 'calories': 80,
                 'cost': 1.00,
                 'classification': 'Dressing',
@@ -335,7 +335,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Lemon Squeeze',
-                'image_src': '/container-49@2x.png',
+                'image_src': '/SweetGreen/option/container-49@2x.png',
                 'calories': 5,
                 'cost': 0.25,
                 'classification': 'Dressing',
@@ -344,7 +344,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Honey BBQ Sauce',
-                'image_src': '/container-50@2x.png',
+                'image_src': '/SweetGreen/option/container-50@2x.png',
                 'calories': 60,
                 'cost': 1.00,
                 'classification': 'Dressing',
@@ -353,7 +353,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Extra Virgin Olive Oil',
-                'image_src': '/container-511@2x.png',
+                'image_src': '/SweetGreen/option/container-511@2x.png',
                 'calories': 120,
                 'cost': 1.00,
                 'classification': 'Dressing',
@@ -362,7 +362,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Green Goddess Ranch',
-                'image_src': '/container-54@2x.png',
+                'image_src': '/SweetGreen/option/container-54@2x.png',
                 'calories': 120,
                 'cost': 1.00,
                 'classification': 'Dressing',
@@ -371,7 +371,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Lime Cilantro Jalapeno Vinaigrette',
-                'image_src': '/container-55@2x.png',
+                'image_src': '/SweetGreen/option/container-55@2x.png',
                 'calories': 80,
                 'cost': 1.00,
                 'classification': 'Dressing',
@@ -380,7 +380,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Hot Honey Mustard Sauce',
-                'image_src': '/container-56@2x.png',
+                'image_src': '/SweetGreen/option/container-56@2x.png',
                 'calories': 60,
                 'cost': 1.00,
                 'classification': 'Dressing',
@@ -389,7 +389,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Pesto Vinaigrette',
-                'image_src': '/container-611@2x.png',
+                'image_src': '/SweetGreen/option/container-611@2x.png',
                 'calories': 100,
                 'cost': 1.00,
                 'classification': 'Dressing',
@@ -398,7 +398,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Miso Sesame Ginger',
-                'image_src': '/container-58@2x.png',
+                'image_src': '/SweetGreen/option/container-58@2x.png',
                 'calories': 80,
                 'cost': 1.00,
                 'classification': 'Dressing',
@@ -407,7 +407,7 @@ class Command(BaseCommand):
             },
             {
                 'name': 'Balsamic Vinegar',
-                'image_src': '/container-60@2x.png',
+                'image_src': '/SweetGreen/option/container-60@2x.png',
                 'calories': 60,
                 'cost': 1.00,
                 'classification': 'Dressing',

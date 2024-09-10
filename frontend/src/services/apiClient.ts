@@ -60,7 +60,7 @@ export const fetchItemOptions = async (
     );
     return response.data;
   } catch (error) {
-    console.error("Failed to fetch menu items:", error);
+    console.error("Failed to fetch item options:", error);
     throw error;
   }
 };

@@ -5,9 +5,7 @@
     <div class="w-full max-w-4xl mx-auto">
       <!-- Section Header -->
       <h2 class="text-xl font-semibold mb-4">Menu</h2>
-      <div v-if="loading" class="text-center">Loading...</div>
-
-      <div v-if="!loading" class="space-y-8">
+      <div v-if="ingredientsByCategory" class="space-y-8">
         <!-- Bases Section -->
         <div v-if="ingredientsByCategory['Base']">
           <h3 class="text-lg font-medium mb-4">Bases</h3>
@@ -15,8 +13,8 @@
             <ProductCard
               v-for="ingredient in ingredientsByCategory['Base']"
               :key="ingredient.id"
-              :image="ingredient.image_src"
-              :name="ingredient.name"
+              :containerImage="ingredient.image_src"
+              :itemName="ingredient.name"
               :in-stock="ingredient.is_in_stock"
             />
           </div>
@@ -29,8 +27,8 @@
             <ProductCard
               v-for="ingredient in ingredientsByCategory['Topping']"
               :key="ingredient.id"
-              :image="ingredient.image_src"
-              :name="ingredient.name"
+              :containerImage="ingredient.image_src"
+              :itemName="ingredient.name"
               :in-stock="ingredient.is_in_stock"
             />
           </div>
@@ -43,8 +41,8 @@
             <ProductCard
               v-for="ingredient in ingredientsByCategory['Premium']"
               :key="ingredient.id"
-              :image="ingredient.image_src"
-              :name="ingredient.name"
+              :containerImage="ingredient.image_src"
+              :itemName="ingredient.name"
               :in-stock="ingredient.is_in_stock"
             />
           </div>
@@ -57,8 +55,8 @@
             <ProductCard
               v-for="ingredient in ingredientsByCategory['Dressing']"
               :key="ingredient.id"
-              :image="ingredient.image_src"
-              :name="ingredient.name"
+              :containerImage="ingredient.image_src"
+              :itemName="ingredient.name"
               :in-stock="ingredient.is_in_stock"
             />
           </div>
@@ -68,74 +66,70 @@
   </section>
 </template>
 
-<script>
-import { defineComponent, ref, onMounted } from "vue";
+<script lang="ts">
+import { defineComponent, ref, onMounted, computed } from "vue";
 import { ItemOption } from "../types";
-import { fetchMenuItems, fetchItemOptions } from "../../services/apiClient"; // Import the API function
+import { fetchItemOptions } from "../../services/apiClient"; // Import the API function
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the restaurant store
 import ProductCard from "./ProductCard.vue"; // Assume this component is created
 
 export default defineComponent({
   name: "OptionsMenu",
   components: {
-    ProductCard
+    ProductCard,
   },
-  data() {
-    return {
-      ingredients: [],
-      loading: true,
-    };
-  },
-  computed: {
-    ingredientsByCategory() {
-      const categories = {
+  setup() {
+    const restaurantStore = useRestaurantStore(); // Use the restaurant store
+    const itemOptions = ref<ItemOption[]>([]);
+    const menuCategories = ref<string[]>([]);
+
+    const ingredientsByCategory = computed(() => {
+      const categories: { [key: string]: ItemOption[] } = {
         Base: [],
         Premium: [],
         Dressing: [],
+        Topping: [],
       };
-      this.ingredients.forEach((ingredient) => {
+      itemOptions.value.forEach((ingredient) => {
         if (categories[ingredient.classification]) {
           categories[ingredient.classification].push(ingredient);
         }
       });
       return categories;
-    },
-  },
-  setup() {
-    const restaurantStore = useRestaurantStore(); // Use the restaurant store
+    });
 
     const loadItemOptions = async () => {
       try {
         const restaurantId = restaurantStore.getRestaurant.id; // Get the restaurant ID from the store
 
         if (restaurantId !== null) {
-          const data = await fetchMenuItems(restaurantId);
+          const data = await fetchItemOptions(restaurantId);
 
           // Constructing MenuItem objects from the API response
-          menuItems.value = data.map((item: MenuItemType) => ({
+          itemOptions.value = data.map((item: ItemOption) => ({
             name: item.name,
             image_src: item.image_src,
-            description: item.description,
             classification: item.classification,
-            tag: item.tag,
             calories: item.calories,
-            price: item.price,
+            cost: item.cost,
+            is_in_stock: item.is_in_stock,
           }));
 
           // Extracting unique classifications
           menuCategories.value = [
             ...new Set(data.map((item) => item.classification)),
           ];
-          if (customCreationEnabled) {
-            menuCategories.value.push("Custom");
-          }
         } else {
           console.error("Restaurant ID is not set.");
         }
       } catch (error) {
-        console.error("Failed to load menu items:", error);
+        console.error("Failed to load item options:", error);
       }
     };
+
+    onMounted(loadItemOptions);
+
+    return { ingredientsByCategory };
   },
-};
+});
 </script>
