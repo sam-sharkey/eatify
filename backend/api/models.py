@@ -87,7 +87,7 @@ class ItemOption(models.Model):
     cost = models.DecimalField(max_digits=5, decimal_places=2)
     classification = models.CharField(max_length=50)  # e.g. "Base", "Premium", "Dressing", "Sweetener"
     is_in_stock = models.BooleanField(default=True)
-    option_for_items = models.ManyToManyField(MenuItem, related_name='option')
+    option_for_items = models.ManyToManyField(MenuItem, related_name='options')
     def upload_photo_to(self, filename):
         return f'{self.restaurant.name}/option/{filename}'
     

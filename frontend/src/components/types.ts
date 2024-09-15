@@ -6,6 +6,7 @@ export interface MenuItem {
   tag: string;
   price: number;
   calories: number;
+  options: ItemOption[];
 }
 
 export interface ItemOption {

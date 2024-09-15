@@ -32,6 +32,7 @@
           "
           :menuItemClassification="category"
         />
+        <button @click="goToOrderPage(menuItems[0])">Order Now</button>
       </div>
     </main>
   </div>
@@ -46,6 +47,7 @@ import MenuCategoriesHeader from "./MenuCategoriesHeader.vue";
 import { MenuItem as MenuItemType, Location } from "../types";
 import { fetchMenuItems, fetchLocations } from "../../services/apiClient"; // Import the API function
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the restaurant store
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "OrderMenuPage",
@@ -56,6 +58,7 @@ export default defineComponent({
     MenuCategoriesHeader,
   },
   setup() {
+    const router = useRouter();
     const menuCategories = ref<string[]>([]);
     const menuItems = ref<MenuItemType[]>([]);
     const location = ref<Location>();
@@ -95,6 +98,7 @@ export default defineComponent({
             tag: item.tag,
             calories: item.calories,
             price: item.price,
+            options: item.options,
           }));
 
           // Extracting unique classifications
@@ -127,6 +131,15 @@ export default defineComponent({
       }
     };
 
+    const goToOrderPage = (menuItem: MenuItemType) => {
+      router.push({
+        name: "Order",
+        query: {
+          menuItem: JSON.stringify(menuItem), // Pass the menuItem as a query parameter
+        },
+      });
+    };
+
     onMounted(async () => {
       await loadMenuItems();
       await loadLocations();
@@ -137,8 +150,10 @@ export default defineComponent({
     return {
       menuCategories,
       activeCategory,
+      goToOrderPage,
       handleScroll,
       location,
+      menuItems,
     };
   },
 });

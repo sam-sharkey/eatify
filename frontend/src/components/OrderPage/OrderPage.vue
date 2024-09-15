@@ -2,47 +2,11 @@
   <div
     class="max-h-[calc(100vh-80px)] flex flex-row bg-oldlace border-y border-solid border-gray-100"
   >
-    <!-- Sidebar -->
-    <div
-      class="w-[525px] max-w-full bg-oldlace border-r border-solid border-gray-100 shrink-0"
-    >
-      <!-- Header -->
-      <header class="px-6">
-        <div class="flex justify-between items-center">
-          <h1 class="text-3xl font-semibold">Create Your Own</h1>
-          <img src="/svg1.svg" alt="Logo" class="w-8 h-8" loading="lazy" />
-        </div>
-        <p class="text-sm text-gray-600">$19.70 - 915 cal</p>
-      </header>
-
-      <!-- Selected Ingredients -->
-      <div class="flex-1 overflow-hidden">
-        <!-- Scrollable container -->
-        <div
-          class="flex-1 overflow-x-hidden overflow-y-auto max-h-[calc(100vh-300px)]"
-        >
-          <SelectedIngredients
-            :selected-items="selectedIngredients"
-            @deselect-item="handleDeselect"
-            class="max-h-[calc(100vh-200px)]"
-          />
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <footer class="px-16 py-4 border-t border-solid border-gray-100">
-        <div class="flex justify-between">
-          <button class="py-4 px-16 border border-gray-100 rounded-2xl">
-            Cancel
-          </button>
-          <button
-            class="py-4 px-16 bg-darkslategray-200 text-white rounded-2xl"
-          >
-            I'm done
-          </button>
-        </div>
-      </footer>
-    </div>
+    <SelectedIngredients
+      :selected-items="selectedIngredients"
+      @deselect-item="handleDeselect"
+      class="border-solid border-r border-gray-100"
+    />
 
     <!-- Options Menu -->
     <div class="flex-1 overflow-hidden">
@@ -64,10 +28,10 @@
 import { defineComponent, ref, computed, onMounted } from "vue";
 import SelectedIngredients from "./SelectedIngredients.vue";
 import OptionsMenu from "./OptionsMenu.vue";
-import { fetchItemOptions } from "@/services/apiClient"; // Import the API function
-import { useRestaurantStore } from "@/stores/restaurant"; // Assuming you have this store
-import { useItemStore } from "@/stores/itemStore"; // Import the Pinia store
-import { ItemOption } from "@/components/types";
+import { useRestaurantStore } from "@/stores/restaurant";
+import { useItemStore } from "@/stores/itemStore";
+import { ItemOption, MenuItem } from "@/components/types";
+import { fetchItemOptions } from "@/services/apiClient";
 
 export default defineComponent({
   name: "OrderPage",
@@ -75,25 +39,26 @@ export default defineComponent({
     SelectedIngredients,
     OptionsMenu,
   },
-  setup() {
+  props: {
+    menuItem: {
+      type: Object as () => MenuItem | null,
+      required: false, // MenuItem is passed via the route, it may be null initially
+    },
+  },
+  setup(props) {
     const itemOptions = ref<ItemOption[]>([]); // All item options fetched from the backend
     const selectedIngredients = ref<ItemOption[]>([]); // Selected ingredients
-    const menuCategories = ref<string[]>([]); // Categories derived from item options
-    const restaurantStore = useRestaurantStore(); // Access the restaurant store
-    const itemStore = useItemStore(); // Access the restaurant store
+    const restaurantStore = useRestaurantStore();
+    const itemStore = useItemStore();
 
     // Compute ingredients by category
     const ingredientsByCategory = computed(() => {
-      const categories: { [key: string]: ItemOption[] } = {
-        Base: [],
-        Premium: [],
-        Dressing: [],
-        Topping: [],
-      };
+      const categories: { [key: string]: ItemOption[] } = {};
       itemOptions.value.forEach((ingredient) => {
-        if (categories[ingredient.classification]) {
-          categories[ingredient.classification].push(ingredient);
+        if (!categories[ingredient.classification]) {
+          categories[ingredient.classification] = [];
         }
+        categories[ingredient.classification].push(ingredient);
       });
       return categories;
     });
@@ -116,17 +81,20 @@ export default defineComponent({
             cost: item.cost,
             is_in_stock: item.is_in_stock,
           }));
-          itemStore.itemOptions = itemOptions.value;
 
-          // Extract unique categories
-          menuCategories.value = [
-            ...new Set(data.map((item) => item.classification)),
-          ];
+          itemStore.itemOptions = itemOptions.value;
         } else {
           console.error("Restaurant ID is not set.");
         }
       } catch (error) {
         console.error("Failed to load item options:", error);
+      }
+    };
+
+    // Handle the menuItem prop to pre-select ingredients
+    const preselectIngredients = () => {
+      if (props.menuItem && props.menuItem.options) {
+        selectedIngredients.value = [...props.menuItem.options];
       }
     };
 
@@ -147,6 +115,7 @@ export default defineComponent({
     // Load item options on component mount
     onMounted(() => {
       loadItemOptions();
+      preselectIngredients(); // Pre-select ingredients on mount
     });
 
     return {

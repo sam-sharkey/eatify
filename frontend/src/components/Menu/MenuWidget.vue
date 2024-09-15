@@ -60,6 +60,7 @@ export default defineComponent({
             tag: item.tag,
             calories: item.calories,
             price: item.price,
+            options: item.options,
           }));
 
           // Extracting unique classifications
