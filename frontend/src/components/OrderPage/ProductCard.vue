@@ -54,24 +54,25 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { useItemStore } from "@/stores/itemStore"; // Import the store
+import { ItemOption } from "@/components/types";
 
 export default defineComponent({
   name: "ProductCard",
   props: {
     itemName: { type: String, required: true }, // Name of the item
     containerImage: { type: String, required: true }, // Container image URL
-    itemId: { type: String, required: true }, // Item ID for tracking quantity
+    item: { type: Object as () => ItemOption, required: true }, // Item ID for tracking quantity
   },
   setup(props) {
     const itemStore = useItemStore(); // Get the current quantity from the store
-    const quantity = computed(() => itemStore.getItemQuantity(props.itemId));
+    const quantity = computed(() => itemStore.getItemQuantity(props.item.id));
 
     const addItem = () => {
-      itemStore.addItem(props.itemId);
+      itemStore.addItem(props.item);
     };
 
     const removeItem = () => {
-      itemStore.removeItem(props.itemId);
+      itemStore.removeItem(props.item.id);
     };
 
     return {

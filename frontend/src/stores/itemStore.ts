@@ -6,33 +6,32 @@ import { ItemOption } from "@/components/types"; // Assuming you have this type 
 export const useItemStore = defineStore("itemStore", () => {
   const itemOptions = ref<ItemOption[]>([]); // All available ingredients
   const selectedItems = ref<{
-    [id: string]: { quantity: number };
+    [id: string]: { item: ItemOption; quantity: number };
   }>({}); // Selected ingredients with quantities
 
   // Computed property to categorize items
   const ingredientsByCategory = computed(() => {
-    const categories: { [key: string]: ItemOption[] } = {
-      Base: [],
-      Premium: [],
-      Dressing: [],
-      Topping: [],
-    };
+    const categories: { [key: string]: ItemOption[] } = {};
 
     itemOptions.value.forEach((ingredient) => {
-      if (categories[ingredient.classification]) {
-        categories[ingredient.classification].push(ingredient);
+      // If the classification doesn't exist in categories, create it
+      if (!categories[ingredient.classification]) {
+        categories[ingredient.classification] = [];
       }
+
+      // Push the ingredient into the respective category
+      categories[ingredient.classification].push(ingredient);
     });
 
     return categories;
   });
 
   // Add an item or increment its quantity
-  const addItem = (itemId: string) => {
-    if (selectedItems.value[itemId]) {
-      selectedItems.value[itemId].quantity += 1;
+  const addItem = (item: ItemOption) => {
+    if (selectedItems.value[item.id]) {
+      selectedItems.value[item.id].quantity += 1;
     } else {
-      selectedItems.value[itemId] = { quantity: 1 };
+      selectedItems.value[item.id] = { item, quantity: 1 };
     }
   };
 

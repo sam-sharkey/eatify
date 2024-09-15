@@ -27,7 +27,7 @@
             :key="ingredient.id"
             :itemName="ingredient.name"
             :containerImage="ingredient.image_src"
-            :itemId="ingredient.id"
+            :item="ingredient"
           />
         </div>
       </div>
@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, onMounted, computed } from "vue";
 import { useItemStore } from "@/stores/itemStore"; // Import the Pinia store
 import ProductCard from "./ProductCard.vue"; // Assume this component is created
 import MenuCategoriesHeader from "../MenuPage/MenuCategoriesHeader.vue";
@@ -71,9 +71,14 @@ export default defineComponent({
       document.addEventListener("scroll", handleScroll);
     });
 
+    // Computed property to get updated ingredients by category from the store
+    const ingredientsByCategory = computed(() => {
+      return itemStore.ingredientsByCategory;
+    });
+
     return {
       activeCategory,
-      ingredientsByCategory: itemStore.ingredientsByCategory,
+      ingredientsByCategory,
     };
   },
 });
