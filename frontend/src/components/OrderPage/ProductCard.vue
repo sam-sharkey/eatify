@@ -52,26 +52,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, computed } from "vue";
+import { useItemStore } from "@/stores/itemStore"; // Import the store
 
 export default defineComponent({
   name: "ProductCard",
   props: {
     itemName: { type: String, required: true }, // Name of the item
     containerImage: { type: String, required: true }, // Container image URL
-    initialQuantity: { type: Number, default: 0 }, // Container image URL
+    itemId: { type: String, required: true }, // Item ID for tracking quantity
   },
   setup(props) {
-    const quantity = ref<number>(props.initialQuantity);
+    const itemStore = useItemStore(); // Get the current quantity from the store
+    const quantity = computed(() => itemStore.getItemQuantity(props.itemId));
 
     const addItem = () => {
-      quantity.value = quantity.value + 1;
+      itemStore.addItem(props.itemId);
     };
 
     const removeItem = () => {
-      if (quantity.value > 0) {
-        quantity.value = quantity.value - 1;
-      }
+      itemStore.removeItem(props.itemId);
     };
 
     return {

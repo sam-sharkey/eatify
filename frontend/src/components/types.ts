@@ -9,6 +9,7 @@ export interface MenuItem {
 }
 
 export interface ItemOption {
+  id: string;
   classification: string;
   name: string;
   image_src: string;
