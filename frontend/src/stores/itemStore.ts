@@ -10,6 +10,11 @@ export const useItemStore = defineStore("itemStore", () => {
   }>({}); // Selected ingredients with quantities
   const selectedMenuItem = ref<MenuItem | null>();
 
+  // Check if an item is selected and get its quantity
+  const clearAllItems = () => {
+    selectedItems.value = {};
+  };
+
   const setSelectedMenuItem = (menuItem: MenuItem) => {
     selectedMenuItem.value = menuItem; // Set the selected MenuItem
   };
@@ -69,6 +74,7 @@ export const useItemStore = defineStore("itemStore", () => {
     selectedItems,
     ingredientsByCategory,
     selectedMenuItem,
+    clearAllItems,
     isItemSelected,
     addItem,
     removeItem,

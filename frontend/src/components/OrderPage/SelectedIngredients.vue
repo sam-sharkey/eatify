@@ -44,7 +44,10 @@
         >
           {{ isCustomizing ? "Cancel" : "Customize" }}
         </button>
-        <button class="py-4 px-16 bg-darkslategray-200 text-white rounded-2xl">
+        <button
+          class="py-4 px-16 bg-darkslategray-200 text-white rounded-2xl"
+          @click="$emit('done')"
+        >
           I'm done
         </button>
       </div>
@@ -68,7 +71,7 @@ export default defineComponent({
       required: true,
     },
   },
-  emits: ["toggle-customize"],
+  emits: ["toggle-customize", "done"],
   setup(props, { emit }) {
     const itemStore = useItemStore();
 
