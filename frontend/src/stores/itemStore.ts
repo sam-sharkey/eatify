@@ -1,26 +1,34 @@
 // src/stores/itemStore.ts
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
-import { ItemOption } from "@/components/types"; // Assuming you have this type defined
+import { ItemOption, MenuItem } from "@/components/types"; // Assuming you have this type defined
 
 export const useItemStore = defineStore("itemStore", () => {
   const itemOptions = ref<ItemOption[]>([]); // All available ingredients
   const selectedItems = ref<{
     [id: string]: { item: ItemOption; quantity: number };
   }>({}); // Selected ingredients with quantities
+  const selectedMenuItem = ref<MenuItem | null>();
+
+  const setSelectedMenuItem = (menuItem: MenuItem) => {
+    selectedMenuItem.value = menuItem; // Set the selected MenuItem
+  };
+  const clearSelectedMenuItem = () => {
+    selectedMenuItem.value = null; // Clear the selected MenuItem if needed
+  };
 
   // Computed property to categorize items
   const ingredientsByCategory = computed(() => {
     const categories: { [key: string]: ItemOption[] } = {};
 
-    itemOptions.value.forEach((ingredient) => {
+    itemOptions.value.forEach((itemOption: ItemOption) => {
       // If the classification doesn't exist in categories, create it
-      if (!categories[ingredient.classification]) {
-        categories[ingredient.classification] = [];
+      if (!categories[itemOption.classification]) {
+        categories[itemOption.classification] = [];
       }
 
-      // Push the ingredient into the respective category
-      categories[ingredient.classification].push(ingredient);
+      // Push the itemOption into the respective category
+      categories[itemOption.classification].push(itemOption);
     });
 
     return categories;
@@ -60,9 +68,12 @@ export const useItemStore = defineStore("itemStore", () => {
     itemOptions,
     selectedItems,
     ingredientsByCategory,
+    selectedMenuItem,
     isItemSelected,
     addItem,
     removeItem,
     getItemQuantity,
+    clearSelectedMenuItem,
+    setSelectedMenuItem,
   };
 });

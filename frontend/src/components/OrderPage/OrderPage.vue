@@ -3,22 +3,29 @@
     class="max-h-[calc(100vh-80px)] flex flex-row bg-oldlace border-y border-solid border-gray-100"
   >
     <SelectedIngredients
-      :selected-items="selectedIngredients"
-      @deselect-item="handleDeselect"
       class="border-solid border-r border-gray-100"
+      :is-customizing="isCustomizing"
+      @toggle-customize="toggleCustomize"
     />
 
-    <!-- Options Menu -->
+    <!-- Show MenuItem Image or Options Menu -->
     <div class="flex-1 overflow-hidden">
-      <!-- Scrollable container -->
       <div
+        v-if="!isCustomizing"
+        class="flex justify-center items-center h-full bg-antiquewhite"
+      >
+        <!-- Display the selected MenuItem's image when not customizing -->
+        <img
+          :src="selectedMenuItem.image_src"
+          alt="MenuItem Image"
+          class="w-1/2 justify-center object-contain"
+        />
+      </div>
+      <div
+        v-else
         class="flex-1 overflow-x-hidden overflow-auto max-h-[calc(100vh-80px)]"
       >
-        <OptionsMenu
-          :ingredients-by-category="ingredientsByCategory"
-          :selected-items="selectedIngredients"
-          @select-item="handleSelect"
-        />
+        <OptionsMenu />
       </div>
     </div>
   </div>
@@ -30,7 +37,7 @@ import SelectedIngredients from "./SelectedIngredients.vue";
 import OptionsMenu from "./OptionsMenu.vue";
 import { useRestaurantStore } from "@/stores/restaurant";
 import { useItemStore } from "@/stores/itemStore";
-import { ItemOption, MenuItem } from "@/components/types";
+import { ItemOption } from "@/components/types";
 import { fetchItemOptions } from "@/services/apiClient";
 
 export default defineComponent({
@@ -39,29 +46,19 @@ export default defineComponent({
     SelectedIngredients,
     OptionsMenu,
   },
-  props: {
-    menuItem: {
-      type: Object as () => MenuItem | null,
-      required: false, // MenuItem is passed via the route, it may be null initially
-    },
-  },
-  setup(props) {
-    const itemOptions = ref<ItemOption[]>([]); // All item options fetched from the backend
-    const selectedIngredients = ref<ItemOption[]>([]); // Selected ingredients
+  setup() {
+    const itemOptions = ref<ItemOption[]>([]);
     const restaurantStore = useRestaurantStore();
     const itemStore = useItemStore();
+    const isCustomizing = ref(false); // Track if the user is customizing
 
-    // Compute ingredients by category
-    const ingredientsByCategory = computed(() => {
-      const categories: { [key: string]: ItemOption[] } = {};
-      itemOptions.value.forEach((ingredient) => {
-        if (!categories[ingredient.classification]) {
-          categories[ingredient.classification] = [];
-        }
-        categories[ingredient.classification].push(ingredient);
-      });
-      return categories;
-    });
+    // Get the selected menu item from the store
+    const selectedMenuItem = computed(() => itemStore.selectedMenuItem);
+
+    // Toggle between customizing and displaying the MenuItem image
+    const toggleCustomize = () => {
+      isCustomizing.value = !isCustomizing.value;
+    };
 
     // Load item options from the backend
     const loadItemOptions = async () => {
@@ -91,25 +88,13 @@ export default defineComponent({
       }
     };
 
-    // Handle the menuItem prop to pre-select ingredients
+    // Pre-select ingredients on mount
     const preselectIngredients = () => {
-      if (props.menuItem && props.menuItem.options) {
-        selectedIngredients.value = [...props.menuItem.options];
+      if (itemStore.selectedMenuItem && itemStore.selectedMenuItem.options) {
+        itemStore.selectedMenuItem.options.forEach((option: ItemOption) => {
+          itemStore.addItem(option);
+        });
       }
-    };
-
-    // Handle selection of an ingredient
-    const handleSelect = (ingredient: ItemOption) => {
-      if (!selectedIngredients.value.includes(ingredient)) {
-        selectedIngredients.value.push(ingredient);
-      }
-    };
-
-    // Handle deselection of an ingredient
-    const handleDeselect = (ingredient: ItemOption) => {
-      selectedIngredients.value = selectedIngredients.value.filter(
-        (item) => item !== ingredient
-      );
     };
 
     // Load item options on component mount
@@ -119,10 +104,9 @@ export default defineComponent({
     });
 
     return {
-      ingredientsByCategory,
-      selectedIngredients,
-      handleSelect,
-      handleDeselect,
+      isCustomizing,
+      selectedMenuItem,
+      toggleCustomize,
     };
   },
 });

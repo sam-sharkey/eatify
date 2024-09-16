@@ -48,6 +48,7 @@ import { MenuItem as MenuItemType, Location } from "../types";
 import { fetchMenuItems, fetchLocations } from "../../services/apiClient"; // Import the API function
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the restaurant store
 import { useRouter } from "vue-router";
+import { useItemStore } from "@/stores/itemStore"; // Import the Pinia store
 
 export default defineComponent({
   name: "OrderMenuPage",
@@ -62,6 +63,7 @@ export default defineComponent({
     const menuCategories = ref<string[]>([]);
     const menuItems = ref<MenuItemType[]>([]);
     const location = ref<Location>();
+    const itemStore = useItemStore(); // Access the Pinia store
 
     const activeCategory = ref("");
 
@@ -132,12 +134,8 @@ export default defineComponent({
     };
 
     const goToOrderPage = (menuItem: MenuItemType) => {
-      router.push({
-        name: "Order",
-        query: {
-          menuItem: JSON.stringify(menuItem), // Pass the menuItem as a query parameter
-        },
-      });
+      itemStore.setSelectedMenuItem(menuItem); // Set the selected MenuItem in the store
+      router.push({ name: "Order" }); // Navigate to the OrderPage
     };
 
     onMounted(async () => {

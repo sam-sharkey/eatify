@@ -25,7 +25,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/order",
     name: "Order",
     component: OrderPage,
-    props: (route) => ({ menuItem: route.query.menuItem }),
   },
 ];
 
