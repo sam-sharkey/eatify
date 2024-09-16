@@ -26,20 +26,35 @@
         :data-category="category"
         class="menu-section p-6"
       >
-        <component
-          :is="
-            category === 'Custom' ? 'CustomSaladsParent' : 'MenuListComponent'
-          "
-          :menuItemClassification="category"
-        />
-        <button @click="goToOrderPage(menuItems[0])">Order Now</button>
+        <div v-if="category != 'Custom'">
+          <section
+            class="self-stretch flex flex-col items-start justify-start py-[0rem] pl-[0rem] pr-[0.75rem] box-border gap-[1rem] max-w-full text-left text-[1.775rem] text-gray-100 font-inter"
+          >
+            <div
+              class="tracking-[1px] leading-[2.25rem] mq450:text-[1.438rem] mq450:leading-[1.813rem]"
+            >
+              {{ category }}
+            </div>
+            <div
+              class="grid gap-[1.5rem] text-center text-[0.594rem] grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            >
+              <MenuListComponent
+                v-for="item in menuItemsByCategory[category]"
+                :key="item.name"
+                :item="item"
+                @click="goToOrderPage(item)"
+              ></MenuListComponent>
+            </div>
+          </section>
+        </div>
+        <CustomSaladsParent v-else></CustomSaladsParent>
       </div>
     </main>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, onMounted, computed } from "vue";
 import RestaurantInfo from "./RestaurantInfo.vue";
 import MenuListComponent from "./MenuListComponent.vue";
 import CustomSaladsParent from "./CustomSaladsParent.vue";
@@ -83,6 +98,22 @@ export default defineComponent({
     const customCreationEnabled = true;
 
     const restaurantStore = useRestaurantStore(); // Use the restaurant store
+
+    const menuItemsByCategory = computed(() => {
+      const categories: { [key: string]: MenuItemType[] } = {};
+
+      menuItems.value.forEach((menuItem: MenuItemType) => {
+        // If the classification doesn't exist in categories, create it
+        if (!categories[menuItem.classification]) {
+          categories[menuItem.classification] = [];
+        }
+
+        // Push the itemOption into the respective category
+        categories[menuItem.classification].push(menuItem);
+      });
+
+      return categories;
+    });
 
     const loadMenuItems = async () => {
       try {
@@ -148,6 +179,7 @@ export default defineComponent({
     return {
       menuCategories,
       activeCategory,
+      menuItemsByCategory,
       goToOrderPage,
       handleScroll,
       location,
