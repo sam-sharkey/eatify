@@ -38,12 +38,12 @@
             <div
               class="grid gap-[1.5rem] text-center text-[0.594rem] grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
             >
-              <MenuListComponent
+              <MenuItemComponent
                 v-for="item in menuItemsByCategory[category]"
                 :key="item.name"
                 :item="item"
                 @click="goToOrderPage(item)"
-              ></MenuListComponent>
+              ></MenuItemComponent>
             </div>
           </section>
         </div>
@@ -56,7 +56,7 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted, computed } from "vue";
 import RestaurantInfo from "./RestaurantInfo.vue";
-import MenuListComponent from "./MenuListComponent.vue";
+import MenuItemComponent from "./MenuItemComponent.vue";
 import CustomSaladsParent from "./CustomSaladsParent.vue";
 import MenuCategoriesHeader from "./MenuCategoriesHeader.vue";
 import { MenuItem as MenuItemType, Location } from "../types";
@@ -69,7 +69,7 @@ export default defineComponent({
   name: "OrderMenuPage",
   components: {
     RestaurantInfo,
-    MenuListComponent,
+    MenuItemComponent,
     CustomSaladsParent,
     MenuCategoriesHeader,
   },
