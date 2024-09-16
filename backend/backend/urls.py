@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from api.views import MenuItemsView, ItemOptionView, HighlightListView, HeaderConfigView, FooterConfigView, MainPageConfigView, LocationView, RestaurantListView
+from api.views import MenuItemsView, OrderView, ItemOptionView, HighlightListView, HeaderConfigView, FooterConfigView, MainPageConfigView, LocationView, RestaurantListView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -30,6 +30,7 @@ urlpatterns = [
     path('api/restaurants/', RestaurantListView.as_view(), name='restaurant_list'),
     path('api/item-options/<int:restaurant_id>/', ItemOptionView.as_view(), name='itemoption-list'),
     path('api/locations/<int:restaurant_id>/', LocationView.as_view(), name='locations'),
+    path('api/orders/<int:restaurant_id>/', OrderView.as_view(), name='orders'),
 ]
 
 if settings.DEBUG:

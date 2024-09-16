@@ -9,6 +9,21 @@ export interface MenuItem {
   options: ItemOption[];
 }
 
+// Define the OrderItem type (intermediate relation with quantity)
+export interface OrderItem {
+  item_option: ItemOption;
+  quantity: number;
+}
+
+export interface Order {
+  selectedItems: OrderItem[]; // Array of selected ItemOptions
+  deliveryType: "pickup" | "delivery"; // Can only be 'pickup' or 'delivery'
+  storeLocation: string; // The store location address
+  userAddress: string; // The user's address for delivery
+  totalCost: number; // The total cost of the order
+  orderTime: string; // ISO string representing the time of the order
+}
+
 export interface ItemOption {
   id: string;
   classification: string;

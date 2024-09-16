@@ -57,6 +57,8 @@ export default defineComponent({
           opening_hours: item.opening_hours,
           image_src: `${process.env.VUE_APP_BACKEND_URL}` + item.image_src,
         }));
+
+        restaurantStore.setLocation(locations.value[0]);
       } catch (error) {
         console.error("Failed to load locations:", error);
       }

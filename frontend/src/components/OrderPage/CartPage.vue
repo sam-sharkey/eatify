@@ -134,7 +134,7 @@ export default defineComponent({
     };
 
     const checkout = () => {
-      // Logic for checkout
+      router.push({ name: "CompleteOrder" }); // Navigate to the OrderPage
     };
 
     const removeItem = (index: number) => {

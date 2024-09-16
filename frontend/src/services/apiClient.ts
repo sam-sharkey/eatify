@@ -5,6 +5,7 @@ import {
   Highlight,
   Restaurant,
   ItemOption,
+  Order,
 } from "../components/types";
 
 const apiClient = axios.create({
@@ -74,6 +75,20 @@ export const fetchHighlights = async (
   } catch (error) {
     console.error("Error fetching highlights:", error);
     throw error;
+  }
+};
+
+// Funciton to Place Order in Backend
+export const placeOrder = async (restaurantId: number, orderData: Order) => {
+  try {
+    const response = await apiClient.post(
+      `/api/orders/${restaurantId}/`,
+      orderData
+    );
+    console.log("Order placed successfully:", response.data);
+    // Optionally, you can redirect to a confirmation page or show a success message
+  } catch (error) {
+    console.error("Failed to place order:", error);
   }
 };
 

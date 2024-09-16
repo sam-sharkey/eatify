@@ -4,6 +4,7 @@ import HomePage from "../components/HomePage/HomePage.vue";
 import MenuPage from "../components/MenuPage/MenuPage.vue";
 import LocationsPage from "../components/LocationsPage/LocationsPage.vue";
 import OrderPage from "../components/OrderPage/OrderPage.vue";
+import CompleteOrderPage from "../components/OrderPage/CompleteOrderPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -25,6 +26,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/order",
     name: "Order",
     component: OrderPage,
+  },
+  {
+    path: "/completeorder",
+    name: "CompleteOrder",
+    component: CompleteOrderPage,
   },
 ];
 

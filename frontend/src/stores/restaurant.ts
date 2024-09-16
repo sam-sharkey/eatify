@@ -1,7 +1,7 @@
 // stores/restaurant.js or stores/restaurant.ts
 import { defineStore } from "pinia";
 import { useLocalStorage } from "@vueuse/core";
-import { Restaurant } from "../components/types";
+import { Restaurant, Location } from "../components/types";
 
 export const useRestaurantStore = defineStore("restaurant", {
   state: () => ({
@@ -10,13 +10,18 @@ export const useRestaurantStore = defineStore("restaurant", {
       logo_src: "",
       name: "",
     }), // Use local storage for persistence
+    location: useLocalStorage<Location | null>("location", null), // Use local storage for persistence
   }),
   actions: {
     setRestaurant(restaurant: Restaurant) {
       this.restaurant = restaurant;
     },
+    setLocation(location: Location) {
+      this.location = location;
+    },
   },
   getters: {
     getRestaurant: (state) => state.restaurant,
+    getLocation: (state) => state.location,
   },
 });

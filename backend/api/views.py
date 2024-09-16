@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import MenuItem, Highlight, HeaderConfig, FooterConfig, MainPageConfig, Restaurant, Location, ItemOption
+from .models import MenuItem, Highlight, HeaderConfig, FooterConfig, MainPageConfig, Restaurant, Location, ItemOption, Order, OrderItemOption
 from .serializers import MenuItemSerializer, RestaurantSerializer, HighlightSerializer, HeaderConfigSerializer, FooterConfigSerializer, MainPageConfigSerializer, LocationSerializer, ItemOptionSerializer
 
 
@@ -39,6 +39,38 @@ class ItemOptionView(generics.ListAPIView):
         restaurant_id = self.kwargs['restaurant_id']
         # Filter ItemOption by restaurant_id
         return ItemOption.objects.filter(restaurant_id=restaurant_id)
+
+class OrderView(APIView):
+
+    def post(self, request, restaurant_id):
+        try:
+            data = request.data
+            #user = request.user
+
+            # Create the Order
+            order = Order.objects.create(
+                restaurant= Restaurant.objects.get(id=restaurant_id),
+                #user=user,
+                delivery_type=data['deliveryType'],
+                #store_location=Location.objects.get(name=data['storeLocation']),
+                user_address=data['userAddress'],
+                total_cost=data['totalCost'],
+            )
+
+            # Add selected items to the Order
+            for item_data in data['selectedItems']:
+                item = ItemOption.objects.get(
+                    id=item_data['item']['id']
+                )
+                OrderItemOption.objects.create(order=order, item_option=item, quantity=item_data['quantity'])
+
+            total_cost = sum(item.total_item_price() for item in order.orderitemoption_set.all())
+            order.total_cost = total_cost
+            order.save()
+            return Response({"message": "Order created successfully!"}, status=201)
+        except Exception as e:
+            return Response({"error": str(e)}, status=400)
+
 
 class HighlightListView(generics.ListAPIView):
     serializer_class = HighlightSerializer

@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+# Restaurant Info
+
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
     users = models.ManyToManyField(User, related_name='restaurants')
@@ -106,6 +108,40 @@ class ItemOption(models.Model):
                 name="unique_itemoption",
             )
         ]
+
+
+# Order Management
+
+class Order(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='orders')
+    DELIVERY_CHOICES = [
+        ('delivery', 'Delivery'),
+        ('pickup', 'Pickup'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    delivery_type = models.CharField(max_length=10, choices=DELIVERY_CHOICES)
+    store_location = models.CharField(max_length=255, null=True)
+    user_address = models.CharField(max_length=255, null=True, blank=True)
+    total_cost = models.DecimalField(max_digits=10, decimal_places=2)
+    order_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Order {self.id} by {self.user.username}"
+    
+    # Relationship to ItemOption via OrderItem
+    item_options = models.ManyToManyField(ItemOption, through='OrderItemOption')
+
+class OrderItemOption(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    item_option = models.ForeignKey(ItemOption, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()  # Quantity for each item in the order
+
+    def total_item_price(self):
+        return self.item_option.cost * self.quantity
+
+
+# News Related
 
 class Highlight(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='highlights')
