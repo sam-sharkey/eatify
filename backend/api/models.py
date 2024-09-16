@@ -127,9 +127,9 @@ class Order(models.Model):
     order_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Order {self.id} by {self.user.username}"
+        return f"Order {self.id} by person"#{self.user.username}"
     
-    # Relationship to ItemOption via OrderItem
+    # Relationship to ItemOption via OrderItemOption
     item_options = models.ManyToManyField(ItemOption, through='OrderItemOption')
 
 class OrderItemOption(models.Model):

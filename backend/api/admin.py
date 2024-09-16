@@ -1,13 +1,27 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import MenuItem, Highlight, Location, ItemOption
-from .models import Restaurant, HeaderConfig, FooterConfig, MainPageConfig
+from .models import MenuItem, Highlight, Location, ItemOption, Order
+from .models import Restaurant, HeaderConfig, FooterConfig, MainPageConfig, OrderItemOption
 
 
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = ('name', 'image_src', 'description')
+
+# Inline model for OrderItem so you can add items to an order directly from the Order admin page
+class OrderItemOptionInline(admin.TabularInline):
+    model = OrderItemOption
+    extra = 1  # Defines how many extra blank OrderItems to display by default
+
+# Customize the OrderAdmin
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'delivery_type', 'store_location', 'total_cost', 'order_time')  # Columns to display in the list view
+    list_filter = ('delivery_type', 'store_location')  # Filter options in the right sidebar
+    search_fields = ('store_location',)  # Add search capability by store location
+    inlines = [OrderItemOptionInline]  # Include the inline form for OrderItem to edit items in an order
+
 
 @admin.register(ItemOption)
 class ItemOptionAdmin(admin.ModelAdmin):
