@@ -86,10 +86,18 @@ export const placeOrder = async (restaurantId: number, orderData: Order) => {
       orderData
     );
     console.log("Order placed successfully:", response.data);
+    return response.data;
     // Optionally, you can redirect to a confirmation page or show a success message
   } catch (error) {
     console.error("Failed to place order:", error);
+    return null;
   }
+};
+
+// Funciton to Get Order in Backend
+export const getOrder = async (orderId: string) => {
+  const response = await apiClient.get(`/api/getorders/${orderId}/`);
+  return response.data;
 };
 
 // Function to fetch header configuration

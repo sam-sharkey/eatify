@@ -3,7 +3,7 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import MenuItem, Highlight, HeaderConfig, FooterConfig, MainPageConfig, Restaurant, Location, ItemOption, Order, OrderItemOption
-from .serializers import MenuItemSerializer, RestaurantSerializer, HighlightSerializer, HeaderConfigSerializer, FooterConfigSerializer, MainPageConfigSerializer, LocationSerializer, ItemOptionSerializer
+from .serializers import MenuItemSerializer, OrderSerializer, RestaurantSerializer, HighlightSerializer, HeaderConfigSerializer, FooterConfigSerializer, MainPageConfigSerializer, LocationSerializer, ItemOptionSerializer
 
 
 class RestaurantListView(generics.ListAPIView):
@@ -60,17 +60,33 @@ class OrderView(APIView):
             # Add selected items to the Order
             for item_data in data['selectedItems']:
                 item = ItemOption.objects.get(
-                    id=item_data['item']['id']
+                    id=item_data['item_option']['id']
                 )
                 OrderItemOption.objects.create(order=order, item_option=item, quantity=item_data['quantity'])
 
             total_cost = sum(item.total_item_price() for item in order.orderitemoption_set.all())
             order.total_cost = total_cost
             order.save()
-            return Response({"message": "Order created successfully!"}, status=201)
+            return Response({"message": order.id}, status=201)
         except Exception as e:
             return Response({"error": str(e)}, status=400)
 
+    # New get method to retrieve order details by orderId
+    def get(self, request, order_id):
+        try:
+            # Fetch the order by id
+            order = Order.objects.get(id=order_id)
+            
+            # Serialize the order data
+            order_serializer = OrderSerializer(order)
+
+            # Return the serialized order data
+            return Response(order_serializer.data, status=200)
+
+        except Order.DoesNotExist:
+            return Response({"error": "Order not found"}, status=404)
+        except Exception as e:
+            return Response({"error": str(e)}, status=400)
 
 class HighlightListView(generics.ListAPIView):
     serializer_class = HighlightSerializer

@@ -1,5 +1,21 @@
 from rest_framework import serializers
-from .models import MenuItem, Highlight, Restaurant, HeaderConfig, FooterConfig, MainPageConfig, Location, ItemOption
+from .models import MenuItem, Highlight, Restaurant, HeaderConfig, FooterConfig, MainPageConfig, Location, ItemOption, OrderItemOption, Order
+
+
+class OrderItemOptionSerializer(serializers.ModelSerializer):
+    item_name = serializers.CharField(source='item_option.name')
+    item_price = serializers.DecimalField(source='item_option.cost', max_digits=10, decimal_places=2)
+
+    class Meta:
+        model = OrderItemOption
+        fields = ['item_name', 'item_price', 'quantity']
+
+class OrderSerializer(serializers.ModelSerializer):
+    items = OrderItemOptionSerializer(source='orderitemoption_set', many=True)
+
+    class Meta:
+        model = Order
+        fields = ['id', 'restaurant', 'delivery_type', 'user_address', 'total_cost', 'items', 'order_time']
 
 class ItemOptionSerializer(serializers.ModelSerializer):
     class Meta:

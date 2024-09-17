@@ -24,11 +24,11 @@
           <div class="w-full grid grid-cols-3 gap-2 justify-center pb-4">
             <ProductCard
               v-for="selectedItem in selectedItems"
-              :key="selectedItem.item.id"
-              :itemName="selectedItem.item.name"
-              :containerImage="selectedItem.item.image_src"
+              :key="selectedItem.item_option.id"
+              :itemName="selectedItem.item_option.name"
+              :containerImage="selectedItem.item_option.image_src"
               :initialQuantity="selectedItem.quantity"
-              :item="selectedItem.item"
+              :item="selectedItem.item_option"
             />
           </div>
         </div>
@@ -86,14 +86,16 @@ export default defineComponent({
     // Compute the total price
     const totalPrice = computed(() => {
       return selectedItems.value.reduce((total, selectedItem) => {
-        return total + selectedItem.item.cost * selectedItem.quantity;
+        return total + selectedItem.item_option.cost * selectedItem.quantity;
       }, 0);
     });
 
     // Compute the total calories
     const totalCalories = computed(() => {
       return selectedItems.value.reduce((total, selectedItem) => {
-        return total + selectedItem.item.calories * selectedItem.quantity;
+        return (
+          total + selectedItem.item_option.calories * selectedItem.quantity
+        );
       }, 0);
     });
 

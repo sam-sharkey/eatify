@@ -5,6 +5,7 @@ import MenuPage from "../components/MenuPage/MenuPage.vue";
 import LocationsPage from "../components/LocationsPage/LocationsPage.vue";
 import OrderPage from "../components/OrderPage/OrderPage.vue";
 import CompleteOrderPage from "../components/OrderPage/CompleteOrderPage.vue";
+import OrderConfirmationPage from "../components/OrderPage/OrderConfirmationPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -31,6 +32,12 @@ const routes: Array<RouteRecordRaw> = [
     path: "/completeorder",
     name: "CompleteOrder",
     component: CompleteOrderPage,
+  },
+  {
+    path: "/confirmation/:orderId'",
+    name: "OrderConfirmation",
+    component: OrderConfirmationPage,
+    props: true,
   },
 ];
 

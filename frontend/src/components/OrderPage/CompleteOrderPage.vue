@@ -143,6 +143,7 @@ import { useItemStore } from "@/stores/itemStore"; // Assuming the pinia store f
 //import { useUserStore } from "@/stores/userStore"; // Assuming user store for address, user info
 import { useRestaurantStore } from "@/stores/restaurant"; // Assuming restaurant store for location
 import { placeOrder } from "@/services/apiClient";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "CompleteOrderPage",
@@ -150,12 +151,13 @@ export default defineComponent({
     const itemStore = useItemStore(); // Store for selected items
     //const userStore = useUserStore(); // Store for user info (address)
     const restaurantStore = useRestaurantStore(); // Store for restaurant location
+    const router = useRouter();
 
     // Prepare the order data
     const prepareOrderData = () => {
       const totalCost = Object.values(itemStore.selectedItems).reduce(
         (total, selectedItem) => {
-          return total + selectedItem.item.cost * selectedItem.quantity;
+          return total + selectedItem.item_option.cost * selectedItem.quantity;
         },
         0
       );
@@ -163,7 +165,7 @@ export default defineComponent({
       const orderData = {
         selectedItems: Object.values(itemStore.selectedItems),
         deliveryType: "pickup", // or "delivery" based on user selection
-        //storeLocation: restaurantStore.location.name,
+        storeLocation: "London", //restaurantStore.location.name,
         userAddress: "London", //userStore.address,
         totalCost: totalCost, // assuming totalCost is computed in itemStore
         orderTime: new Date().toISOString(),
@@ -176,7 +178,17 @@ export default defineComponent({
     const placeOrderOnClick = async () => {
       const orderData = prepareOrderData();
 
-      placeOrder(restaurantStore.restaurant.id, orderData);
+      const orderId = await placeOrder(
+        restaurantStore.restaurant.id,
+        orderData
+      );
+      if (orderId) {
+        // Route to CompleteOrderPage and pass orderId
+        router.push({
+          name: "OrderConfirmation",
+          params: { orderId: orderId.message },
+        });
+      }
     };
 
     return {

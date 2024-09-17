@@ -30,7 +30,8 @@ urlpatterns = [
     path('api/restaurants/', RestaurantListView.as_view(), name='restaurant_list'),
     path('api/item-options/<int:restaurant_id>/', ItemOptionView.as_view(), name='itemoption-list'),
     path('api/locations/<int:restaurant_id>/', LocationView.as_view(), name='locations'),
-    path('api/orders/<int:restaurant_id>/', OrderView.as_view(), name='orders'),
+    path('api/orders/<int:restaurant_id>/', OrderView.as_view(), name='create-orders'),
+    path('api/getorders/<int:order_id>/', OrderView.as_view(), name='get-orders'),
 ]
 
 if settings.DEBUG:

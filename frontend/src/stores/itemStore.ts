@@ -1,12 +1,12 @@
 // src/stores/itemStore.ts
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
-import { ItemOption, MenuItem } from "@/components/types"; // Assuming you have this type defined
+import { ItemOption, MenuItem, OrderItem } from "@/components/types"; // Assuming you have this type defined
 
 export const useItemStore = defineStore("itemStore", () => {
   const itemOptions = ref<ItemOption[]>([]); // All available ingredients
   const selectedItems = ref<{
-    [id: string]: { item: ItemOption; quantity: number };
+    [id: string]: OrderItem;
   }>({}); // Selected ingredients with quantities
   const selectedMenuItem = ref<MenuItem | null>();
 
@@ -44,7 +44,7 @@ export const useItemStore = defineStore("itemStore", () => {
     if (selectedItems.value[item.id]) {
       selectedItems.value[item.id].quantity += 1;
     } else {
-      selectedItems.value[item.id] = { item, quantity: 1 };
+      selectedItems.value[item.id] = { item_option: item, quantity: 1 };
     }
   };
 

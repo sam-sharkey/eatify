@@ -17,7 +17,7 @@ export interface OrderItem {
 
 export interface Order {
   selectedItems: OrderItem[]; // Array of selected ItemOptions
-  deliveryType: "pickup" | "delivery"; // Can only be 'pickup' or 'delivery'
+  deliveryType: string; // Can only be 'pickup' or 'delivery'
   storeLocation: string; // The store location address
   userAddress: string; // The user's address for delivery
   totalCost: number; // The total cost of the order
