@@ -1,7 +1,6 @@
 <template>
   <div
     class="self-stretch h-[100px] relative text-left text-sm text-white font-poppins"
-    :style="frameDivStyle"
   >
     <div
       class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] bg-darkslategray-300"
@@ -66,28 +65,22 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from "vue";
-  import type * as CSS from "csstype";
+import { defineComponent } from "vue";
+import type * as CSS from "csstype";
 
-  export default defineComponent({
-    name: "FrameComponent1",
-    props: {
-      propAlignSelf: { type: String },
-      propWidth: { type: [Object, Array, String, Number, Boolean] },
-      propBackgroundColor: { type: String },
+export default defineComponent({
+  name: "FrameComponent1",
+  props: {
+    propAlignSelf: { type: String },
+    propWidth: { type: [Object, Array, String, Number, Boolean] },
+    propBackgroundColor: { type: String },
+  },
+  computed: {
+    itemSeparatorStyle(): CSS.Properties {
+      return {
+        backgroundColor: this.propBackgroundColor,
+      };
     },
-    computed: {
-      frameDivStyle(): CSS.Properties {
-        return {
-          alignSelf: this.propAlignSelf,
-          width: this.propWidth,
-        };
-      },
-      itemSeparatorStyle(): CSS.Properties {
-        return {
-          backgroundColor: this.propBackgroundColor,
-        };
-      },
-    },
-  });
+  },
+});
 </script>
