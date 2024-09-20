@@ -14,18 +14,18 @@
           All
         </button>
         <nav class="hidden lg:flex gap-6 text-base text-white">
-          <a
-            href="#"
-            class="hover:underline"
-            @click="filterOrders('In Process')"
-            >In Process</a
-          >
-          <a href="#" class="hover:underline" @click="filterOrders('Completed')"
-            >Completed</a
-          >
-          <a href="#" class="hover:underline" @click="filterOrders('Cancelled')"
-            >Cancelled</a
-          >
+          <div class="hover:underline" @click="filterOrders('not_started')">
+            Not Started
+          </div>
+          <div class="hover:underline" @click="filterOrders('in_progress')">
+            In Progress
+          </div>
+          <div class="hover:underline" @click="filterOrders('ready')">
+            Ready
+          </div>
+          <div class="hover:underline" @click="filterOrders('delivered')">
+            Delivered
+          </div>
         </nav>
       </div>
       <div class="flex gap-4 mt-4 lg:mt-0">
