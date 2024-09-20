@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
 
 import Menu from "./pages/Menu.vue";
+import Orders from "./pages/Orders.vue";
 import "./global.css";
 
 interface Route {
@@ -13,9 +14,14 @@ interface Route {
 
 const routes: Route[] = [
   {
-    path: "/",
+    path: "/Menu",
     name: "Menu",
     component: Menu,
+  },
+  {
+    path: "/Orders",
+    name: "Orders",
+    component: Orders,
   },
 ];
 

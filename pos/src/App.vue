@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import SidebarNavigation from "./components/SidebarNavigation.vue";
+import SidebarNavigation from "./components/Common/SidebarNavigation.vue";
 
 export default defineComponent({
   name: "App",
