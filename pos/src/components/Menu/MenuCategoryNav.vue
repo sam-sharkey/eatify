@@ -1,10 +1,10 @@
 <template>
   <section
-    class="pr-6 flex flex-col items-start gap-6 w-full text-left text-6xl text-white font-poppins"
+    class="pr-6 flex flex-col items-start w-full text-left text-white font-poppins"
   >
     <!-- Categories Header -->
-    <div class="flex items-center gap-2">
-      <h2 class="font-medium text-3xl">Categories</h2>
+    <div class="flex items-center">
+      <h2 class="font-medium">Categories</h2>
     </div>
 
     <!-- Categories Navigation -->
@@ -16,7 +16,9 @@
         :items="item.items"
         :name="item.name"
         :groupIcon="item.groupIcon"
-        :class="selectedItem === index ? 'bg-pink-100' : 'bg-darkslategray-300'"
+        :class="
+          selectedItem === index ? 'bg-green-300' : 'bg-darkslategray-300'
+        "
         @click="handleSelect(index, item.name)"
       />
     </nav>

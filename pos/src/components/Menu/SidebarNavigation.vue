@@ -4,7 +4,7 @@
   >
     <!-- Header with Logo -->
     <div class="flex flex-col items-center py-4">
-      <h1 class="text-2xl font-semibold text-pink-100">COSYPOS</h1>
+      <h1 class="text-2xl font-semibold text-green-300">EATIFY</h1>
     </div>
 
     <!-- Dashboard -->
@@ -16,7 +16,7 @@
     <!-- Navigation Items -->
     <div class="flex flex-col space-y-4 mt-4 w-3/4">
       <!-- Menu Item -->
-      <button class="flex flex-col items-center p-4 bg-pink-100 rounded-xl">
+      <button class="flex flex-col items-center p-4 bg-green-300 rounded-xl">
         <img src="/group-1000010111.svg" alt="Menu" class="w-8 h-8 mb-2" />
         <span class="text-darkslategray-200">Menu</span>
       </button>

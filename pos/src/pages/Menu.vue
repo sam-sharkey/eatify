@@ -18,16 +18,10 @@
     <!-- User Profile Section -->
     <div class="absolute top-4 right-8 flex flex-col items-center space-y-2">
       <div
-        class="relative flex items-center justify-center bg-pink-100 rounded-full w-10 h-10"
+        class="relative flex items-center justify-center bg-green-300 rounded-full w-10 h-10"
       >
         <span class="text-darkslategray-200 text-sm">01</span>
       </div>
-      <img
-        src="/ellipse-1@2x.png"
-        alt="User Profile"
-        class="w-10 h-10 rounded-full object-cover"
-        loading="lazy"
-      />
     </div>
 
     <!-- Sidebar -->
@@ -45,8 +39,8 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted } from "vue";
-import MenuCategoryNav from "../components/MenuCategoryNav.vue";
-import ProductTable from "../components/ProductTable.vue";
+import MenuCategoryNav from "../components/Menu/MenuCategoryNav.vue";
+import ProductTable from "../components/Menu/ProductTable.vue";
 import { fetchMenuItems } from "../services/apiClient"; // API client to fetch menu items
 
 export default defineComponent({
