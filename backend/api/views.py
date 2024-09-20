@@ -42,6 +42,26 @@ class ItemOptionView(generics.ListAPIView):
 
 class OrderView(APIView):
 
+      # Updated get method to retrieve order details by order_id or restaurant_id
+    def get(self, request):
+        try:
+            # Filter by restaurant_id if provided
+            if 'restaurant_id' in request.query_params.keys():
+                orders = Order.objects.all()
+                #orders = Order.objects.filter(restaurant_id=request.query_params['restaurant_id'])
+            # Otherwise, filter by order_id if provided
+            elif 'order_id' in request.query_params.keys():
+                orders = Order.objects.filter(id=request.query_params['order_id'])
+            
+            # Serialize the orders
+            order_serializer = OrderSerializer(orders, many=True)
+            return Response(order_serializer.data, status=200)
+
+        except Order.DoesNotExist:
+            return Response({"error": "Order not found"}, status=404)
+        except Exception as e:
+            return Response({"error": str(e)}, status=400)
+
     def post(self, request, restaurant_id):
         try:
             data = request.data
@@ -68,23 +88,6 @@ class OrderView(APIView):
             order.total_cost = total_cost
             order.save()
             return Response({"message": order.id}, status=201)
-        except Exception as e:
-            return Response({"error": str(e)}, status=400)
-
-    # New get method to retrieve order details by orderId
-    def get(self, request, order_id):
-        try:
-            # Fetch the order by id
-            order = Order.objects.get(id=order_id)
-            
-            # Serialize the order data
-            order_serializer = OrderSerializer(order)
-
-            # Return the serialized order data
-            return Response(order_serializer.data, status=200)
-
-        except Order.DoesNotExist:
-            return Response({"error": "Order not found"}, status=404)
         except Exception as e:
             return Response({"error": str(e)}, status=400)
 

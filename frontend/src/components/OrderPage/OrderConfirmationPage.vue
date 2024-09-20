@@ -78,7 +78,7 @@
 <script lang="ts">
 import { ref, onMounted, defineComponent } from "vue";
 import { useRouter } from "vue-router";
-import { getOrder } from "@/services/apiClient";
+import { getOrders } from "@/services/apiClient";
 
 export default defineComponent({
   name: "OrderConfirmationPage",
@@ -95,8 +95,8 @@ export default defineComponent({
     // Function to load order details
     const loadOrderDetails = async () => {
       try {
-        const orderData = await getOrder(props.orderId); // API call to get the order details
-        order.value = orderData;
+        const orderData = await getOrders(props.orderId, null); // API call to get the order details
+        order.value = orderData[0];
       } catch (error) {
         console.error("Failed to load order:", error);
       }

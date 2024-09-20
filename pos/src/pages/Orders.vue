@@ -8,14 +8,24 @@
     >
       <div class="flex gap-4 items-center">
         <button
+          @click="selectedStatus = ''"
           class="bg-green-300 rounded-lg py-3 px-6 text-darkslategray-200 font-medium hover:bg-pink-300"
         >
           All
         </button>
         <nav class="hidden lg:flex gap-6 text-base text-white">
-          <a href="#" class="hover:underline">In Process</a>
-          <a href="#" class="hover:underline">Completed</a>
-          <a href="#" class="hover:underline">Cancelled</a>
+          <a
+            href="#"
+            class="hover:underline"
+            @click="filterOrders('In Process')"
+            >In Process</a
+          >
+          <a href="#" class="hover:underline" @click="filterOrders('Completed')"
+            >Completed</a
+          >
+          <a href="#" class="hover:underline" @click="filterOrders('Cancelled')"
+            >Cancelled</a
+          >
         </nav>
       </div>
       <div class="flex gap-4 mt-4 lg:mt-0">
@@ -31,6 +41,7 @@
             type="text"
             placeholder="Search a name, order, or etc."
             class="w-full bg-transparent border-none text-sm font-light text-white placeholder-white outline-none"
+            v-model="searchQuery"
           />
           <img src="/group-1000010362.svg" alt="Search" class="w-5 h-5" />
         </div>
@@ -38,44 +49,78 @@
     </header>
 
     <!-- Orders Section -->
-    <section class="flex flex-col lg:flex-row gap-6 w-full">
-      <FrameComponent2
-        separator="01"
-        ready="Ready"
-        readyToServe="Ready to serve"
-        orderDivider="/vector-147.svg"
-        itemDivider="/vector-147.svg"
-      />
-      <FrameComponent2
-        separator="02"
-        ready="In Process"
-        readyToServe="Cooking Now"
-        quantityValueBackgroundColor="#ffedbe"
-        totalHeaderBackgroundColor="#ffbc0f"
-        orderDivider="/vector-147.svg"
-        itemDivider="/vector-147.svg"
-      />
-      <FrameComponent2
-        separator="03"
-        ready="In Process"
-        readyToServe="In the Kitchen"
-        quantityValueBackgroundColor="#ffc4c4"
-        totalHeaderBackgroundColor="#ff3a3a"
-        orderDivider="/vector-147.svg"
-        itemDivider="/vector-147.svg"
-      />
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
+      <div
+        v-for="order in filteredOrders"
+        :key="order.id"
+        class="rounded-lg shadow-md"
+      >
+        <FrameComponent2
+          :separator="order.id"
+          :ready="order.status"
+          :readyToServe="order.statusDetails"
+          orderDivider="/vector-147.svg"
+          itemDivider="/vector-147.svg"
+        />
+      </div>
     </section>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, onMounted, computed } from "vue";
 import FrameComponent2 from "../components/Orders/FrameComponent2.vue";
+import { getOrders } from "../services/apiClient"; // Make sure the apiClient is correctly imported
 
 export default defineComponent({
   name: "Orders",
   components: {
     FrameComponent2,
+  },
+  setup() {
+    const orders = ref([]); // Store fetched orders
+    const selectedStatus = ref(""); // To filter by status
+    const searchQuery = ref(""); // To filter by search query
+
+    // Fetch orders from the API on mount
+    onMounted(async () => {
+      try {
+        const response = await getOrders(null, 1); // Assuming this returns all orders
+        orders.value = response;
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    });
+
+    // Computed property to filter orders by status
+    const filteredOrders = computed(() => {
+      return orders.value.filter((order) => {
+        // Filter by selectedStatus if provided
+        const matchesStatus = selectedStatus.value
+          ? order.status === selectedStatus.value
+          : true;
+
+        // Filter by search query if provided
+        const matchesSearch = true; //order.name
+        // .toLowerCase()
+        //.includes(searchQuery.value.toLowerCase());
+
+        return matchesStatus && matchesSearch;
+      });
+    });
+
+    // Function to set selected status for filtering
+    const filterOrders = (status: string) => {
+      selectedStatus.value = status;
+    };
+
+    return {
+      orders,
+      selectedStatus,
+      searchQuery,
+      filteredOrders,
+      filterOrders,
+    };
   },
 });
 </script>

@@ -96,8 +96,18 @@ export const placeOrder = async (restaurantId: number, orderData: Order) => {
 };
 
 // Funciton to Get Order in Backend
-export const getOrder = async (orderId: string) => {
-  const response = await apiClient.get(`/api/getorders/${orderId}/`);
+export const getOrders = async (
+  orderId: null | string,
+  restaurantId: null | number
+) => {
+  let response;
+  if (orderId) {
+    response = await apiClient.get(`/api/getorders/?order_id=${orderId}`);
+  } else if (restaurantId) {
+    response = await apiClient.get(
+      `/api/getorders/?restaurant_id=${restaurantId}`
+    );
+  }
   return response.data;
 };
 
