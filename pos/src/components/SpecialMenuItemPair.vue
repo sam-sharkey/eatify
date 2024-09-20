@@ -1,39 +1,45 @@
 <template>
   <div
-    class="h-[146px] flex-1 relative max-w-[152px] text-left text-base text-white font-poppins"
+    class="min-h-28 relative flex-1 p-4 text-left text-base text-white font-poppins bg-darkslategray-300 rounded-md"
   >
-    <div
-      class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-3xs bg-darkslategray-300"
-    />
-    <div class="absolute bottom-[15px] left-[15px] w-[68px] h-12">
-      <div
-        class="absolute bottom-[0px] left-[0px] font-light inline-block min-w-[68px]"
-      >
-        {{ items }}
-      </div>
-      <div
-        class="absolute bottom-[24px] left-[0px] font-medium inline-block min-w-[40px]"
-      >
-        {{ pizza }}
-      </div>
+    <!-- Item Info -->
+    <div class="flex flex-col justify-end h-full">
+      <span class="text-lg font-medium">{{ name }}</span>
+      <span class="text-sm font-light">{{ items }}</span>
     </div>
+
+    <!-- Icon -->
     <img
-      class="absolute top-[15px] right-[15px] w-10 h-10"
+      :src="groupIcon"
+      alt="menu icon"
+      class="absolute top-4 right-4 w-10 h-10"
       loading="lazy"
-      alt=""
-      :src="group1000010171"
     />
   </div>
 </template>
+
 <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "SpecialMenuItemPair",
   props: {
-    items: { type: String },
-    pizza: { type: String },
-    group1000010171: { type: String },
+    items: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    groupIcon: {
+      type: String,
+      required: true,
+    },
   },
 });
 </script>
+
+<style scoped>
+/* Additional styles can be added here if necessary */
+</style>

@@ -9,7 +9,8 @@ import {
 } from "../types";
 
 const apiClient = axios.create({
-  baseURL: `${process.env.VUE_APP_BACKEND_URL}`, // Update this to your Django server URL
+  baseURL: "http://localhost:8000",
+  //baseURL: `${import.meta.env.VUE_APP_BACKEND_URL}`, // Update this to your Django server URL
   headers: {
     "Content-Type": "application/json",
   },

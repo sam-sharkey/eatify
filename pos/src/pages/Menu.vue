@@ -10,9 +10,9 @@
         class="w-8 h-8 object-contain"
         loading="lazy"
       />
-      <a href="#" class="text-xl font-medium text-white [text-decoration:none]"
-        >Menu</a
-      >
+      <a href="#" class="text-xl font-medium text-white [text-decoration:none]">
+        Menu
+      </a>
     </div>
 
     <!-- User Profile Section -->
@@ -31,26 +31,88 @@
     </div>
 
     <!-- Sidebar -->
-    <RightSidebar class="h-full w-full" />
+    <MenuCategoryNav
+      :menuItems="groupedMenuItems"
+      @select-category="handleCategorySelect"
+    />
 
     <!-- Product Table Section -->
-    <section class="pt-64 px-4 max-w-7xl mx-auto">
-      <ProductTable />
+    <section class="px-4 max-w-7xl mx-auto">
+      <ProductTable :categoryItems="filteredCategoryItems" />
     </section>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import RightSidebar from "../components/RightSidebar.vue";
+import { defineComponent, ref, computed, onMounted } from "vue";
+import MenuCategoryNav from "../components/MenuCategoryNav.vue";
 import ProductTable from "../components/ProductTable.vue";
+import { fetchMenuItems } from "../services/apiClient"; // API client to fetch menu items
 
 export default defineComponent({
   name: "Menu",
-  components: { RightSidebar, ProductTable },
+  components: { MenuCategoryNav, ProductTable },
+  setup() {
+    const menuItems = ref([]);
+
+    // Grouped menu items for display in the categories navigation
+    const groupedMenuItems = ref([]);
+
+    // Currently selected category items
+    const selectedCategory = ref("All");
+    const filteredCategoryItems = computed(() => {
+      if (selectedCategory.value === "All") {
+        return menuItems.value;
+      }
+      return menuItems.value.filter(
+        (item) => item.classification === selectedCategory.value
+      );
+    });
+
+    const loadMenuItems = async () => {
+      try {
+        const data = await fetchMenuItems(1);
+
+        // Group menu items by category
+        const categoryMap = data.reduce((acc: any, item: any) => {
+          const category = item.classification || "Uncategorized";
+          if (!acc[category]) {
+            acc[category] = [];
+          }
+          acc[category].push(item);
+          return acc;
+        }, {});
+
+        menuItems.value = data;
+
+        // Format grouped data for `MenuCategoryNav`
+        groupedMenuItems.value = Object.keys(categoryMap).map((category) => ({
+          name: category,
+          items: `${categoryMap[category].length} items`,
+          groupIcon: categoryMap[category][0].image_src, // Update icon path for each category
+        }));
+      } catch (error) {
+        console.error("Error loading menu items:", error);
+      }
+    };
+
+    const handleCategorySelect = (category: string) => {
+      selectedCategory.value = category;
+    };
+
+    onMounted(() => {
+      loadMenuItems();
+    });
+
+    return {
+      groupedMenuItems,
+      filteredCategoryItems,
+      handleCategorySelect,
+    };
+  },
 });
 </script>
 
 <style scoped>
-/* You can include additional styling here if needed */
+/* Add any specific styles if necessary */
 </style>

@@ -14,23 +14,57 @@
 
     <!-- Table Rows -->
     <div class="divide-y divide-gray-600 pt-5">
-      <FrameComponent1 propBackgroundColor="#3d4142" />
-      <FrameComponent1 propBackgroundColor="#292c2d" />
-      <FrameComponent1 propBackgroundColor="#3d4142" />
-      <FrameComponent1 propBackgroundColor="#292c2d" />
-      <FrameComponent1 propBackgroundColor="#3d4142" />
+      <div
+        v-for="(item, index) in categoryItems"
+        :key="index"
+        class="flex items-center justify-start px-6 py-3"
+        :class="
+          index % 2 === 0 ? 'bg-darkslategray-300' : 'bg-darkslategray-400'
+        "
+      >
+        <input
+          class="mr-4 w-4 h-4 border border-white rounded"
+          type="checkbox"
+        />
+        <span>
+          <img
+            :src="item.image_src"
+            alt="menu icon"
+            class="w-10 h-10 mr-14"
+            loading="lazy"
+        /></span>
+        <span class="w-48">{{ item.name }}</span>
+        <span class="w-20">{{ item.id }}</span>
+        <span class="w-20">{{ item.stock || "N/A" }}</span>
+        <span class="w-28 text-right">{{ item.classification }}</span>
+        <span class="w-20 text-right">${{ item.price }}</span>
+        <span class="w-24 text-right">{{
+          item.is_in_stock ? "Available" : "Out of Stock"
+        }}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import FrameComponent1 from "./FrameComponent1.vue";
+import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "ProductTable",
-  components: {
-    FrameComponent1,
+  props: {
+    categoryItems: {
+      type: Array as PropType<
+        Array<{
+          name: string;
+          id: number;
+          classification: string;
+          stock: number;
+          price: number;
+          is_in_stock: boolean;
+        }>
+      >,
+      required: true,
+    },
   },
 });
 </script>
