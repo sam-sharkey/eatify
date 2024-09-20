@@ -55,7 +55,8 @@
         :key="order.id"
         class="rounded-lg shadow-md"
       >
-        <FrameComponent2
+        <OrderComponent
+          :order="order"
           :separator="order.id"
           :ready="order.status"
           :readyToServe="order.statusDetails"
@@ -69,13 +70,13 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, computed } from "vue";
-import FrameComponent2 from "../components/Orders/FrameComponent2.vue";
+import OrderComponent from "../components/Orders/OrderComponent.vue";
 import { getOrders } from "../services/apiClient"; // Make sure the apiClient is correctly imported
 
 export default defineComponent({
   name: "Orders",
   components: {
-    FrameComponent2,
+    OrderComponent,
   },
   setup() {
     const orders = ref([]); // Store fetched orders

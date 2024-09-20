@@ -118,6 +118,13 @@ class Order(models.Model):
         ('delivery', 'Delivery'),
         ('pickup', 'Pickup'),
     ]
+    STATUS_CHOICES = [
+        ('not_started', 'Not Started'),
+        ('in_progress', 'In Progress'),
+        ('ready', 'Ready'),
+        ('delivered', 'Delivered'),
+        ('cancelled', 'Cancelled'),
+    ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     delivery_type = models.CharField(max_length=10, choices=DELIVERY_CHOICES)
@@ -125,6 +132,7 @@ class Order(models.Model):
     user_address = models.CharField(max_length=255, null=True, blank=True)
     total_cost = models.DecimalField(max_digits=10, decimal_places=2)
     order_time = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=15, choices=STATUS_CHOICES, default="not_started")
 
     def __str__(self):
         return f"Order {self.id} by person"#{self.user.username}"
