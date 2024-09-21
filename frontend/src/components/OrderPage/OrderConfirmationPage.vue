@@ -58,7 +58,7 @@
       <div class="mt-6 border-t border-gray-100 pt-4">
         <div class="flex justify-between text-lg font-semibold">
           <p>Total:</p>
-          <!--p>${{ order.totalCost.toFixed(2) }}</p-->
+          <!--p>${{ order.total_cost.toFixed(2) }}</p-->
         </div>
       </div>
     </div>

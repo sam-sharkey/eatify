@@ -155,7 +155,7 @@ export default defineComponent({
 
     // Prepare the order data
     const prepareOrderData = () => {
-      const totalCost = Object.values(itemStore.selectedItems).reduce(
+      const total_cost = Object.values(itemStore.selectedItems).reduce(
         (total, selectedItem) => {
           return total + selectedItem.item_option.cost * selectedItem.quantity;
         },
@@ -164,11 +164,11 @@ export default defineComponent({
 
       const orderData = {
         selectedItems: Object.values(itemStore.selectedItems),
-        deliveryType: "pickup", // or "delivery" based on user selection
-        storeLocation: "London", //restaurantStore.location.name,
+        delivery_type: "pickup", // or "delivery" based on user selection
+        store_location: "London", //restaurantStore.location.name,
         userAddress: "London", //userStore.address,
-        totalCost: totalCost, // assuming totalCost is computed in itemStore
-        orderTime: new Date().toISOString(),
+        total_cost: total_cost, // assuming total_cost is computed in itemStore
+        order_time: new Date().toISOString(),
       };
 
       return orderData;

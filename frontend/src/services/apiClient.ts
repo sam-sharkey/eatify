@@ -6,7 +6,7 @@ import {
   Restaurant,
   ItemOption,
   Order,
-} from "../components/types";
+} from "./types";
 
 const apiClient = axios.create({
   baseURL: `${process.env.VUE_APP_BACKEND_URL}`, // Update this to your Django server URL
@@ -82,7 +82,7 @@ export const fetchHighlights = async (
 export const placeOrder = async (restaurantId: number, orderData: Order) => {
   try {
     const response = await apiClient.post(
-      `/api/orders/${restaurantId}/`,
+      `/api/orders/0/?restaurant_id=${restaurantId}`,
       orderData
     );
     console.log("Order placed successfully:", response.data);
@@ -101,11 +101,18 @@ export const getOrders = async (
 ) => {
   let response;
   if (orderId) {
-    response = await apiClient.get(`/api/getorders/?order_id=${orderId}`);
+    response = await apiClient.get(`/api/orders/0/?order_id=${orderId}`);
   } else if (restaurantId) {
-    response = await apiClient.get(`/api/getorders/?restaurant_id=${orderId}`);
+    response = await apiClient.get(`/api/orders/0/?restaurant_id=${orderId}`);
   }
   return response?.data;
+};
+
+// Funciton to Get Order in Backend
+export const editOrder = async (orderId: number, editedOrder: Order) => {
+  const response = await axios.put(`/api/orders/${orderId}/`, editedOrder);
+
+  console.log("Order updated:", response.data);
 };
 
 // Function to fetch header configuration

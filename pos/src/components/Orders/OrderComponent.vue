@@ -109,40 +109,11 @@
       :src="itemDivider"
     />
 
-    <!-- Subtotal and Buttons -->
-    <div class="w-full flex flex-col gap-6 relative z-10">
-      <div class="flex justify-between">
-        <div class="font-light">SubTotal</div>
-        <div class="font-light">${{ order.total_cost }}</div>
-      </div>
-      <div class="flex gap-4">
-        <button
-          class="flex-1 border border-green-300 py-4 px-6 rounded flex items-center justify-center bg-darkslategray-200"
-        >
-          <img
-            class="h-6 w-6"
-            loading="lazy"
-            alt=""
-            src="/group-1000010360.svg"
-          />
-        </button>
-        <button
-          class="flex-1 border border-green-300 py-4 px-6 rounded flex items-center justify-center bg-darkslategray-200"
-        >
-          <img
-            class="h-6 w-6"
-            loading="lazy"
-            alt=""
-            src="/group-1000010359.svg"
-          />
-        </button>
-        <button
-          class="flex-1 bg-green-300 py-4 px-10 rounded text-white font-medium"
-        >
-          Pay Bill
-        </button>
-      </div>
-    </div>
+    <OrderActions
+      :order="order"
+      @order-updated="$emit('order-updated', $event)"
+      @order-deleted="$emit('order-deleted', $event)"
+    />
   </div>
 </template>
 

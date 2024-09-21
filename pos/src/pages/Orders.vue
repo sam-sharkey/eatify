@@ -97,6 +97,8 @@
           :readyToServe="order.statusDetails"
           orderDivider="/vector-147.svg"
           itemDivider="/vector-147.svg"
+          @order-updated="onOrderUpdated"
+          @order-deleted="onOrderDeleted"
         />
       </div>
     </section>
@@ -107,6 +109,7 @@
 import { defineComponent, ref, onMounted, computed } from "vue";
 import OrderComponent from "../components/Orders/OrderComponent.vue";
 import { getOrders } from "../services/apiClient"; // Make sure the apiClient is correctly imported
+import { Order } from "../types";
 
 export default defineComponent({
   name: "Orders",
@@ -151,12 +154,29 @@ export default defineComponent({
       selectedStatus.value = status;
     };
 
+    // Method to handle the updated order
+    const onOrderUpdated = (updatedOrder: Order) => {
+      const index = orders.value.findIndex(
+        (order) => order.id === updatedOrder.id
+      );
+      if (index !== -1) {
+        orders.value[index] = updatedOrder;
+      }
+    };
+
+    // Method to handle the deleted order
+    const onOrderDeleted = (orderId: number) => {
+      orders.value = orders.value.filter((order) => order.id !== orderId);
+    };
+
     return {
       orders,
       selectedStatus,
       searchQuery,
       filteredOrders,
       filterOrders,
+      onOrderUpdated,
+      onOrderDeleted,
     };
   },
 });

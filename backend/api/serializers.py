@@ -11,11 +11,37 @@ class OrderItemOptionSerializer(serializers.ModelSerializer):
         fields = ['item_name', 'item_price', 'quantity']
 
 class OrderSerializer(serializers.ModelSerializer):
-    items = OrderItemOptionSerializer(source='orderitemoption_set', many=True)
+    item_options = OrderItemOptionSerializer(source='orderitemoption_set', many=True)
 
     class Meta:
         model = Order
-        fields = ['id', 'restaurant', 'delivery_type', 'user_address', 'total_cost', 'items', 'order_time', 'status']
+        fields = ['id', 'delivery_type', 'store_location', 'user_address', 'total_cost', 'order_time', 'status', 'item_options']
+
+    def update(self, instance, validated_data):
+        # Handle updating selected items separately
+        selected_items_data = validated_data.pop('item_options', None)
+
+        # Update the main fields of the order
+        instance.delivery_type = validated_data.get('delivery_type', instance.delivery_type)
+        instance.store_location = validated_data.get('store_location', instance.store_location)
+        instance.user_address = validated_data.get('user_address', instance.user_address)
+        instance.total_cost = validated_data.get('total_cost', instance.total_cost)
+        instance.order_time = validated_data.get('order_time', instance.order_time)
+        instance.status = validated_data.get('status', instance.status)
+        instance.save()
+
+        # If there are selected items, update them
+        if selected_items_data is not None:
+            # Clear out existing items before re-adding them
+            instance.orderitemoption_set.all().delete()
+
+            # Add the new selected items
+            for item_data in selected_items_data:
+                item_option = item_data['item_option']
+                quantity = item_data['quantity']
+                OrderItemOption.objects.create(order=instance, item_option=item_option, quantity=quantity)
+
+        return instance
 
 class ItemOptionSerializer(serializers.ModelSerializer):
     class Meta:

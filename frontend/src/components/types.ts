@@ -17,11 +17,13 @@ export interface OrderItem {
 
 export interface Order {
   selectedItems: OrderItem[]; // Array of selected ItemOptions
-  deliveryType: string; // Can only be 'pickup' or 'delivery'
-  storeLocation: string; // The store location address
+  delivery_type: string; // Can only be 'pickup' or 'delivery'
+  store_location: string; // The store location address
   userAddress: string; // The user's address for delivery
-  totalCost: number; // The total cost of the order
-  orderTime: string; // ISO string representing the time of the order
+  total_cost: number; // The total cost of the order
+  order_time: string; // ISO string representing the time of the order
+  status?: string;
+  id?: number;
 }
 
 export interface ItemOption {
