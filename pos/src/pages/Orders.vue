@@ -6,31 +6,66 @@
     <header
       class="flex flex-col lg:flex-row items-center justify-between w-full"
     >
-      <div class="flex gap-4 items-center">
+      <nav class="flex gap-6 text-base text-white">
         <button
-          @click="selectedStatus = ''"
-          class="bg-green-300 rounded-lg py-3 px-6 text-darkslategray-200 font-medium hover:bg-pink-300"
+          @click="filterOrders('all')"
+          :class="[
+            'py-3 px-6 rounded-lg font-medium',
+            selectedStatus === 'all'
+              ? 'bg-green-300 text-darkslategray-200'
+              : 'hover:bg-green-600',
+          ]"
         >
           All
         </button>
-        <nav class="hidden lg:flex gap-6 text-base text-white">
-          <div class="hover:underline" @click="filterOrders('not_started')">
-            Not Started
-          </div>
-          <div class="hover:underline" @click="filterOrders('in_progress')">
-            In Progress
-          </div>
-          <div class="hover:underline" @click="filterOrders('ready')">
-            Ready
-          </div>
-          <div class="hover:underline" @click="filterOrders('delivered')">
-            Delivered
-          </div>
-        </nav>
-      </div>
+        <button
+          @click="filterOrders('not_started')"
+          :class="[
+            'py-3 px-6 rounded-lg font-medium',
+            selectedStatus === 'not_started'
+              ? 'bg-green-300 text-darkslategray-200'
+              : 'hover:bg-green-600',
+          ]"
+        >
+          Not Started
+        </button>
+        <button
+          @click="filterOrders('in_progress')"
+          :class="[
+            'py-3 px-6 rounded-lg font-medium',
+            selectedStatus === 'in_progress'
+              ? 'bg-green-300 text-darkslategray-200'
+              : 'hover:bg-green-600',
+          ]"
+        >
+          In Progress
+        </button>
+        <button
+          @click="filterOrders('ready')"
+          :class="[
+            'py-3 px-6 rounded-lg font-medium',
+            selectedStatus === 'ready'
+              ? 'bg-green-300 text-darkslategray-200'
+              : 'hover:bg-green-600',
+          ]"
+        >
+          Ready
+        </button>
+        <button
+          @click="filterOrders('delivered')"
+          :class="[
+            'py-3 px-6 rounded-lg font-medium',
+            selectedStatus === 'delivered'
+              ? 'bg-green-300 text-darkslategray-200'
+              : 'hover:bg-green-600',
+          ]"
+        >
+          Delivered
+        </button>
+      </nav>
       <div class="flex gap-4 mt-4 lg:mt-0">
         <button
-          class="bg-green-300 rounded-lg py-3 px-6 text-darkslategray-200 font-medium hover:bg-pink-300"
+          class="bg-green-300 rounded-lg py-3 px-6 text-darkslategray-200 font-medium hover:bg-green-600"
         >
           Add New Order
         </button>
@@ -97,9 +132,10 @@ export default defineComponent({
     const filteredOrders = computed(() => {
       return orders.value.filter((order) => {
         // Filter by selectedStatus if provided
-        const matchesStatus = selectedStatus.value
-          ? order.status === selectedStatus.value
-          : true;
+        const matchesStatus =
+          (selectedStatus.value
+            ? order.status === selectedStatus.value
+            : true) || selectedStatus.value == "all";
 
         // Filter by search query if provided
         const matchesSearch = true; //order.name

@@ -10,7 +10,7 @@
     <!-- Categories Navigation -->
     <nav class="flex flex-row flex-wrap gap-5 w-full">
       <!-- Special Menu Items -->
-      <SpecialMenuItemPair
+      <MenuCategoryCard
         v-for="(item, index) in menuItems"
         :key="index"
         :items="item.items"
@@ -27,11 +27,11 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import SpecialMenuItemPair from "./SpecialMenuItemPair.vue";
+import MenuCategoryCard from "./MenuCategoryCard.vue";
 
 export default defineComponent({
   name: "MenuCategoryNav",
-  components: { SpecialMenuItemPair },
+  components: { MenuCategoryCard },
   props: {
     menuItems: {
       type: Array,
