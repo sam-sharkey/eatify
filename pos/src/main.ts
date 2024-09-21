@@ -11,6 +11,7 @@ import * as directives from "vuetify/directives";
 
 import Menu from "./pages/Menu.vue";
 import Orders from "./pages/Orders.vue";
+import Inventory from "./pages/Inventory.vue";
 import "./global.css";
 
 interface Route {
@@ -29,6 +30,11 @@ const routes: Route[] = [
     path: "/Orders",
     name: "Orders",
     component: Orders,
+  },
+  {
+    path: "/Inventory",
+    name: "Inventory",
+    component: Inventory,
   },
 ];
 

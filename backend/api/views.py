@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, viewsets, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import MenuItem, Highlight, HeaderConfig, FooterConfig, MainPageConfig, Restaurant, Location, ItemOption, Order, OrderItemOption
-from .serializers import MenuItemSerializer, OrderSerializer, RestaurantSerializer, HighlightSerializer, HeaderConfigSerializer, FooterConfigSerializer, MainPageConfigSerializer, LocationSerializer, ItemOptionSerializer
+from .models import MenuItem, Inventory, Highlight, HeaderConfig, FooterConfig, MainPageConfig, Restaurant, Location, ItemOption, Order, OrderItemOption
+from .serializers import MenuItemSerializer, InventorySerializer, OrderSerializer, RestaurantSerializer, HighlightSerializer, HeaderConfigSerializer, FooterConfigSerializer, MainPageConfigSerializer, LocationSerializer, ItemOptionSerializer
 from rest_framework import status
 from django.shortcuts import get_object_or_404
+from rest_framework.decorators import action
+
 
 class RestaurantListView(generics.ListAPIView):
     serializer_class = RestaurantSerializer
@@ -138,6 +140,46 @@ class OrderView(generics.RetrieveUpdateDestroyAPIView):
         Custom method to handle the deletion of an order.
         """
         instance.delete()
+
+class InventoryViewSet(viewsets.ModelViewSet):
+    queryset = Inventory.objects.all()
+    serializer_class = InventorySerializer
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned inventory by restaurant_id,
+        by filtering against a 'restaurant_id' query parameter in the URL.
+        """
+        queryset = Inventory.objects.all()
+        restaurant_id = self.request.query_params.get('restaurant_id', None)
+        if restaurant_id is not None:
+            queryset = queryset.filter(item_option__restaurant_id=restaurant_id)
+        return queryset
+
+    # Custom action to update inventory quantity
+    @action(detail=True, methods=['patch'], url_path='update-quantity')
+    def update_quantity(self, request, pk=None):
+        try:
+            inventory_item = self.get_object()
+            new_quantity = request.data.get('quantity')
+
+            # Update the quantity
+            if new_quantity is not None:
+                inventory_item.quantity = int(new_quantity)
+                inventory_item.save()
+
+                return Response({'status': 'quantity updated', 'quantity': inventory_item.quantity}, status=status.HTTP_200_OK)
+            else:
+                return Response({'error': 'Quantity not provided'}, status=status.HTTP_400_BAD_REQUEST)
+
+        except Inventory.DoesNotExist:
+            return Response({'error': 'Inventory item not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    # Retrieve all inventory items and check for low stock
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = InventorySerializer(queryset, many=True)
+        return Response(serializer.data)
 
 class HighlightListView(generics.ListAPIView):
     serializer_class = HighlightSerializer

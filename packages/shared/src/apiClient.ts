@@ -6,6 +6,7 @@ import {
   Restaurant,
   ItemOption,
   Order,
+  Inventory,
 } from "./types";
 
 const apiClient = axios.create({
@@ -62,6 +63,20 @@ export const fetchItemOptions = async (
     return response.data;
   } catch (error) {
     console.error("Failed to fetch item options:", error);
+    throw error;
+  }
+};
+
+export const fetchInventory = async (
+  restaurantId: number
+): Promise<Inventory[]> => {
+  try {
+    const response = await apiClient.get<Inventory[]>(
+      `/api/inventory/?restaurant_id=${restaurantId}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch inventory:", error);
     throw error;
   }
 };

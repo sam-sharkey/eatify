@@ -15,10 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from api.views import MenuItemsView, OrderView, ItemOptionView, HighlightListView, HeaderConfigView, FooterConfigView, MainPageConfigView, LocationView, RestaurantListView
+from django.urls import path, include
+from api.views import MenuItemsView, InventoryViewSet, OrderView, ItemOptionView, HighlightListView, HeaderConfigView, FooterConfigView, MainPageConfigView, LocationView, RestaurantListView
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'inventory', InventoryViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +35,7 @@ urlpatterns = [
     path('api/item-options/<int:restaurant_id>/', ItemOptionView.as_view(), name='itemoption-list'),
     path('api/locations/<int:restaurant_id>/', LocationView.as_view(), name='locations'),
     path('api/orders/<int:id>/', OrderView.as_view(), name='orders'),
+    path('api/', include(router.urls)),
 ]
 
 if settings.DEBUG:

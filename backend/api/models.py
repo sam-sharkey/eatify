@@ -109,6 +109,30 @@ class ItemOption(models.Model):
             )
         ]
 
+# Inventory
+
+class Inventory(models.Model):
+    item_option = models.ForeignKey(ItemOption, on_delete=models.CASCADE, related_name='inventories')
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='inventories')
+    quantity = models.PositiveIntegerField(default=0)  # Inventory quantity available
+    low_quantity_threshold = models.PositiveIntegerField(default=0)  # Threshold for low stock alerts
+
+    def __str__(self):
+        return f'{self.item_option.name} at {self.location.name}: {self.quantity}'
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['item_option', 'location'],
+                name='unique_itemoption_location'
+            )
+        ]
+
+    # Custom method to check if the stock is below the low quantity threshold
+    def is_low_stock(self):
+        return self.quantity <= self.low_quantity_threshold
+
+
 
 # Order Management
 

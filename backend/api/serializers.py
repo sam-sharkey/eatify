@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import MenuItem, Highlight, Restaurant, HeaderConfig, FooterConfig, MainPageConfig, Location, ItemOption, OrderItemOption, Order
+from .models import MenuItem, Highlight, Restaurant, HeaderConfig, Inventory, FooterConfig, MainPageConfig, Location, ItemOption, OrderItemOption, Order
 
 
 class OrderItemOptionSerializer(serializers.ModelSerializer):
@@ -42,6 +42,20 @@ class OrderSerializer(serializers.ModelSerializer):
                 OrderItemOption.objects.create(order=instance, item_option=item_option, quantity=quantity)
 
         return instance
+
+class InventorySerializer(serializers.ModelSerializer):
+    item_option_name = serializers.CharField(source='item_option.name', read_only=True)
+    location_name = serializers.CharField(source='location.name', read_only=True)
+    is_low_stock = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Inventory
+        fields = ['id', 'item_option', 'location', 'quantity', 'low_quantity_threshold', 'is_low_stock', 'item_option_name', 'location_name']
+        read_only_fields = ['item_option', 'location', 'is_low_stock']
+
+    def get_is_low_stock(self, obj):
+        return obj.is_low_stock()
+
 
 class ItemOptionSerializer(serializers.ModelSerializer):
     class Meta:

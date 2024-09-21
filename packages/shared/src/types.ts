@@ -36,6 +36,14 @@ export interface ItemOption {
   is_in_stock: boolean;
 }
 
+export interface Inventory {
+  id: string;
+  item_option: ItemOption; // This is the ItemOption associated with the Inventory
+  location: string;
+  quantity: number;
+  low_quantity_alert: number; // Threshold for low inventory alert
+}
+
 export interface HamburgerMenuItem {
   name: string;
   path: string;
