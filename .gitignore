@@ -19,6 +19,8 @@ env
 /frontend/.env.local
 /frontend/.env.*.local
 
+/node_modules
+
 # Log files
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*
