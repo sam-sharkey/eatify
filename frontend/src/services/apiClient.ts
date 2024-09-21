@@ -6,7 +6,7 @@ import {
   Restaurant,
   ItemOption,
   Order,
-} from "../services/types";
+} from "../components/types";
 
 const apiClient = axios.create({
   baseURL: `${process.env.VUE_APP_BACKEND_URL}`, // Update this to your Django server URL

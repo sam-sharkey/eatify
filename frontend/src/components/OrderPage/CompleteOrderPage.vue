@@ -163,10 +163,10 @@ export default defineComponent({
       );
 
       const orderData = {
-        selectedItems: Object.values(itemStore.selectedItems),
+        item_options: Object.values(itemStore.selectedItems),
         delivery_type: "pickup", // or "delivery" based on user selection
         store_location: "London", //restaurantStore.location.name,
-        userAddress: "London", //userStore.address,
+        user_address: "London", //userStore.address,
         total_cost: total_cost, // assuming total_cost is computed in itemStore
         order_time: new Date().toISOString(),
       };

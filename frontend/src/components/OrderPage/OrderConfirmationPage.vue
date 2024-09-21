@@ -39,15 +39,15 @@
         <div class="mt-4">
           <ul>
             <li
-              v-for="item in order.items"
+              v-for="item in order.item_options"
               :key="item.id"
               class="border-b border-gray-200 py-2 flex justify-between"
             >
               <span class="text-md text-gray-700"
-                >{{ item.name }} x {{ item.quantity }}</span
+                >{{ item.item_name }} x {{ item.quantity }}</span
               >
               <span class="text-md text-gray-700"
-                >${{ (item.cost * item.quantity).toFixed(2) }}</span
+                >${{ (item.item_price * item.quantity).toFixed(2) }}</span
               >
             </li>
           </ul>
@@ -58,7 +58,7 @@
       <div class="mt-6 border-t border-gray-100 pt-4">
         <div class="flex justify-between text-lg font-semibold">
           <p>Total:</p>
-          <!--p>${{ order.total_cost.toFixed(2) }}</p-->
+          <p>${{ order.total_cost }}</p>
         </div>
       </div>
     </div>
