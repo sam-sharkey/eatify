@@ -1,4 +1,11 @@
 {
+  "name": "eatify",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "pos",
+    "packages/shared"
+  ],
   "devDependencies": {
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.40",

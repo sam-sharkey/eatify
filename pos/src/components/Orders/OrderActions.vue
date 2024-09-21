@@ -109,8 +109,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { editOrder, deleteOrder } from "../../services/apiClient";
-import Order from "../../types";
+import { editOrder, deleteOrder } from "@eatify/shared/src/apiClient";
+import Order from "@eatify/shared/src/types";
 
 export default defineComponent({
   name: "OrderActions",

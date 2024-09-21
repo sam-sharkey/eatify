@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@eatify/shared": "1.0.0",
     "axios": "^1.7.7",
     "csstype": "^3.1.2",
     "vue": "^3.2.47",

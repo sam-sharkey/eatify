@@ -41,7 +41,7 @@
 import { defineComponent, ref, computed, onMounted } from "vue";
 import MenuCategoryNav from "../components/Menu/MenuCategoryNav.vue";
 import ProductTable from "../components/Menu/ProductTable.vue";
-import { fetchMenuItems } from "../services/apiClient"; // API client to fetch menu items
+import { fetchMenuItems } from "@eatify/shared/src/apiClient"; // API client to fetch menu items
 
 export default defineComponent({
   name: "Menu",

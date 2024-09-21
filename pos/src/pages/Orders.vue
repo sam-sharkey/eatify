@@ -108,8 +108,8 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted, computed } from "vue";
 import OrderComponent from "../components/Orders/OrderComponent.vue";
-import { getOrders } from "../services/apiClient"; // Make sure the apiClient is correctly imported
-import { Order } from "../types";
+import { getOrders } from "@eatify/shared/src/apiClient";
+import { Order } from "@eatify/shared/src/types";
 
 export default defineComponent({
   name: "Orders",

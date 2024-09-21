@@ -23,7 +23,7 @@ export interface Order {
   user_address: string; // The user's address for delivery
   total_cost: number; // The total cost of the order
   order_time: string; // ISO string representing the time of the order
-  status: string;
+  status?: string;
 }
 
 export interface ItemOption {
