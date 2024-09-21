@@ -24,7 +24,7 @@ import {
   fetchHeaderConfig,
   fetchFooterConfig,
   fetchMainPageConfig,
-} from "./services/apiClient";
+} from "@eatify/shared/src/apiClient";
 import PageFooter from "./components/Footer/PageFooter.vue";
 import PageHeader from "./components/Header/PageHeader.vue";
 import { useStyleStore } from "./stores/styleStore";

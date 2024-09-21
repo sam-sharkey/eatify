@@ -1,7 +1,7 @@
 // stores/restaurant.js or stores/restaurant.ts
 import { defineStore } from "pinia";
 import { useLocalStorage } from "@vueuse/core";
-import { Restaurant, Location } from "../components/types";
+import { Restaurant, Location } from "@eatify/shared/src/types";
 
 export const useRestaurantStore = defineStore("restaurant", {
   state: () => ({

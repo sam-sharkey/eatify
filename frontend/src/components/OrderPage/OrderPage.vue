@@ -51,8 +51,8 @@ import OptionsMenu from "./OptionsMenu.vue";
 import CartPage from "./CartPage.vue";
 import { useRestaurantStore } from "@/stores/restaurant";
 import { useItemStore } from "@/stores/itemStore";
-import { ItemOption } from "@/components/types";
-import { fetchItemOptions } from "@/services/apiClient";
+import { ItemOption } from "@eatify/shared/src/types";
+import { fetchItemOptions } from "@eatify/shared/src/apiClient";
 
 export default defineComponent({
   name: "OrderPage",

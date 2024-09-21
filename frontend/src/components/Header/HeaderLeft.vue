@@ -19,7 +19,7 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import HamburgerMenu from "./HamburgerMenu.vue";
-import { HamburgerMenuItem } from "../types";
+import { HamburgerMenuItem } from "@eatify/shared/src/types";
 
 export default defineComponent({
   name: "HeaderLeft",

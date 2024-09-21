@@ -1,7 +1,7 @@
 // src/stores/itemStore.ts
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
-import { ItemOption, MenuItem, OrderItem } from "@/components/types"; // Assuming you have this type defined
+import { ItemOption, MenuItem, OrderItem } from "@eatify/shared/src/types"; // Assuming you have this type defined
 
 export const useItemStore = defineStore("itemStore", () => {
   const itemOptions = ref<ItemOption[]>([]); // All available ingredients

@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { MenuItem as MenuItemType } from "../types";
+import { MenuItem as MenuItemType } from "@eatify/shared/src/types";
 
 export default defineComponent({
   name: "MenuItemComponent",

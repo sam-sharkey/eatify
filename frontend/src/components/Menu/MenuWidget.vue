@@ -28,8 +28,8 @@
 import { defineComponent, ref, computed, onMounted } from "vue";
 import MenuNav from "./MenuNav.vue";
 import MenuItem from "./MenuItem.vue";
-import { MenuItem as MenuItemType } from "../types";
-import { fetchMenuItems } from "../../services/apiClient"; // Import the API function
+import { MenuItem as MenuItemType } from "@eatify/shared/src/types";
+import { fetchMenuItems } from "@eatify/shared/src/apiClient"; // Import the API function
 import { useStyleStore } from "../../stores/styleStore"; // Import the style store
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the restaurant store
 

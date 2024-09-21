@@ -78,7 +78,7 @@
 <script lang="ts">
 import { ref, onMounted, defineComponent } from "vue";
 import { useRouter } from "vue-router";
-import { getOrders } from "@/services/apiClient";
+import { getOrders } from "@eatify/shared/src/apiClient";
 
 export default defineComponent({
   name: "OrderConfirmationPage",

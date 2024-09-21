@@ -34,8 +34,8 @@
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted } from "vue";
 import PictureWidget from "./PictureWidget.vue";
-import { fetchHighlights } from "../../services/apiClient";
-import { Highlight } from "../types";
+import { fetchHighlights } from "@eatify/shared/src/apiClient";
+import { Highlight } from "@eatify/shared/src/types";
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the store
 import { useStyleStore } from "../../stores/styleStore"; // Import the style store
 

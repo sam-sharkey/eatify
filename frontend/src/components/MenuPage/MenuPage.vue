@@ -59,8 +59,8 @@ import RestaurantInfo from "./RestaurantInfo.vue";
 import MenuItemComponent from "./MenuItemComponent.vue";
 import CustomSaladsParent from "./CustomSaladsParent.vue";
 import MenuCategoriesHeader from "./MenuCategoriesHeader.vue";
-import { MenuItem as MenuItemType, Location } from "../types";
-import { fetchMenuItems, fetchLocations } from "../../services/apiClient"; // Import the API function
+import { MenuItem as MenuItemType, Location } from "@eatify/shared/src/types";
+import { fetchMenuItems, fetchLocations } from "@eatify/shared/src/apiClient"; // Import the API function
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the restaurant store
 import { useRouter } from "vue-router";
 import { useItemStore } from "@/stores/itemStore"; // Import the Pinia store

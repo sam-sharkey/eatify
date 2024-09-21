@@ -54,7 +54,7 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { useItemStore } from "@/stores/itemStore"; // Import the store
-import { ItemOption } from "@/components/types";
+import { ItemOption } from "@eatify/shared/src/types";
 
 export default defineComponent({
   name: "ProductCard",

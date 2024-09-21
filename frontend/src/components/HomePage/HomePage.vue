@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from "vue";
-import { fetchMainPageConfig } from "../../services/apiClient";
+import { fetchMainPageConfig } from "@eatify/shared/src/apiClient";
 import MenuWidget from "../Menu/MenuWidget.vue";
 import HighlightsWidget from "../Highlights/HighlightsWidget.vue";
 import FeatureWidget from "../Picture/FeatureWidget.vue";

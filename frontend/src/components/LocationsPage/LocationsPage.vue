@@ -16,8 +16,8 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, computed } from "vue";
-import { Location } from "../types";
-import { fetchLocations } from "../../services/apiClient";
+import { Location } from "@eatify/shared/src/types";
+import { fetchLocations } from "@eatify/shared/src/apiClient";
 import RestaurantInfo from "../MenuPage/RestaurantInfo.vue";
 import { useRestaurantStore } from "../../stores/restaurant";
 import { useStyleStore } from "../../stores/styleStore";

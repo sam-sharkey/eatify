@@ -22,7 +22,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import GenericButton from "../Common/GenericButton.vue";
-import { HamburgerMenuItem } from "../types";
+import { HamburgerMenuItem } from "@eatify/shared/src/types";
 
 export default defineComponent({
   name: "HeaderRight",

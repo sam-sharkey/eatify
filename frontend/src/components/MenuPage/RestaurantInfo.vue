@@ -45,7 +45,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from "vue";
-import { Location } from "../types";
+import { Location } from "@eatify/shared/src/types";
 import { useStyleStore } from "../../stores/styleStore";
 
 export default defineComponent({

@@ -6,7 +6,7 @@ import {
   Restaurant,
   ItemOption,
   Order,
-} from "../types";
+} from "./types";
 
 const apiClient = axios.create({
   baseURL: "http://localhost:8000", // Update this to your Django server URL

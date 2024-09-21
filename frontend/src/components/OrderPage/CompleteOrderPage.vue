@@ -142,7 +142,7 @@ import { defineComponent } from "vue";
 import { useItemStore } from "@/stores/itemStore"; // Assuming the pinia store for item management
 //import { useUserStore } from "@/stores/userStore"; // Assuming user store for address, user info
 import { useRestaurantStore } from "@/stores/restaurant"; // Assuming restaurant store for location
-import { placeOrder } from "@/services/apiClient";
+import { placeOrder } from "@eatify/shared/src/apiClient";
 import { useRouter } from "vue-router";
 
 export default defineComponent({

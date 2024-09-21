@@ -29,8 +29,8 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted, computed } from "vue";
 import HighlightItem from "./HighlightItem.vue";
-import { fetchHighlights } from "../../services/apiClient";
-import { Highlight } from "../types";
+import { fetchHighlights } from "@eatify/shared/src/apiClient";
+import { Highlight } from "@eatify/shared/src/types";
 import { useRestaurantStore } from "../../stores/restaurant"; // Import the store
 import { useStyleStore } from "../../stores/styleStore";
 
