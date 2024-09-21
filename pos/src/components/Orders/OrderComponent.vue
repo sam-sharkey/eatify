@@ -72,7 +72,7 @@
       <div class="flex flex-col gap-2.5">
         <div class="text-gray-200 font-light">Qty</div>
         <div
-          v-for="item in order.items"
+          v-for="item in order.item_options"
           :key="item.item_name"
           class="font-light"
         >
@@ -82,7 +82,7 @@
       <div class="flex-1 flex flex-col gap-2.5">
         <div class="text-gray-200 font-light">Items</div>
         <div
-          v-for="item in order.items"
+          v-for="item in order.item_options"
           :key="item.item_name"
           class="font-light"
         >
@@ -92,7 +92,7 @@
       <div class="w-16 flex flex-col items-end gap-2.5 text-right">
         <div class="text-gray-200 font-light">Price</div>
         <div
-          v-for="item in order.items"
+          v-for="item in order.item_options"
           :key="item.item_name"
           class="font-light"
         >
@@ -119,9 +119,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import OrderActions from "./OrderActions.vue";
 
 export default defineComponent({
   name: "OrderComponent",
+  components: { OrderActions },
   props: {
     order: {
       type: Object,

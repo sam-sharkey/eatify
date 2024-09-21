@@ -46,7 +46,7 @@ class OrderView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = OrderSerializer
     lookup_field = 'id'  # To identify orders by their ID in the URL
 
-    def get(self, request):
+    def get(self, request, id):
         """
         Overrides the default GET method to support filtering by order_id or restaurant_id.
         """
@@ -67,7 +67,7 @@ class OrderView(generics.RetrieveUpdateDestroyAPIView):
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-    def post(self, request, restaurant_id):
+    def post(self, request, id):
         """
         Create a new order.
         """
@@ -77,16 +77,16 @@ class OrderView(generics.RetrieveUpdateDestroyAPIView):
 
             # Create the Order
             order = Order.objects.create(
-                restaurant=Restaurant.objects.get(id=restaurant_id),
+                restaurant=Restaurant.objects.get(id=request.query_params['restaurant_id']),
                 #user=user,
-                delivery_type=data['deliveryType'],
+                delivery_type=data['delivery_type'],
                 #store_location=Location.objects.get(name=data['storeLocation']),
-                user_address=data['userAddress'],
-                total_cost=data['totalCost'],
+                user_address=data['user_address'],
+                total_cost=data['total_cost'],
             )
 
             # Add selected items to the Order
-            for item_data in data['selectedItems']:
+            for item_data in data['item_options']:
                 item = ItemOption.objects.get(id=item_data['item_option']['id'])
                 OrderItemOption.objects.create(order=order, item_option=item, quantity=item_data['quantity'])
 

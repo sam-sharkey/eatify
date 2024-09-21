@@ -6,7 +6,7 @@ import {
   Restaurant,
   ItemOption,
   Order,
-} from "./types";
+} from "../services/types";
 
 const apiClient = axios.create({
   baseURL: `${process.env.VUE_APP_BACKEND_URL}`, // Update this to your Django server URL
@@ -103,7 +103,9 @@ export const getOrders = async (
   if (orderId) {
     response = await apiClient.get(`/api/orders/0/?order_id=${orderId}`);
   } else if (restaurantId) {
-    response = await apiClient.get(`/api/orders/0/?restaurant_id=${orderId}`);
+    response = await apiClient.get(
+      `/api/orders/0/?restaurant_id=${restaurantId}`
+    );
   }
   return response?.data;
 };
@@ -111,8 +113,13 @@ export const getOrders = async (
 // Funciton to Get Order in Backend
 export const editOrder = async (orderId: number, editedOrder: Order) => {
   const response = await axios.put(`/api/orders/${orderId}/`, editedOrder);
+  return response.data;
+};
 
-  console.log("Order updated:", response.data);
+// Funciton to Delete Order in Backend
+export const deleteOrder = async (orderId: number) => {
+  const response = await axios.delete(`/api/orders/${orderId}/`);
+  return response.data;
 };
 
 // Function to fetch header configuration
