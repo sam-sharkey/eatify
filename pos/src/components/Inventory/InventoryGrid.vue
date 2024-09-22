@@ -28,7 +28,7 @@
       </v-col>
       <v-col cols="1">
         <v-img
-          :src="'http://localhost:8000'.concat(inventory.item_option.image_src)"
+          :src="getImageUrl(inventory.item_option.image_src)"
           alt="menu icon"
           width="40"
           height="40"
@@ -108,7 +108,7 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {
+  setup(_, { emit }) {
     const showUpdateDialog = ref(false);
     const selectedInventory = ref<Inventory | null>(null);
 
@@ -124,10 +124,19 @@ export default defineComponent({
 
       try {
         // Assuming you have an API function to update the inventory
-        await updateInventory(selectedInventory.value);
+        const response = await updateInventory(selectedInventory.value);
+        emit("inventory-updated", response);
         showUpdateDialog.value = false;
       } catch (error) {
         console.error("Failed to update inventory", error);
+      }
+    };
+
+    const getImageUrl = (url: string) => {
+      if (url.startsWith("http")) {
+        return url;
+      } else {
+        return "http://localhost:8000".concat(url);
       }
     };
 
@@ -136,6 +145,7 @@ export default defineComponent({
       selectedInventory,
       openUpdateDialog,
       saveInventory,
+      getImageUrl,
     };
   },
 });

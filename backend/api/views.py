@@ -165,7 +165,8 @@ class InventoryViewSet(viewsets.ModelViewSet):
     # Handle the PUT request for updating an inventory item
     def update(self, request, *args, **kwargs):
         instance = self.get_object()  # Get the inventory item to update
-        serializer = self.get_serializer(instance, data=request.data, partial=True)  # Use partial=True if you want to update only some fields
+        partial = kwargs.pop('partial', False)
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)  # Use partial=True if you want to update only some fields
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(serializer.data)

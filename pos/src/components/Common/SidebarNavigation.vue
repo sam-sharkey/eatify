@@ -127,7 +127,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 export default defineComponent({
@@ -137,6 +137,10 @@ export default defineComponent({
 
     // State to track the currently selected item, defaulting to 'menu'
     const selected = ref("menu");
+
+    onMounted(() => {
+      router.push("/menu");
+    });
 
     // Function to navigate to the specified route and update the selected item
     const navigateTo = (path: string, item: string) => {

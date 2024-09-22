@@ -32,7 +32,6 @@
           width="40"
           height="40"
         ></v-img>
-        {{ item.image_src }}
       </v-col>
       <v-col cols="2">{{ item.name }}</v-col>
       <v-col cols="1">{{ item.id }}</v-col>

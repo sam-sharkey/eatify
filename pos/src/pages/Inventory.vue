@@ -80,7 +80,10 @@
 
       <!-- Right Inventory List -->
       <v-col cols="9">
-        <InventoryGrid :inventoryItems="filteredInventory" />
+        <InventoryGrid
+          :inventoryItems="filteredInventory"
+          @inventory-updated="onInventoryUpdate"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -146,7 +149,7 @@ export default defineComponent({
       // Filter by "low stock"
       if (showLowStock.value) {
         filtered = filtered.filter(
-          (item) => item.quantity < item.low_quantity_alert
+          (item) => item.quantity < item.low_quantity_threshold
         );
       }
 
@@ -194,6 +197,16 @@ export default defineComponent({
       }
     };
 
+    const onInventoryUpdate = (updatedInventory: Inventory) => {
+      const index = inventory.value.findIndex(
+        (inventory) => inventory.id === updatedInventory.id
+      );
+      if (index !== -1) {
+        inventory.value[index] = updatedInventory;
+      }
+      applyFilters();
+    };
+
     watch(selectedCategory, () => {
       applyFilters();
     });
@@ -214,6 +227,7 @@ export default defineComponent({
       addNewInventory,
       sortByQuantity,
       filterByStatus,
+      onInventoryUpdate,
     };
   },
 });
