@@ -3,9 +3,9 @@
     <!-- Table Header -->
     <v-row class="bg-gray-800 text-white align-center">
       <v-col cols="1">
-        <v-checkbox hide-details class="white--text" />
+        <v-checkbox hide-details />
       </v-col>
-      <v-col cols="1" class="text-base white--text"> Product </v-col>
+      <v-col cols="1" class="text-base"> Product </v-col>
       <v-col cols="2" class="font-medium"> Product Name </v-col>
       <v-col cols="1" class="font-medium"> Item ID </v-col>
       <v-col cols="1" class="font-medium"> Stock </v-col>
@@ -32,12 +32,15 @@
           width="40"
           height="40"
         ></v-img>
+        {{ item.image_src }}
       </v-col>
       <v-col cols="2">{{ item.name }}</v-col>
       <v-col cols="1">{{ item.id }}</v-col>
       <v-col cols="1">{{ item.stock || "N/A" }}</v-col>
       <v-col cols="1" class="text-left">{{ item.classification }}</v-col>
-      <v-col cols="1" class="text-left">${{ item.price }}</v-col>
+      <v-col cols="1" class="text-left"
+        >${{ item.price ? item.price : item.cost }}</v-col
+      >
       <v-col cols="2" class="text-left">
         {{ item.is_in_stock ? "Available" : "Out of Stock" }}
       </v-col>

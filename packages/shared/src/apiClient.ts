@@ -81,6 +81,21 @@ export const fetchInventory = async (
   }
 };
 
+export const updateInventory = async (
+  inventory: Inventory
+): Promise<Inventory[]> => {
+  try {
+    const response = await apiClient.put(
+      `/api/inventory/${inventory.id}/`,
+      inventory
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch inventory:", error);
+    throw error;
+  }
+};
+
 export const fetchHighlights = async (
   restaurantId: number
 ): Promise<Highlight[]> => {

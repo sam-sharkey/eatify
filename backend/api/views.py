@@ -156,29 +156,18 @@ class InventoryViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(item_option__restaurant_id=restaurant_id)
         return queryset
 
-    # Custom action to update inventory quantity
-    @action(detail=True, methods=['patch'], url_path='update-quantity')
-    def update_quantity(self, request, pk=None):
-        try:
-            inventory_item = self.get_object()
-            new_quantity = request.data.get('quantity')
-
-            # Update the quantity
-            if new_quantity is not None:
-                inventory_item.quantity = int(new_quantity)
-                inventory_item.save()
-
-                return Response({'status': 'quantity updated', 'quantity': inventory_item.quantity}, status=status.HTTP_200_OK)
-            else:
-                return Response({'error': 'Quantity not provided'}, status=status.HTTP_400_BAD_REQUEST)
-
-        except Inventory.DoesNotExist:
-            return Response({'error': 'Inventory item not found'}, status=status.HTTP_404_NOT_FOUND)
-
     # Retrieve all inventory items and check for low stock
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         serializer = InventorySerializer(queryset, many=True)
+        return Response(serializer.data)
+    
+    # Handle the PUT request for updating an inventory item
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()  # Get the inventory item to update
+        serializer = self.get_serializer(instance, data=request.data, partial=True)  # Use partial=True if you want to update only some fields
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
         return Response(serializer.data)
 
 class HighlightListView(generics.ListAPIView):

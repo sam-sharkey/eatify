@@ -43,10 +43,17 @@ class OrderSerializer(serializers.ModelSerializer):
 
         return instance
 
+
+class ItemOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemOption
+        fields = ['id', 'image_src', 'name', 'calories', 'cost', 'classification', 'is_in_stock']
+
 class InventorySerializer(serializers.ModelSerializer):
     item_option_name = serializers.CharField(source='item_option.name', read_only=True)
     location_name = serializers.CharField(source='location.name', read_only=True)
     is_low_stock = serializers.SerializerMethodField()
+    item_option = ItemOptionSerializer(read_only=True)
 
     class Meta:
         model = Inventory
@@ -55,12 +62,6 @@ class InventorySerializer(serializers.ModelSerializer):
 
     def get_is_low_stock(self, obj):
         return obj.is_low_stock()
-
-
-class ItemOptionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ItemOption
-        fields = ['id', 'image_src', 'name', 'calories', 'cost', 'classification', 'is_in_stock']
 
 class MenuItemSerializer(serializers.ModelSerializer):
     options = ItemOptionSerializer(many=True, read_only=True)
