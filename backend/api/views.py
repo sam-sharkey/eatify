@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics, viewsets, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import MenuItem, Inventory, Highlight, HeaderConfig, FooterConfig, MainPageConfig, Restaurant, Location, ItemOption, Order, OrderItemOption
-from .serializers import MenuItemSerializer, InventorySerializer, OrderSerializer, RestaurantSerializer, HighlightSerializer, HeaderConfigSerializer, FooterConfigSerializer, MainPageConfigSerializer, LocationSerializer, ItemOptionSerializer
+from .models import Staff, MenuItem, Inventory, Highlight, HeaderConfig, FooterConfig, MainPageConfig, Restaurant, Location, ItemOption, Order, OrderItemOption
+from .serializers import StaffSerializer, MenuItemSerializer, InventorySerializer, OrderSerializer, RestaurantSerializer, HighlightSerializer, HeaderConfigSerializer, FooterConfigSerializer, MainPageConfigSerializer, LocationSerializer, ItemOptionSerializer
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import action
@@ -170,6 +170,10 @@ class InventoryViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(serializer.data)
+
+class StaffViewSet(viewsets.ModelViewSet):
+    queryset = Staff.objects.all()
+    serializer_class = StaffSerializer
 
 class HighlightListView(generics.ListAPIView):
     serializer_class = HighlightSerializer

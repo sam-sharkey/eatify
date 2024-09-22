@@ -16,13 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from api.views import MenuItemsView, InventoryViewSet, OrderView, ItemOptionView, HighlightListView, HeaderConfigView, FooterConfigView, MainPageConfigView, LocationView, RestaurantListView
+from api.views import MenuItemsView, InventoryViewSet, StaffViewSet, OrderView, ItemOptionView, HighlightListView, HeaderConfigView, FooterConfigView, MainPageConfigView, LocationView, RestaurantListView
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'inventory', InventoryViewSet)
+router.register(r'staff', StaffViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import MenuItem, Highlight, Restaurant, HeaderConfig, Inventory, FooterConfig, MainPageConfig, Location, ItemOption, OrderItemOption, Order
+from .models import MenuItem, Highlight, Staff, Restaurant, HeaderConfig, Inventory, FooterConfig, MainPageConfig, Location, ItemOption, OrderItemOption, Order
 
 
 class OrderItemOptionSerializer(serializers.ModelSerializer):
@@ -68,6 +68,11 @@ class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
         fields = ['name', 'description', 'classification', 'price', 'calories', 'image_src', 'allergens', 'tag', 'options']
+
+class StaffSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Staff
+        fields = ['id', 'staff_id', 'name', 'position', 'email', 'phone', 'age', 'salary', 'timings']
 
 class HighlightSerializer(serializers.ModelSerializer):
     class Meta:

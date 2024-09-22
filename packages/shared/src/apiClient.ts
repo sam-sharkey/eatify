@@ -7,6 +7,7 @@ import {
   ItemOption,
   Order,
   Inventory,
+  Staff,
 } from "./types";
 
 const apiClient = axios.create({
@@ -177,4 +178,49 @@ export const fetchMainPageConfig = async (restaurantId: number) => {
 export const fetchLocations = async (restaurantId: number) => {
   const response = await apiClient.get(`/api/locations/${restaurantId}/`);
   return response.data;
+};
+
+export const fetchStaff = async (): Promise<Staff[]> => {
+  try {
+    const response = await apiClient.get<Staff[]>("/api/staff/");
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch staff:", error);
+    throw error;
+  }
+};
+
+// Create a new staff member
+export const createStaff = async (staff: Staff): Promise<Staff> => {
+  try {
+    const response = await apiClient.post<Staff>("/api/staff/", staff);
+    return response.data;
+  } catch (error) {
+    console.error("Failed to create staff:", error);
+    throw error;
+  }
+};
+
+// Update an existing staff member
+export const updateStaff = async (staff: Staff): Promise<Staff> => {
+  try {
+    const response = await apiClient.put<Staff>(
+      `/api/staff/${staff.id}/`,
+      staff
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Failed to update staff:", error);
+    throw error;
+  }
+};
+
+// Delete a staff member
+export const deleteStaff = async (staffId: string): Promise<void> => {
+  try {
+    await apiClient.delete(`/api/staff/${staffId}/`);
+  } catch (error) {
+    console.error("Failed to delete staff:", error);
+    throw error;
+  }
 };

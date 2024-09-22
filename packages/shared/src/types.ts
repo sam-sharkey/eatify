@@ -44,6 +44,18 @@ export interface Inventory {
   low_quantity_alert: number; // Threshold for low inventory alert
 }
 
+export interface Staff {
+  id: string;
+  staff_id: string; // Unique Staff ID
+  name: string;
+  position: string;
+  email: string;
+  phone: string;
+  age: number;
+  salary: number;
+  timings: string;
+}
+
 export interface HamburgerMenuItem {
   name: string;
   path: string;

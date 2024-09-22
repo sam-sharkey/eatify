@@ -172,6 +172,30 @@ class OrderItemOption(models.Model):
     def total_item_price(self):
         return self.item_option.cost * self.quantity
 
+# Staff
+
+class Staff(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='staff')
+    name = models.CharField(max_length=255)
+    position = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    age = models.PositiveIntegerField()
+    salary = models.DecimalField(max_digits=10, decimal_places=2)
+    timings = models.CharField(max_length=100)
+    staff_id = models.CharField(max_length=20, unique=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.position})"
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['email'],
+                name='unique_email'
+            )
+        ]
+
 
 # News Related
 

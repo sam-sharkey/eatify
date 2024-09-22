@@ -12,6 +12,7 @@ import * as directives from "vuetify/directives";
 import Menu from "./pages/Menu.vue";
 import Orders from "./pages/Orders.vue";
 import Inventory from "./pages/Inventory.vue";
+import Staff from "./pages/Staff.vue";
 import "./global.css";
 
 interface Route {
@@ -35,6 +36,11 @@ const routes: Route[] = [
     path: "/Inventory",
     name: "Inventory",
     component: Inventory,
+  },
+  {
+    path: "/Staff",
+    name: "Staff",
+    component: Staff,
   },
 ];
 
